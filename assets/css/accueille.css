@@ -82,3 +82,91 @@ h6{
     background-color: coral;
     color: white;
 }
+
+.home{
+    /* background-image: url() ; */
+    background-size: cover;
+    background-color: coral;
+    width: 100%;
+    height: 100vh;
+    background-position-x:90px ;
+    background-position-y:80px ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 40px;
+}
+
+.home  span{
+    color:white;
+}
+
+.home button{
+    background-color: black;
+    color:white;
+    border: none;
+    padding: 10px 20px 10px 20px;
+}
+.home p {
+    width:40%;
+}
+
+#new .one img{
+    width:100%;
+    height:80%;
+    background-position: center;
+    background-repeat: none ;
+    background-size: cover;
+}
+#new .one{
+    position: relative;
+}
+ #new .one .details{
+     /* display:none; */
+        position:absolute;
+        top:0;
+        left:0;
+        color:burlywood;
+        font-weight: bold;
+        transition: 0.4s ease ;
+        background-color: black;
+        width: 100%;
+        height:80%; 
+        display: flex;
+        opacity: 0;
+        justify-content: center;
+        flex-direction: column;
+        text-align:center;
+        padding:40px;
+        
+}
+
+#new .one .details button{
+
+    border: none;
+    font-size:15px;
+}
+#new .one .details:hover {
+    opacity: 1;
+    pointer-events: auto; 
+  }
+
+#mainBox{
+    display: flex;
+    margin: 100px;
+}
+#mainBox .box{
+    /* margin:10px;  */
+    padding:10px;
+    border-right: 2px solid grey;
+}
+
+#mainBox :nth-child(3){
+    border:none;
+}
+
+#mainBox .box h3, #mainBox .box p{
+  text-align: center;
+}
+
