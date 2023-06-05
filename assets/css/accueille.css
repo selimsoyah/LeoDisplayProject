@@ -280,6 +280,29 @@ ul{
 
 
 .small-image-col{
-    /* flex-basis: 25%;  resize the images */
+    flex-basis: 25%;  
+    margin-left: 10px;
     cursor: pointer;
+}
+.small-image-col:nth-child(1){
+    margin:0;
+}
+
+.single-product input:focus{
+    outline:none;
+}
+
+.single-product button{
+    padding:5px;
+    border:2px solid coral;
+    background-color: coral;
+    color:white;
+    border-radius:2px;
+}
+
+.single-product button:hover{
+    
+    background-color: rgb(253, 253, 253);
+    transition:0.5s;
+    color:coral;
 }
