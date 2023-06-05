@@ -76,36 +76,126 @@
                         
                     </div>
                   </div> 
-                  <div class="col-lg-6 col-md-12 col-sm-12">
+                  <div class="box col-lg-6 col-md-12 col-sm-12">
                    <h6>
                      Stand Modulaire
                    </h6>
-                   <h3 class="py-4">Step 1</h3>
-                   <h2>240 DT</h2>
-                   <input type="number" value="1" >
-                   <button class="buy-btn">Add to cart</button>
+                   <h3 class="py-4">Etape 1</h3>
+                   <!-- <h2>240 DT</h2> -->
+                   <!-- <input type="number" value="1" > -->
+                   
+                   <form class="radioForm">
+                    <h4>Choisissez le type de drapeau : </h4>
+
+                    <label>
+                      <input type="radio" name="type" value="2m50">
+                      <img src="assets/imgs//2m50.png">
+                    </label>
+                    
+                    <label>
+                      <input type="radio" name="type" value="2m80">
+                      <img src="assets/imgs/2m80.png">
+                    </label>
+                    
+                    <label>
+                      <input type="radio" name="type" value="3m20">
+                      <img src="assets/imgs/3m20.png">
+                    </label>
+                    <label>
+                      <input type="radio" name="type" value="3m80">
+                      <img src="assets/imgs/3m80.png">
+                    </label>
+                    <label>
+                      <input type="radio" name="type" value="4m50">
+                      <img src="assets/imgs/4m50.png">
+                    </label>
+                      <label>
+                      <input type="radio" name="type" value="4m50">
+                      <img src="assets/imgs/5m.png">
+                    </label>
+                    <h3 class="py-4">Etape 2</h3>
+                    <h4>Choissisez La Taille : </h4>
+                    <label>
+                      <input type="radio" name="taille" value="2m50">
+                      <img src="assets/imgs//2m50.png">
+                    </label>
+                    
+                    <label>
+                      <input type="radio" name="taille" value="2m80">
+                      <img src="assets/imgs/2m80.png">
+                    </label>
+                    
+                    <label>
+                      <input type="radio" name="taille" value="3m20">
+                      <img src="assets/imgs/3m20.png">
+                    </label>
+                    <label>
+                      <input type="radio" name="taille" value="3m80">
+                      <img src="assets/imgs/3m80.png">
+                    </label>
+                    <label>
+                      <input type="radio" name="taille" value="4m50">
+                      <img src="assets/imgs/4m50.png">
+                    </label>
+                      <label>
+                      <input type="radio" name="taille" value="4m50">
+                      <img src="assets/imgs/5m.png">
+                    </label>
+
+                    <h3 class="py-4">Etape 3</h3>
+                    <h4>Choissisez La Base ( Optionelle ) : </h4>
+                    <div class="base">
+
+                      <label>
+                        <input type="radio" name="base" value="2m50">
+                        <img src="assets/imgs/baseAEau.png">
+                      </label>
+                      
+                      <label>
+                        <input type="radio" name="base" value="2m80">
+                        <img src="assets/imgs/baseBeton.png">
+                      </label>
+                      
+                      <label>
+                        <input type="radio" name="base" value="3m20">
+                        <img src="assets/imgs/baseMetalique.png">
+                      </label>
+                      <label>
+                        <input type="radio" name="base" value="3m80">
+                        <img src="assets/imgs/baseAEau.png">
+                      </label>
+                      <label>
+                        <input type="radio" name="base" value="4m50">
+                        <img src="assets/imgs/baseAEau.png">
+                      </label>
+                        
+  
+                    </div>
+                    <h3 class="py-4">Etape 4</h3>
+                    <h4> Inserez Votre Image : </h4>
+                    <div class="mainUpContainer">
+                      <label for="photo-upload" class="upload-container">
+                        <div>Click here to upload a photo</div>
+                        <input type="file" id="photo-upload" accept="image/*">
+                      </label>
+                    
+                      <div class="uploaded-image-container">
+                        <img class="uploaded-image" id="uploaded-image-preview" src="" alt="Uploaded Image">
+                      </div>
+                     </div>
+
+                     <div class="buttonContainer">
+                      <input type="submit" class="buy-btn" value="Ajouter Au Pannier">
+                    </div>
+                  </form>   
+
+                  
                </div>
                 </div>
 
              
          
         </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <div class="m-footer">
         <footer class="footer">
@@ -145,7 +235,7 @@
            </div>
            <hr style="border: none; height: 2px; background-color: #ffffff;">
           </div>
-          
+       
           <div class="u-footer">
             <div class="uf-container">
               <div class="child">
@@ -185,6 +275,30 @@
       
      }
     }
+
+
     </script>
+ <script>
+   const photoUpload = document.getElementById('photo-upload');
+    const imagePreviewContainer = document.querySelector('.uploaded-image-container');
+    const imagePreview = document.getElementById('uploaded-image-preview');
+
+    photoUpload.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        imagePreview.src = e.target.result;
+      }
+
+      if (file) {
+        reader.readAsDataURL(file);
+        imagePreviewContainer.style.display = 'block';
+      } else {
+        imagePreviewContainer.style.display = 'none';
+      }
+    });
+</script>
+
 </body>
 </html>

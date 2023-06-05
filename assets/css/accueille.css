@@ -292,7 +292,7 @@ ul{
     outline:none;
 }
 
-.single-product button{
+.buy-btn {
     padding:5px;
     border:2px solid coral;
     background-color: coral;
@@ -300,9 +300,83 @@ ul{
     border-radius:2px;
 }
 
-.single-product button:hover{
+.buy-btn:hover{
     
     background-color: rgb(253, 253, 253);
     transition:0.5s;
     color:coral;
 }
+.radioForm img{
+    width: 100px;
+    cursor: pointer;
+}
+.box {
+    width: auto;
+}
+/* .radio{
+    display: flex;
+} */
+
+.base img{
+   aspect-ratio: 1;
+   /* object-fit: contain; */
+}
+
+.buttonContainer{
+    margin: 20px;
+    display: flex;
+    justify-content:center;
+}
+
+.buttonContainer input{
+    /* width:100px; */
+}
+
+
+.mainUpContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  .upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    border: 2px dashed #aaa;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 20px;
+    margin: 20px;
+    cursor: pointer;
+    /* width:; */
+  }
+
+  .upload-container label{
+    cursor: pointer;
+  }
+  .upload-container:hover {
+    background-color: #f9f9f9;
+  }
+
+  .upload-container label {
+    color: #555;
+    font-size: 18px;
+  }
+
+  .upload-container input[type="file"] {
+    display: none;
+  }
+
+  .uploaded-image-container {
+    display: none;
+    margin-top: 20px;
+  }
+
+  .uploaded-image {
+    max-width: 100%;
+    max-height: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
