@@ -235,6 +235,19 @@ th:last-child{
     text-align: right;
 }
 
+.checkout-container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.checkout-btn{
+    background-color:orange;
+    color: #fff;
+}
+
+
+
 
 /*responsive*/
 @media(max-width: 767px){
