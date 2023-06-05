@@ -270,3 +270,16 @@ ul{
 }
 }
 
+
+
+.small-img-group{
+    display: flex;
+    justify-content: space-between ;
+}
+
+
+
+.small-image-col{
+    /* flex-basis: 25%;  resize the images */
+    cursor: pointer;
+}
