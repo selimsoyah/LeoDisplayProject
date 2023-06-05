@@ -176,7 +176,7 @@ h6{
 
 .m-footer.container{
 	max-width: 1170px;
-	margin:auto;
+    margin: auto;
 }
 .row{
 	display: flex;
@@ -191,7 +191,7 @@ ul{
 }
 .footer-col{
    width: 25%;
-   padding: 0 10px;
+   padding: 0px 10px 1px;
    text-align: start;
    margin-left: 85px;
 }
@@ -236,8 +236,7 @@ ul{
 
 .uf-container{
     background-color: #24262b;
-    padding: 10px ;
-    margin-right: ;
+    padding: 1px ;
     color: #bbbbbb;
     font-size: 13px;
     font-weight: 300;
@@ -248,7 +247,13 @@ ul{
 .uf-container .child{
     align-items: flex-end;
     margin-left: 100px;
-
+}
+.child p{
+    margin-right: -230px;
+    margin-left: 100px;
+}
+.child a{
+    margin-left:-310px ;
 }
 
 
