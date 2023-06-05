@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
+
+.nav-buttons{
+    margin-left: 60% ;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+
+}
+
+h1{
+    font-size: 2.5em; 
+    font-weight: 700;
+}
+
+h2{
+    font-size: 1.8em; 
+    font-weight: 600;
+}
+
+h3{
+    font-size: 1.5em; 
+    font-weight: 800;
+}
+
+h4{
+    font-size: 1.2em; 
+    font-weight: 600;
+}
+
+h5{
+    font-size: 1em; 
+    font-weight: 400;
+}
+
+h6{
+    color: #D8D8D8;
+}
+
+.navbar{
+    font-size: 16px;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    top: 0;
+    left: 0;
+}
+
+.navbar-light .navbar-nav .nav-link .btn .btn-outline-success {
+    padding: 0 20px;
+    color: black;
+    transition: 0.4s ease;
+}
+
+.btn.btn-outline-success:hover,
+.btn.btn-outline-success:focus {
+    background-color: coral;
+}
+
+.btn.btn-outline-success{
+    color: black;
+    border-color: black;
+    opacity: 1;
+}
+
+.navbar-light .navbar-nav .nav-link:hover, 
+.navbar i:hover,
+.navbar-light .navbar-nav .nav-link.active
+.navbar i:hover{
+    color: coral;
+
+}
+.btn.btn-outline-success:hover{
+    background-color: coral;
+    color: white;
+}
+
+
+/*Footer*/
+.m-footer{
+	line-height: 1.5;
+}
+
+.m-footer.container{
+	max-width: 1170px;
+    margin: auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+.footer{
+	background-color: #24262b;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0px 10px 1px;
+   text-align: start;
+   margin-left: 85px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+    left: 10%;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: coral;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li :not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li p{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+    
+}
+.footer-col ul li p:hover{
+	color: #ffffff;
+	padding-left: 8px;
+    cursor: pointer;
+}
+
+.uf-container{
+    background-color: #24262b;
+    padding: 1px ;
+    color: #bbbbbb;
+    font-size: 13px;
+    font-weight: 300;
+    display: flex;
+    justify-content:space-evenly;
+
+}
+.uf-container .child{
+    align-items: flex-end;
+    margin-left: 100px;
+}
+.child p{
+    margin-right: -230px;
+    margin-left: 100px;
+}
+.child a{
+    margin-left:-310px ;
+}
+
+.cart table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart .product-info{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cart th{
+    text-align: left;
+    padding: 5px 10px;
+    color: #ffff;
+    background-color: orange;
+}
+
+.cart td{
+    padding: 10px 20px;
+}
+
+.cart td img{
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+
+.cart td a{
+    color: orange;
+}
+
+.cart .remove-btn{
+    color: orange;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.cart .edit-btn{
+    color: orange;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.cart .product-info p{
+    margin: 3px;
+}
+
+.cart-total{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cart-total table{
+    width: 100px;
+    max-width: 500px;
+    border-top: 3px solid orange;
+}
+
+td:last-child{
+    text-align: right;
+}
+
+th:last-child{
+    text-align: right;
+}
+
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
