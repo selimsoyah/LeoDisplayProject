@@ -238,7 +238,6 @@ ul{
 
 .footer-bottom{
     background-color: #24262b;
-    /* max-width: 1170px; */
     width: 100%;
     margin: auto;
     color: #bbbbbb;
@@ -254,19 +253,6 @@ ul{
 .content p{
     margin: 0!important;
 }
-/*.child{
-   
-}*/
-/*.child{
-    margin-left: 100px;
-}
-.child p{
-    margin-right: -230px;
-    margin-left: 100px;
-}
-.child a{
-    margin-left:-310px ;
-}*/
 
 
 /*responsive*/

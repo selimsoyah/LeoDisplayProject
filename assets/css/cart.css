@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
 
-.nav-buttons{
-    margin-left: 60% ;
-}
 
 *{
     margin: 0;
@@ -44,6 +41,10 @@ h6{
     color: #D8D8D8;
 }
 
+.nav-buttons{
+    margin-left: 60% ;
+}
+
 .navbar{
     font-size: 16px;
     padding-top: 2rem !important;
@@ -83,11 +84,12 @@ h6{
 
 
 /*Footer*/
-.m-footer{
-	line-height: 1.5;
+
+.footer{
+	line-height: 1.2;
 }
 
-.m-footer.container{
+.footer.container{
 	max-width: 1170px;
     margin: auto;
 }
@@ -100,6 +102,7 @@ ul{
 }
 .footer{
 	background-color: #24262b;
+    height: auto;
     padding: 70px 0;
 }
 .footer-col{
@@ -133,7 +136,7 @@ ul{
 .footer-col ul li p{
 	font-size: 16px;
 	text-transform: capitalize;
-	color: #ffffff;
+	color: #ffffff; 
 	text-decoration: none;
 	font-weight: 300;
 	color: #bbbbbb;
@@ -147,26 +150,36 @@ ul{
     cursor: pointer;
 }
 
-.uf-container{
+.footer-bottom{
     background-color: #24262b;
-    padding: 1px ;
+    width: 100%;
+    margin: auto;
     color: #bbbbbb;
     font-size: 13px;
     font-weight: 300;
+}
+.content{
     display: flex;
-    justify-content:space-evenly;
-
-}
-.uf-container .child{
+    justify-content: space-between;
     align-items: flex-end;
-    margin-left: 100px;
+    padding: 20px;
 }
-.child p{
-    margin-right: -230px;
-    margin-left: 100px;
+.content p{
+    margin: 0!important;
 }
-.child a{
-    margin-left:-310px ;
+
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
 }
 
 .cart table{
