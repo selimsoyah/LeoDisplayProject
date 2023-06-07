@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
 
 .nav-buttons{
-    margin-left: 60% ;
+    margin-left: 60%;
 }
 
 *{
@@ -75,8 +75,8 @@ h6{
 .navbar-light .navbar-nav .nav-link.active
 .navbar i:hover{
     color: coral;
-
 }
+
 .btn.btn-outline-success:hover{
     background-color: coral;
     color: white;
@@ -379,62 +379,6 @@ ul{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
-  /* Login  */
-
-  #login-form{
-    width: 50%;
-    margin: 5px auto;
-    padding: 20px;
-  }
-
-  #login-form input{
-    width: 50%;
-    margin: 5px auto;
-  }
-
-  #login-form #login-button{
-    background-color: coral;
-    color:white;
-  }
 
 
-/* Register */
-  #register-form{
-    width: 50%;
-    margin: 5px auto;
-    padding: 20px;
-  }
 
-  #register-form input{
-    width: 50%;
-    margin: 5px auto;
-  }
-
-  #register-form #register-button{
-    background-color: coral;
-    color:white;
-  }
-
-.line{
-    color: coral;
-    
-  }
-
-
-/* Account */
-
-#account-form{
-    width: 50%;
-    margin:5px auto;
-    text-align: center;
-padding: 20px;
-}
-#account-form input{
-    margin:5px auto;
-
-}
-
-#account-form #change-pass-btn{
-    background-color: coral;
-    color: white;
-}

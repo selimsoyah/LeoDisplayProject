@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+
+}
+
+h1{
+    font-size: 2.5em; 
+    font-weight: 700;
+}
+
+h2{
+    font-size: 1.8em; 
+    font-weight: 600;
+}
+
+h3{
+    font-size: 1.5em; 
+    font-weight: 800;
+}
+
+h4{
+    font-size: 1.2em; 
+    font-weight: 600;
+}
+
+h5{
+    font-size: 1em; 
+    font-weight: 400;
+}
+
+h6{
+    color: #D8D8D8;
+}
+
+.nav-buttons{
+    margin-left: 60% ;
+}
+
+.navbar{
+    font-size: 16px;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    top: 0;
+    left: 0;
+}
+
+.navbar-light .navbar-nav .nav-link .btn .btn-outline-success {
+    padding: 0 20px;
+    color: black;
+    transition: 0.4s ease;
+}
+
+.btn.btn-outline-success:hover,
+.btn.btn-outline-success:focus {
+    background-color: coral;
+}
+
+.btn.btn-outline-success{
+    color: black;
+    border-color: black;
+    opacity: 1;
+}
+
+.navbar-light .navbar-nav .nav-link:hover, 
+.navbar i:hover,
+.navbar-light .navbar-nav .nav-link.active
+.navbar i:hover{
+    color: coral;
+
+}
+.btn.btn-outline-success:hover{
+    background-color: coral;
+    color: white;
+}
+
+
+/*Footer*/
+
+.footer{
+	line-height: 1.2;
+}
+
+.footer.container{
+	max-width: 1170px;
+    margin: auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+.footer{
+	background-color: #24262b;
+    height: auto;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0px 10px 1px;
+   text-align: start;
+   margin-left: 85px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+    left: 10%;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: coral;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li :not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li p{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff; 
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+    
+}
+.footer-col ul li p:hover{
+	color: #ffffff;
+	padding-left: 8px;
+    cursor: pointer;
+}
+
+.footer-bottom{
+    background-color: #24262b;
+    width: 100%;
+    margin: auto;
+    color: #bbbbbb;
+    font-size: 13px;
+    font-weight: 300;
+}
+.content{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px;
+}
+.content p{
+    margin: 0!important;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
+
+#register-form{
+    width: 50%;
+    margin: 5px auto;
+    padding: 20px;
+}
+
+  #register-form input{
+    width: 50%;
+    margin: 5px auto;
+  }
+
+  #register-form #register-button{
+    background-color: coral;
+    color:white;
+  }
+
+.line{
+    color: coral;
+    
+  }
+
