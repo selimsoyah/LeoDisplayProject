@@ -7,53 +7,73 @@
     <title>LeoDisplay</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/bf14b68fbc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/account.css">
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary py-4 fixed-top">
-        <div class="container-fluid">
-            
-          <img src="assets/imgs/logo.jpeg" alt="">
-
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="accueille.html">Home</a>
-              </li>
-
-
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Categories
-                </a>
-
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Beach flag</a></li>
-                  <li><a class="dropdown-item" href="#">Pop-Up Stand</a></li>
-                  <li><a class="dropdown-item" href="#">Counter</a></li>
-                </ul>
-
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link active">Disabled</a>
-              </li>
-
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-      </nav>
+    <!---first nav-->
+	<header>
+		<nav class="navbar navbar-expand-lg bg-dark">
+			<div class="container">
+				<div class="w-100 d-flex justify-content-between">
+					<div>
+						<i class="fa-solid fa-envelope text-light contact-info"></i>
+						<a href="" class="navbar-sm-brand text-light text-decoration-none contact-info">info@company.com</a>
+						<i class="fa-solid fa-phone contact-info text-light"></i>
+						<a href="" class="navbar-sm-brand text-white text-decoration-none contact-info">920-510-42</a>
+					</div>
+					<div>
+						<a href="" class="text-white"><i class="fa-brands fa-facebook me-2"></i></a>
+						<a href="" class="text-white"><i class="fa-brands fa-whatsapp me-2"></i></a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!---end first nav-->
+	<!---main nav-->
+	<header>
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="container d'flex justify-content-between">
+			<div>
+				<h1 class="text-success brand-title">LeoDisplay</h1>
+			</div>
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+				<div class="container-fluid">
+				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					  <li class="nav-item nav-items">
+						<a class="nav-link nav-links" aria-current="page" href="#">Accueille</a>
+					  </li>
+					  <li class="nav-item nav-items">
+						<a class="nav-link nav-links" href="#">About</a>
+					  </li>
+					  <li class="nav-item nav-items">
+						<a class="nav-link nav-links" href="#">Shop</a>
+					  </li>
+					  <li class="nav-item nav-items">
+						<a class="nav-link nav-links" href="#">Contact</a>
+					  </li>
+					</ul>
+					<div class="position-relative">
+						<a href="" class="text-decoration-none text-dark ">
+							<i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+						</a>
+						<a href="" class="text-decoration-none text-dark">
+							<i class="fa-solid fa-user nav-icon"></i>
+						</a>
+					</div>
+					<div class="position-absolute rounded-circle cart"><span>7</span></div>
+					<div class="position-absolute rounded-circle user"><span>+99</span></div>
+				  </div>
+				</div>
+			  </nav>	
+		</div>
+	  </nav>
+	  
+	</header>
+	<!---main nav end-->
 
       <section class="my-5 py-5">
         <div class="row container mx-auto">
