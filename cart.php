@@ -1,3 +1,23 @@
+<?php 
+
+  session_start();
+  if(isset($_POST['add_product'])){
+      if(isset($_SESSION['cart'])){
+
+      }else{
+        
+      }
+  }else{
+    header('location:accueille.php')
+  }
+
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

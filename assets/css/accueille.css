@@ -324,12 +324,15 @@ ul{
     margin: 20px;
     display: flex;
     justify-content:center;
+    background-color: red;
 }
 
 /*.buttonContainer input{
     width:100px; 
 }*/
-
+/* .buttonContainer input{
+    width:100000px;
+} */
 
 .mainUpContainer{
     display: flex;

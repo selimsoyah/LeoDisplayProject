@@ -101,7 +101,7 @@
             <div class="details">
               <h2><?php echo $row['product_name'] ?> <?php echo $row['product_id'] ?>  </h2>
                 <p> <?php echo $row['product_description'] ?> <p/>
-                <form action="single_product.php" method="GET">
+                <form action="single_product<?php echo$row['product_id']?>.php" method="GET">
     <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>">
     <button type="submit" class="text-uppercase">Commander Maintenant</button>
 </form>
