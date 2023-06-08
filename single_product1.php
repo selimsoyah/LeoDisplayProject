@@ -243,7 +243,7 @@ if (isset($_GET['product_id'])) {
 
               <div class="buttonContainer">
                 <input type='number' name='product_quantity' value='1'>
-                <input type="submit" name='add-product'class="buy-btn" value="Ajouter Au Pannier">
+                <input type="submit" name='add_product'class="buy-btn" value="Ajouter Au Pannier">
               </div>
             </div>
             <!-- </form>    -->
