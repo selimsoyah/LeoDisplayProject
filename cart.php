@@ -1,14 +1,52 @@
 <?php 
 
   session_start();
+
   if(isset($_POST['add_product'])){
-      if(isset($_SESSION['cart'])){
+    $product_array_ids = array_column ($_SESSION['cart'],'product_id');
+      if (!in_array($_POST['product_id'],$product_array_ids)){
+
+       
+
+        $product_array = array (
+           'product_id'=> $_POST['product_id'],
+           'product_image'=> $_POST['product_image'],
+           'product_name'=> $_POST['product_name'],
+           'product_price'=> $_POST['product_price'],
+           'product_quantity'=> $_POST['product_quantity'],
+        );
+
+        $_SESSION['cart'][$product_id] = $product_array;
+
 
       }else{
-        
+          echo '<script>alert("Product was already to cart ")</script>';
+          echo '<script>window.location="accueille.php"</script>';
+
+      }
+    if(isset($_SESSION['cart'])){
+
+      }else{
+
+        $product_id = $_POST['product_id'];
+        $product_image = $_POST['product_image'];
+        $product_name = $_POST['product_name'];
+        $product_price = $_POST['product_price'];
+        $product_quantity = $_POST['product_quantity'];
+
+        $product_array = array (
+           'product_id'=> $product_id,
+           'product_image'=> $product_image,
+           'product_name'=> $product_name,
+           'product_price'=> $product_price,
+           'product_quantity'=> $product_quantity,
+        );
+
+        $_SESSION['cart'][$product_id] = $product_array;
+
       }
   }else{
-    header('location:accueille.php')
+    header('location:accueille.php');
   }
 
 
