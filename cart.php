@@ -8,7 +8,7 @@
         
       }
   }else{
-    header('location:accueille.php')
+    header('location:accueil.php')
   }
 
 

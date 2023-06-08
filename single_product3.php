@@ -14,7 +14,7 @@ if (isset($_GET['product_id'])) {
   $request->execute();
   $products = $request->get_result();
 } else {
-  header('location:accueille.php');
+  header('location:accueil.php');
 }
 
 ?>
@@ -32,54 +32,74 @@ if (isset($_GET['product_id'])) {
   <title>LeoDisplay</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="assets/css/accueille.css">
+  <script src="https://kit.fontawesome.com/bf14b68fbc.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="assets/css/accueil.css">
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary py-4 fixed-top">
-    <div class="container-fluid">
-
-      <img src="assets/imgs/logo.jpeg" alt="">
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="accueille.html">Home</a>
-          </li>
-
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Categories
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Beach flag</a></li>
-              <li><a class="dropdown-item" href="#">Pop-Up Stand</a></li>
-              <li><a class="dropdown-item" href="#">Counter</a></li>
-            </ul>
-
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link active">Disabled</a>
-          </li>
-
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
+  <!---first nav-->
+	<header>
+		<nav class="navbar navbar-expand-lg bg-dark">
+			<div class="container">
+				<div class="w-100 d-flex justify-content-between">
+					<div>
+						<i class="fa-solid fa-envelope text-light contact-info"></i>
+						<a href="" class="navbar-sm-brand text-light text-decoration-none contact-info">info@company.com</a>
+						<i class="fa-solid fa-phone contact-info text-light"></i>
+						<a href="" class="navbar-sm-brand text-white text-decoration-none contact-info">920-510-42</a>
+					</div>
+					<div>
+						<a href="" class="text-white"><i class="fa-brands fa-facebook me-2"></i></a>
+						<a href="" class="text-white"><i class="fa-brands fa-whatsapp me-2"></i></a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!---end first nav-->
+	<!---main nav-->
+	<header>
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="container d'flex justify-content-between">
+			<div>
+				<h1 class="text-success brand-title">LeoDisplay</h1>
+			</div>
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+				<div class="container-fluid">
+				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					  <li class="nav-item nav-items">
+						<a class="nav-link nav-links" aria-current="page" href="accueil.html">Accueil</a>
+					  </li>
+					  <li class="nav-item nav-items">
+						<a class="nav-link nav-links" href="#">About</a>
+					  </li>
+					  <li class="nav-item nav-items">
+						<a class="nav-link nav-links" href="#">Shop</a>
+					  </li>
+					  <li class="nav-item nav-items">
+						<a class="nav-link nav-links" href="#">Contact</a>
+					  </li>
+					</ul>
+					<div class="position-relative">
+						<a href="cart.html" class="text-decoration-none text-dark ">
+							<i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+						</a>
+						<a href="login.html" class="text-decoration-none text-dark">
+							<i class="fa-solid fa-user nav-icon"></i>
+						</a>
+					</div>
+					<div class="position-absolute rounded-circle cart"><span>7</span></div>
+					<div class="position-absolute rounded-circle user"><span>+99</span></div>
+				  </div>
+				</div>
+			  </nav>	
+		</div>
+	  </nav>
+	  
+	</header>
+	<!---main nav end-->
 
 
 
@@ -234,75 +254,59 @@ if (isset($_GET['product_id'])) {
 
 
   <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <h2 style="color: #ffffff; padding-bottom: 50px; text-align: center;">Trouver nos revendeurs :</h2>
+        <div class="container">
+          <div class="row">
+            <h2 style="color: #ffffff; padding-bottom: 50px; text-align: center;">Trouver nos revendeurs :</h2>
 
-        <div class="footer-col">
-          <h4>S3P Distribution Tunis</h4>
-          <ul>
-            <li>
-              <p>E-mail : s3ptunis.contact@gmail.com</p>
-            </li>
-            <li>
-              <p>Tel : +216 58 402 416</p>
-            </li>
-            <li>
-              <p>Adresse : 21 Cité ennour, 2080 Ariana, Tunisie</p>
-            </li>
-          </ul>
+            <div class="footer-col">
+              <h4>S3P Distribution Tunis</h4>
+              <ul>
+                <li><p>E-mail : s3ptunis.contact@gmail.com</p></li>
+                <li><p>Tel : +216 58 402 416</p></li>
+                <li><p>Adresse : 21 Cité ennour, 2080 Ariana, Tunisie</p></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>S3P Distribution Sousse</h4>
+              <ul>
+                <li><p>E-mail : s3p.contact@gnet.tn</p></li>
+                <li><p>Tel : +216 58 306 649</p></li>
+                <li><p>Adresse : 9 Avenue de la Cité Olympique 4000 Sousse, Tunisie</p></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>S3P Distribution Sfax</h4>
+              <ul>
+                <li><p>E-mail : s3p.sfax@gnet.tn</p></li>
+                <li><p>Tel : +216 56 114 500</p></li>
+                <li><p>Adresse : Z.I. Poudriere 1, Rue 13 Aout 5000 Sfax, Tunisie</p></li>
+              </ul>
+            </div>
+
+          </div>
         </div>
 
-        <div class="footer-col">
-          <h4>S3P Distribution Sousse</h4>
-          <ul>
-            <li>
-              <p>E-mail : s3p.contact@gnet.tn</p>
-            </li>
-            <li>
-              <p>Tel : +216 58 306 649</p>
-            </li>
-            <li>
-              <p>Adresse : 9 Avenue de la Cité Olympique 4000 Sousse, Tunisie</p>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>S3P Distribution Sfax</h4>
-          <ul>
-            <li>
-              <p>E-mail : s3p.sfax@gnet.tn</p>
-            </li>
-            <li>
-              <p>Tel : +216 56 114 500</p>
-            </li>
-            <li>
-              <p>Adresse : Z.I. Poudriere 1, Rue 13 Aout 5000 Sfax, Tunisie</p>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
-    <!--<hr style="border: none; height: 2px; background-color: #ffffff;">-->
-    <div class="footer-bottom">
-      <div class="content">
-        <div class="child">
+        <hr style="border: none; height: 2px; background-color: #ffffff;">
+       
+      </footer>
+    
+      <div class="footer-bottom">
+        <div class="content">
+          <div class="child">
           <a href="#"><i class="fab fa-facebook-f"></i></a>
-        </div>
+          </div>
 
-        <div class="child">
+          <div class="child">
           <img src="#" alt="#">
-        </div>
+          </div>
 
-        <div class="child">
+          <div class="child">
           <p>© 2023 VORTECH Media. All Rights Reserved.</p>
+          </div>
         </div>
-      </div>
-    </div>
-  </footer>
+      </div>  
 
 
 
