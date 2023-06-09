@@ -46,7 +46,7 @@
 
       }
   }else{
-    header('location:accueille.php');
+    //header('location:accueille.php');
   }
 
 
@@ -114,7 +114,7 @@
 					  </li>
 					</ul>
 					<div class="position-relative">
-						<a href="cart.html" class="text-decoration-none text-dark ">
+						<a href="cart.php" class="text-decoration-none text-dark ">
 							<i class="fa-solid fa-cart-arrow-down nav-icon"></i>
 						</a>
 						<a href="login.html" class="text-decoration-none text-dark">
@@ -234,7 +234,9 @@
         </div>
 
         <div class="checkout-container">
-            <a href="checkout.html"><button class="btn checkout-btn">Checkout</button></a>
+          <form methode="POST" action="checkout.php">
+            <input type="submit" class="btn checkout-btn" value="Checkout" name="checkout">
+          </form>
         </div>
 
 

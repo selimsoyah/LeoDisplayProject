@@ -56,7 +56,7 @@
                 </li>
               </ul>
               <div class="position-relative">
-                <a href="cart.html" class="text-decoration-none text-dark ">
+                <a href="cart.php" class="text-decoration-none text-dark ">
                   <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
                 </a>
                 <a href="login.html" class="text-decoration-none text-dark">
@@ -90,7 +90,7 @@
       <div class="box col-lg-4 col-md-12 col-sm-12 ">
         <div class="boxDetails ">
           <h3>Mise en place rapide et facile</h3>
-          <p>D’une façon générale les produits LEO DISPLAY sont conçus pour être transportés, montés et démontés par une seule personne.</p>
+          <p>D'une façon générale les produits LEO DISPLAY sont conçus pour être transportés, montés et démontés par une seule personne.</p>
         </div>
       </div>
       <div class="box col-lg-4 col-md-12 col-sm-12 ">
