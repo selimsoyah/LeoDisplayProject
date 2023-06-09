@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" aria-current="page" href="accueil.html">Accueil</a>
+                  <a class="nav-link nav-links" aria-current="page" href="accueil.php">Accueil</a>
                 </li>
                 <li class="nav-item nav-items">
                   <a class="nav-link nav-links" href="#">About</a>
@@ -52,7 +52,7 @@
                   <a class="nav-link nav-links" href="#">Shop</a>
                 </li>
                 <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" href="cart.php">Contact</a>
+                  <a class="nav-link nav-links" href="contact.php">Contact</a>
                 </li>
               </ul>
               <div class="position-relative">
