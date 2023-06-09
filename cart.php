@@ -48,10 +48,12 @@
 
       }
      
+      calculateTotal();
     }else if (isset($_POST['remove_product'])){
           
       $product_id = $_POST['product_id'];
       unset($_SESSION['cart'][$product_id]);
+      calculateTotal();
     }else if (isset($_POST['edit_btn'])){
 //// ON HOLD
           $product_id = $_POST['product_id'];
@@ -63,9 +65,27 @@
 
           $_SESSION['cart'][$product_id] = $product_array;
 
+          calculateTotal();
+
     }else{
     header('location:accueil.php');
   }
+
+
+function calculateTotal (){
+
+  $total = 0;
+    foreach($_SESSION['cart'] as $key => $values){
+
+      $product = $_SESSION['cart'][$key];
+      $price = $product['product_price'];
+      $quantity = $product['product_quantity'];
+
+      $total = $total + ($price * $quantity);
+    }
+   $_SESSION['total'] = $total;
+}
+
 
 
 ?>
@@ -203,7 +223,14 @@
             <input type="submit" class="btn checkout-btn" value="Checkout" name="checkout">
           </form>
         </div>
-
+              <div class="cart-total">
+                <table>
+                  <tr>
+                    <td>Total</td>
+                    <td><?php echo $_SESSION['total'] ?></td>
+                  </tr>
+                </table>
+              </div>
 
     </section>
 

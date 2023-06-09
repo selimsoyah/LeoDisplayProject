@@ -8,7 +8,7 @@ if( !empty($_SESSION['cart']) && isset($_POST['checkout'])){
 
 }else{
   //send user to home page
-  header('location: accueil.php');
+  // header('location: accueil.php');
 
 }
 
