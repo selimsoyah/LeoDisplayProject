@@ -32,14 +32,14 @@ if (isset($_GET['product_id'])) {
   <title>LeoDisplay</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <script src="https://kit.fontawesome.com/bf14b68fbc.js" crossorigin="anonymous"></script>  
+  <script src="https://kit.fontawesome.com/bf14b68fbc.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="assets/css/accueil.css">
 </head>
 
 <body>
 
- <!---first nav-->
- <header>
+  <!---first nav-->
+	<header>
 		<nav class="navbar navbar-expand-lg bg-dark">
 			<div class="container">
 				<div class="w-100 d-flex justify-content-between">
@@ -105,7 +105,11 @@ if (isset($_GET['product_id'])) {
 
   <?php while ($row = $products->fetch_assoc()) { ?>
 
-    <form>
+    <form method="POST" action='cart.php'>
+      <input type='hidden' name="product_id" value='<?php echo $row['product_id'] ?>' />
+      <input type='hidden' name="product_image" value='<?php echo $row['product_image'] ?>' />
+      <input type='hidden' name="product_name" value='<?php echo $row['product_name'] ?>' />
+      <input type='hidden' name="product_price" value='<?php echo $row['product_price'] ?>' />
       <section class="container single-product my-5 pt-5">
         <div class="row mt-5">
           <div class="col-lg-5 col-md-6 col-sm-12">
@@ -238,7 +242,8 @@ if (isset($_GET['product_id'])) {
               </div>
 
               <div class="buttonContainer">
-                <input type="submit" class="buy-btn" value="Ajouter Au Pannier">
+                <input type='number' name='product_quantity' value='1'>
+                <input type="submit" name='add_product'class="buy-btn" value="Ajouter Au Pannier">
               </div>
             </div>
             <!-- </form>    -->
