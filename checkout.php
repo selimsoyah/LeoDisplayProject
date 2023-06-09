@@ -1,17 +1,43 @@
+<?php 
+
+session_start();
+
+if( !empty($_SESSION['cart']) && isset($_POST['checkout'])){
+
+//let user in
+
+}else{
+  //send user to home page
+  header('location: accueil.php');
+
+}
+
+
+
+
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LeoDisplay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/bf14b68fbc.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/accueil.css">
+    <link rel="stylesheet" href="assets/css/checkout.css">
+
 </head>
 <body>
-  <!---first nav-->
+    <!---first nav-->
 	<header>
 		<nav class="navbar navbar-expand-lg bg-dark">
 			<div class="container">
@@ -74,81 +100,56 @@
 	</header>
 	<!---main nav end-->
 
+    <!--Checkout-->
+    <section class="my-5 py-5">
+        <div class="container text-center mt-3 pt-3">
+          <h2 class="form-weight-bold">Check Out</h2>
+          <hr class="mx-auto line">
 
-      <section class="home">
-        <div class="">
-            <!-- <h5> New Arrivals</h5> -->
-            <h1> <span>Best</span> Prices this season</h1>
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam natus, vel, repudiandae facilis nemo quis optio suscipit blanditiis beatae similique eveniet porro iure molestias harum animi molestiae sapiente fugiat alias?</p>
-            <button>Shop now</button>
-        </div>
-      </section>
+          <div class="mx-auto container">
+            <form id="checkout-form" methode="POST" action="server/place_order.php">
 
+              <div class="form-group checkout-small-element">
+                <label>Name</label>
+                <input type="text" class="form-control" id='checkout-name' name="name" placeholder="Name" required>      
+              </div>
 
-      <!-- display small text dexcribing the products  -->
-      <section id="mainBox">
-        <div class="row ">
-       
-              <div class="box col-lg-4 col-md-12 col-sm-12 ">
-                  <div class="boxDetails ">
-                      <h3>Mise en place rapide et facile</h3>
-                      <p>D’une façon générale les produits LEO DISPLAY sont conçus pour être transportés, montés et démontés par une seule personne.</p>
-                  </div>
+              <div class="form-group checkout-small-element">
+                <label>Email</label>
+                <input type="email" class="form-control" id='checkout-email' name="email" placeholder="Email" required>
               </div>
-              <div class="box col-lg-4 col-md-12 col-sm-12 ">
-                <h3>Visuel personnalisable</h3>
-                <p>     
-                  Tous vos visuels peuvent être traités et imprimés avec des supports dédiés pour chaque besoin et pour chaque support publicitaire.
-                </p>
-              </div>
-              <div class="box col-lg-4 col-md-12 col-sm-12 ">
-                <h3>Dimension sur-mesure</h3>
-                <p>
-                  À parts les dimensions standard que nous proposons, nous pouvons toutefois réaliser des supports sur-mesure qui s’adaptent à votre espace.</p>
-              </div>
-      
-        </div>  
-      </section>
-      <!-- display small text dexcribing the products  -->
-      <section id = 'new' class="w-100">
 
-        <div class="row p-0 m-0">
-            <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
-                <img class="img-fluid" src="assets/imgs/StandModulaire.png" alt="Stand Modulaire">
-                <div class="details">
-                  <h2>Stand Modulaire</h2>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit ipsum dolor, itaque numquam repudiandae aperiam! Expedita culpa dolore suscipit. Suscipit eveniet facere odio libero atque? Consequatur, qui accusantium! Qui, corporis.</p>
-                  <form action="single_product.html">
-                    <button class="text-uppercase">Commander Maintenant</button>
-                  </form>
-                </div>
-            </div>
-            <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
-              <img class="img-fluid" src="assets/imgs/popup.png" alt="Popup">
-              <div class="details">
-                <h2>Stand Parapluie POP UP</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit ipsum dolor, itaque numquam repudiandae aperiam! Expedita culpa dolore suscipit. Suscipit eveniet facere odio libero atque? Consequatur, qui accusantium! Qui, corporis.</p>
-                <form action="single_product.html">
-                  <button class="text-uppercase">Commander Maintenant</button>
-                </form>
+              <div class="form-group checkout-small-element">
+                <label>Phone</label>
+                <input type="tel" class="form-control" id='checkout-phone' name="phone" placeholder="Phone" required>
               </div>
+
+              <div class="form-group checkout-small-element">
+                <label>City</label>
+                <input type="text" class="form-control" id='checkout-city' name="city" placeholder="City" required>
+              </div>
+
+              <div class="form-group checkout-large-element">
+                <label>Address</label>
+                <input type="text" class="form-control" id='checkout-address' name="address" placeholder="Address" required>
+              </div>
+              
+              <div class="form-group checkout-btn-container">
+                <p>Total: Dt <?php echo $_SESSION[$total]?></p>
+                <input type="submit" class="btn" id="checkout-btn" name="place_order" value="Place Order">
+              </div>
+            </form>
           </div>
-          <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
-            <img class="img-fluid" src="assets/imgs/windflag.png" alt="Flag">
-            <div class="details">
-              <h2>Wind FLAG</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit ipsum dolor, itaque numquam repudiandae aperiam! Expedita culpa dolore suscipit. Suscipit eveniet facere odio libero atque? Consequatur, qui accusantium! Qui, corporis.</p>
-              <form action="single_product.html">
-                <button class="text-uppercase">Commander Maintenant</button>
-              </form>
-             
-            </div>
-        </div>
         </div>
       </section>
-      <!-- footer  -->
 
-      <footer class="footer">
+    
+
+
+
+
+    <!--Footer-->
+    <footer class="footer">
         <div class="container">
           <div class="row">
             <h2 style="color: #ffffff; padding-bottom: 50px; text-align: center;">Trouver nos revendeurs :</h2>
@@ -186,7 +187,6 @@
         <hr style="border: none; height: 2px; background-color: #ffffff;">
        
       </footer>
-    
       <div class="footer-bottom">
         <div class="content">
           <div class="child">
@@ -202,8 +202,8 @@
           </div>
         </div>
       </div>
-    
-    
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
 </body>
 </html>
