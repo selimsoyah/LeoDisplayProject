@@ -26,13 +26,12 @@ if(isset($_POST['place_order'])){
 
         $stmt->execute();
 
+
+    //2. issue new order and store order info in database
         $order_id = $stmt->insert_id;
 
 
-
-
-
-    //2. get product from cart (from session)
+    //3. get product from cart (from session)
         
         foreach($_SESSION['cart'] as $key => $value){
 
@@ -42,6 +41,9 @@ if(isset($_POST['place_order'])){
             $product_image = $product['product_image'];
             $product_price = $product['product_price'];
             $product_quantity = $product['product_quantity'];
+
+
+    //4. store each single item in order_items database
 
             $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, product_name, product_image, product_price, product_quantity, user_id, order_date)
                             VALUES (?,?,?,?,?,?,?,?)");
@@ -54,11 +56,10 @@ if(isset($_POST['place_order'])){
 
 
 
-    //3. issue new order and store order info in database
-
-    //4. store each single item in order_items database
-
     //5. remove everything from cart
+    
+        //unset($_SESSION['cart']);
+
 
     //6. inform user whether everything is fine or there is a problem
 

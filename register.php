@@ -100,7 +100,7 @@
               </div>
               
               <div class="form-group">
-                <input type="submit" class="btn" id="register-button" value="Log In">
+                <input type="submit" class="btn" id="register-button" name value="Log In">
               </div>
               <div class="form-group">
                 <a id="register-url" class="btn">Vous avez deja un compte ?</a>
@@ -150,7 +150,6 @@
         <hr style="border: none; height: 2px; background-color: #ffffff;">
        
       </footer>
-    
       <div class="footer-bottom">
         <div class="content">
           <div class="child">
