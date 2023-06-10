@@ -1,85 +1,61 @@
 <?php
-
 session_start();
-
 include('server/connection.php');
 
+if (isset($_POST['register'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
 
-if(isset($_POST['register'])){
+    // If password don't match
+    if ($password !== $confirmPassword) {
+        header('location: register.php?error=password dont match');
+    } 
+    // If password is less than 6 characters
+    else if (strlen($password) < 6) {  
+        header('location: register.php?error=password must be at least 6 characters');
+    } 
+    // If there is no error
+    else {
+        // Check whether there is a user with this email or not
+        $stmt1 = $conn->prepare("SELECT count(*) FROM users WHERE user_email=?");
+        $stmt1->bind_param('s', $email);
+        $stmt1->execute();
+        $stmt1->bind_result($num_rows);
+        $stmt1->store_result();
+        $stmt1->fetch();
 
+        // If there is a user registered with this email
+        if ($num_rows != 0) { 
+            header('location: register.php?error=user with this email already exists');
+        } 
+        // If no user registered with this email before
+        else {
+            // Create new user
+            $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password)
+                VALUES (?, ?, ?)");
+            
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+            $stmt->bind_param('sss', $name, $email, $hashedPassword);
 
+            // If account was created successfully
+            if ($stmt->execute()) {
+                $_SESSION['user_email'] = $email;
+                $_SESSION['user_name'] = $name;
+                $_SESSION['logged_in'] = true;
 
-  $name = $_POST['name'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $confirmPassword = $_POST['confirmPassword'];
-
-
-  //if password don't match
-  if($password !== $confirmPassword){
-    header('location: register.php?error=password dont match');
-
-  //if password is less than 6 char
-  }else if(strlen($password) < 6){  
-    header('location: register.php?error=password must be at least 6 characters');
-
-
-  //if there is no error 
-  }else{
-
-                //check whether there is a user with this email or not
-                $stmt1 = $conn->prepare("SELECT count(*) FROM users WHERE user_email=?");
-                $stmt1->bind_param('s', $email);
-                $stmt1->execute();
-                $stmt1->bind_result($num_rows);
-                $stmt1->store_result();
-                $stmt1->fetch();
-
-
-                //if there is a user registred with this email
-                if($num_rows != 0){ 
-                  header('location: register.php?error=user with this email already exists');
-
-                //if no user registered with this email before
-                }else{
-                        //create new user
-                        $stmt = $conn->prepare("INSERT INTO users (user_name,user_email,user_password)
-                        VALUES (?,?,?)");
-
-                        $stmt->bind_param('sss', $name, $email, md5($password));
-
-                        //if account was created successfully
-                        if($stmt->execute()){
-                          $_SESSION['user_email'] = $email;
-                          $_SESSION['user_name'] = $name;
-                          $_SESSION['logged_in'] = true;
-
-                          header('location account.php?register=You registred successfully');
-                        
-
-                        //account could not be created
-                        }else{
-                          header('location register.php?error=Could not create an account at the moment');
-                        }
-
-                      }
-
-
-
-
-
-
-
-  }
-
-
-
+                header('location: account.php?register=You registered successfully');
+            } 
+            // Account could not be created
+            else {
+                header('location: register.php?error=Could not create an account at the moment');
+            }
+        }
+    }
 }
-
-
-
-
 ?>
+
 
 
 

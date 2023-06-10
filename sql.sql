@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS `products`(
         `product_price` decimal(6,2) NOT NULL,
          `product_special_offer` integer(2) NOT NULL,
           `product_color` varchar(100) NOT NULL,
-
           PRIMARY KEY (`product_id`)
      )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -45,9 +44,12 @@ CREATE TABLE IF NOT EXISTS `users`(
     `user_email` varchar(255) NOT NULL,
     `user_password` varchar(100) NOT NULL,
           PRIMARY KEY (`user_id`)
-    UNIQUE KEY `UX_CONSTRAINT`(`user_email`)
+     UNIQUE KEY `UX_CONSTRAINT`(`user_email`)
 
      )ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
 
 
         
