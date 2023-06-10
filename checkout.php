@@ -8,7 +8,7 @@ if( !empty($_SESSION['cart']) && isset($_POST['checkout'])){
 
 }else{
   //send user to home page
-  // header('location: accueil.php');
+  header('location: accueil.php');
 
 }
 
@@ -104,7 +104,7 @@ if( !empty($_SESSION['cart']) && isset($_POST['checkout'])){
           <hr class="mx-auto line">
 
           <div class="mx-auto container">
-            <form id="checkout-form" methode="POST" action="server/place_order.php">
+            <form id="checkout-form" method="POST" action="server/place_order.php">
 
               <div class="form-group checkout-small-element">
                 <label>Name</label>
@@ -135,6 +135,7 @@ if( !empty($_SESSION['cart']) && isset($_POST['checkout'])){
                 <p>Total: Dt <?php echo $_SESSION[$total]?></p>
                 <input type="submit" class="btn" id="checkout-btn" name="place_order" value="Place Order">
               </div>
+
             </form>
           </div>
         </div>

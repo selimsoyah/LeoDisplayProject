@@ -216,7 +216,7 @@ function calculateTotal (){
         </div>
 
         <div class="checkout-container">
-          <form methode="POST" action="checkout.php">
+          <form method="POST" action="checkout.php">
             <input type="submit" class="btn checkout-btn" value="Checkout" name="checkout">
           </form>
         </div>

@@ -20,7 +20,7 @@ if(isset($_POST['place_order'])){
         $order_date = date('Y-m-d H:i:s');
 
         $stmt = $conn->prepare("INSERT INTO orders (order_cost,order_status,user_id,user_phone,user_city,user_address,order_date)
-                            VALUES (?,?,?,?,?,?,?); ");
+                            VALUES (?,?,?,?,?,?,?) ");
         
         $stmt->bind_param('isiisss', $order_cost, $order_status, $user_id, $phone, $city, $address, $order_date);
 
@@ -57,12 +57,11 @@ if(isset($_POST['place_order'])){
 
 
     //5. remove everything from cart
-    
+
         //unset($_SESSION['cart']);
 
 
     //6. inform user whether everything is fine or there is a problem
-
 
 
 }
