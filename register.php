@@ -31,7 +31,7 @@ if (isset($_POST['register'])) {
             header('location: register.php?error=user with this email already exists');
         } 
         // If no user registered with this email before
-        else {
+        else {     
             // Create new user
             $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password)
                 VALUES (?, ?, ?)");
@@ -54,6 +54,17 @@ if (isset($_POST['register'])) {
         }
     }
 }
+            //if user already registred then take user to account page
+            else if(isset($_SESSION['logged_in'])){
+              header('location: account.php');
+              exit;
+            }
+
+
+
+
+
+
 ?>
 
 
@@ -173,7 +184,7 @@ if (isset($_POST['register'])) {
                 <input type="submit" class="btn" id="register-button" name="register" value="Register">
               </div>
               <div class="form-group">
-                <a id="register-url" class="btn">Vous avez deja un compte ?</a>
+                <a id="register-url" href="login.php" class="btn">Vous avez deja un compte ?</a>
               </div>
             </form>
           </div>
