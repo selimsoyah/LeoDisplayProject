@@ -8,7 +8,7 @@ include('server/connection.php');
 
     header('location: account.php');
     exit;
-    
+
 }
 
 
@@ -51,11 +51,13 @@ if (isset($_POST['register'])) {
 
             // If account was created successfully
             if ($stmt->execute()) {
+                $user_id = $stmt->insert_id;
+                $_SESSION['user_id'] = $user_id;
                 $_SESSION['user_email'] = $email;
                 $_SESSION['user_name'] = $name;
                 $_SESSION['logged_in'] = true;
 
-                header('location: account.php?register=You registered successfully');
+                header('location: account.php?register_success=You registered successfully');
             } 
             // Account could not be created
             else {
