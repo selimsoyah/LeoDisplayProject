@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include('server/connection.php');
 
@@ -55,7 +56,7 @@ if (isset($_POST['register'])) {
     }
 }
             //if user already registred then take user to account page
-            else if(isset($_SESSION['logged_in'])){
+              else if(isset($_SESSION['logged_in'])){
               header('location: account.php');
               exit;
             }
@@ -132,7 +133,7 @@ if (isset($_POST['register'])) {
                 <a href="cart.php" class="text-decoration-none text-dark ">
                   <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
                 </a>
-                <a href="login.html" class="text-decoration-none text-dark">
+                <a href="login.php" class="text-decoration-none text-dark">
                   <i class="fa-solid fa-user nav-icon"></i>
                 </a>
               </div>

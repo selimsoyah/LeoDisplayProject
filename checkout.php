@@ -83,7 +83,7 @@ if( !empty($_SESSION['cart']) && isset($_POST['checkout'])){
                 <a href="cart.php" class="text-decoration-none text-dark ">
                   <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
                 </a>
-                <a href="login.html" class="text-decoration-none text-dark">
+                <a href="login.php" class="text-decoration-none text-dark">
                   <i class="fa-solid fa-user nav-icon"></i>
                 </a>
               </div>
