@@ -4,6 +4,11 @@ session_start();
 
 include('server/connection.php');
 
+if(isset($_SESSION['logged_in'])){
+  header('location: account.php');
+  exit;
+}
+
 
 if(isset($_POST['login_btn'])){
 
@@ -40,19 +45,6 @@ if(isset($_POST['login_btn'])){
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -220,7 +212,6 @@ if(isset($_POST['login_btn'])){
         <hr style="border: none; height: 2px; background-color: #ffffff;">
        
       </footer>
-    
       <div class="footer-bottom">
         <div class="content">
           <div class="child">

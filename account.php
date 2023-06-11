@@ -1,3 +1,42 @@
+<?php
+
+session_start();
+
+if(!isset($_SESSION['logged_in'])){
+  header('location: login.php');
+  exit;
+
+}
+
+if(isset($_GET['logout'])){
+  if(isset($_SESSION['logged_in'])){
+    unset($_SESSION['logged_in']);
+    unset($_SESSION['user_email']);
+    unset($_SESSION['user_name']);
+
+    header('location: login.php');
+    exit;
+  }
+}
+
+
+
+
+
+
+
+
+
+?>
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -76,10 +115,11 @@
             <div class="text-center mt-3 pt-5 col-lg-6 col-md-12 col-sm-12">
                 <h3 class="font-weight-bold">Account Info</h3>
                 <hr class="mx-auto">
-                <p>Name : <span>Salim</span></p>        
-                <p>Email : <span>salim@gmail.com</span></p>
+                <p>Name : <span><?php if(isset($_SESSION['user_name'])){ echo $_SESSION['user_name']; } ?></span></p>        
+                <p>Email : <span><?php if(isset($_SESSION['user_email'])){ echo $_SESSION['user_email']; }?></span></p>
+
                 <p><a href="" id="order-btn">Your Orders</a></p>     
-                <p><a href="" id="logout-btn">Log Out</a></p>          
+                <p><a href="account.php?logout=1" id="logout-btn">Log Out</a></p>          
             </div>
             <div class="  mt-3 pt-4 col-lg-6 col-md-12 col-sm-12">
                 <div id="account-form">
