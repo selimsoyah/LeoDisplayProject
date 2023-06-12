@@ -187,7 +187,7 @@ ul{
     width: 50%;
     margin:5px auto;
     text-align: center;
-padding: 20px;
+	padding: 20px;
 }
 #account-form input{
     margin:5px auto;
@@ -198,3 +198,56 @@ padding: 20px;
     background-color: coral;
     color: white;
 }
+
+.account-info #orders-btn,#logout-btn{
+	color: coral;
+	text-decoration: none;
+}
+
+#orders table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#orders .product-info{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#orders th{
+    /* text-align: left; */
+    padding: 5px 10px;
+    color: #ffff;
+    background-color: coral;
+}
+
+/* #orders #date{
+	text-align: right;
+} */
+
+#orders td{
+    padding: 10px 20px;
+}
+
+#orders td img{
+    width: 80px;
+    height: 80px;
+    margin-right: 5px;
+
+}
+
+td:last-child{
+    /* text-align: right; */
+}
+
+th:last-child{
+    /* text-align: right; */
+}
+
+.orders .order-details-btn{
+    color: white;
+    background-color: coral;
+}
+
+
+

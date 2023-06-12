@@ -57,7 +57,17 @@ if(isset($_POST['change_password'])){
 }
 
 
+//get orders
+if(isset($_SESSION['logged_in'])){
 
+  $user_id = $_SESSION['user_id'];
+  $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id=? ");
+
+  $stmt->bind_param('i', $user_id);
+  $stmt->execute();
+
+  $orders = $stmt->get_result();
+}
 
 
 
@@ -154,12 +164,14 @@ if(isset($_POST['change_password'])){
               <p class="text-center" style="color:green;"><?php  if(isset($_GET['login_success'])){echo $_GET['login_success']; }   ?></p>
                 <h3 class="font-weight-bold">Account Info</h3>
                 <hr class="mx-auto">
+              <div class="account-info">
                 <p>Name : <span><?php if(isset($_SESSION['user_name'])){ echo $_SESSION['user_name']; } ?></span></p>        
                 <p>Email : <span><?php if(isset($_SESSION['user_email'])){ echo $_SESSION['user_email']; }?></span></p>
-
-                <p><a href="" id="order-btn">Your Orders</a></p>     
-                <p><a href="account.php?logout=1" id="logout-btn">Log Out</a></p>          
+                <p><a href="" id="orders-btn">Your Orders</a></p>     
+                <p><a href="account.php?logout=1" id="logout-btn">Logout</a></p>          
+              </div>
             </div>
+
             <div class="  mt-3 pt-4 col-lg-6 col-md-12 col-sm-12">
                 <form id="account-form" method="POST" action="account.php">
                   <p class="text-center" style="color:red;"><?php  if(isset($_GET['error'])){echo $_GET['error']; }   ?></p>
@@ -180,6 +192,62 @@ if(isset($_POST['change_password'])){
                   </form>
             </div>
         </div>
+      </section>
+
+      <section id="orders" class="orders container my-5 py3">
+        <div class="container mt-2">
+          <h2 class="font-weight-bold text-center">Your Orders</h2>
+          <hr class="mx-auto">
+        </div>
+
+        <table class="mt-5 py-5">
+
+          <tr>
+            <th>Order id</th>
+            <th>Order cost</th>
+            <th>Order status</th>
+            <th>Order date</th>
+            <th>Order details</th>
+          </tr>
+
+
+          <?php  while($row = $orders->fetch_assoc()){   ?>
+
+          <tr>
+            <td>
+              <!--<div class="product-info">
+                <img src="assets/imgs/StandModulaire.png" alt="StandModulaire">
+                  <div>
+                    <p class="mr-3"><?php echo $row['order_id'];  ?></p>
+                  </div>
+              </div> -->
+              <span> <?php echo $row['order_id'];  ?> </span>
+            </td>
+
+            <td>
+              <span> <?php echo $row['order_cost'];  ?> </span>
+            </td>
+
+            <td>
+              <span> <?php echo $row['order_status'];  ?> </span>
+            </td>
+
+            <td>
+              <span> <?php echo $row['order_date'];  ?> </span>
+            </td>
+
+            <td>
+              <form action="">
+                <input type="submit" class="btn order-details-btn" value="details">
+              </form>
+            </td>
+
+          </tr>
+
+          <?php } ?>
+
+
+        </table>
       </section>
       
       <footer class="footer">
