@@ -26,7 +26,7 @@ if(isset($_POST['login_btn'])){
     $stmt->store_result();
 
       if($stmt->num_rows() == 1){
-        $rom = $stmt->fetch();
+        $row = $stmt->fetch();
 
         $_SESSION['user_id'] = $user_id;
         $_SESSION['user_name'] = $user_name;

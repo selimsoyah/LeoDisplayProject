@@ -46,8 +46,8 @@ if (isset($_POST['register'])) {
             $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password)
                 VALUES (?, ?, ?)");
             
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
-            $stmt->bind_param('sss', $name, $email, $hashedPassword);
+            // $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+            $stmt->bind_param('sss', $name, $email, md5($password));
 
             // If account was created successfully
             if ($stmt->execute()) {
