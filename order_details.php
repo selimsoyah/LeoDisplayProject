@@ -1,6 +1,8 @@
 
 <?php 
 
+session_start();
+
 include("server/connection.php");
 
 if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
@@ -37,8 +39,8 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
     <link rel="stylesheet" href="assets/css/account.css">
 </head>
 <body>
-     <!--Navbar-->
-  <header>
+	  <!--Navbar-->
+    <header>
     <nav class="navbar navbar-expand-lg bg-dark">
       <div class="container">
         <div class="w-100 d-flex justify-content-between">
@@ -70,10 +72,10 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
                   <a class="nav-link nav-links" aria-current="page" href="accueil.php">Accueil</a>
                 </li>
                 <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" href="#">About</a>
+                  <a class="nav-link nav-links" href="">About</a>
                 </li>
                 <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" href="#">Shop</a>
+                  <a class="nav-link nav-links" href="#new">Shop</a>
                 </li>
                 <li class="nav-item nav-items">
                   <a class="nav-link nav-links" href="contact.php">Contact</a>
@@ -87,7 +89,9 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
                   <i class="fa-solid fa-user nav-icon"></i>
                 </a>
               </div>
-              <div class="position-absolute rounded-circle cart"><span>7</span></div>
+              <div class="position-absolute rounded-circle cart"><?php if(isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0){?>
+                    <span><?php echo $_SESSION['quantity']; ?></span>
+                  <?php }?></div>
               <div class="position-absolute rounded-circle user"><span>+99</span></div>
             </div>
           </div>

@@ -11,65 +11,67 @@
     <link rel="stylesheet" href="assets/css/accueil.css">
 </head>
 <body>
-  <!--Navbar-->
-  <header>
-    <nav class="navbar navbar-expand-lg bg-dark">
-      <div class="container">
-        <div class="w-100 d-flex justify-content-between">
-          <div>
-            <i class="fa-solid fa-envelope text-light contact-info"></i>
-            <a href="" class="navbar-sm-brand text-light text-decoration-none contact-info">info@company.com</a>
-            <i class="fa-solid fa-phone contact-info text-light"></i>
-            <a href="" class="navbar-sm-brand text-white text-decoration-none contact-info">920-510-42</a>
-          </div>
-          <div>
-            <a href="" class="text-white"><i class="fa-brands fa-facebook me-2"></i></a>
-            <a href="" class="text-white"><i class="fa-brands fa-whatsapp me-2"></i></a>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-  <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container d'flex justify-content-between">
-        <div>
-          <h1 class="text-success brand-title">LeoDisplay</h1>
-        </div>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" aria-current="page" href="accueil.php">Accueil</a>
-                </li>
-                <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" href="#">About</a>
-                </li>
-                <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" href="#">Shop</a>
-                </li>
-                <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" href="contact.php">Contact</a>
-                </li>
-              </ul>
-              <div class="position-relative">
-                <a href="cart.php" class="text-decoration-none text-dark ">
-                  <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
-                </a>
-                <a href="login.php" class="text-decoration-none text-dark">
-                  <i class="fa-solid fa-user nav-icon"></i>
-                </a>
-              </div>
-              <div class="position-absolute rounded-circle cart"><span>7</span></div>
-              <div class="position-absolute rounded-circle user"><span>+99</span></div>
+	  <!--Navbar-->
+    <header>
+      <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container">
+          <div class="w-100 d-flex justify-content-between">
+            <div>
+              <i class="fa-solid fa-envelope text-light contact-info"></i>
+              <a href="" class="navbar-sm-brand text-light text-decoration-none contact-info">info@company.com</a>
+              <i class="fa-solid fa-phone contact-info text-light"></i>
+              <a href="" class="navbar-sm-brand text-white text-decoration-none contact-info">920-510-42</a>
+            </div>
+            <div>
+              <a href="" class="text-white"><i class="fa-brands fa-facebook me-2"></i></a>
+              <a href="" class="text-white"><i class="fa-brands fa-whatsapp me-2"></i></a>
             </div>
           </div>
-        </nav>
-      </div>
-    </nav>
-
-  </header>
+        </div>
+      </nav>
+    </header>
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container d'flex justify-content-between">
+          <div>
+            <h1 class="text-success brand-title">LeoDisplay</h1>
+          </div>
+          <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item nav-items">
+                    <a class="nav-link nav-links" aria-current="page" href="accueil.php">Accueil</a>
+                  </li>
+                  <li class="nav-item nav-items">
+                    <a class="nav-link nav-links" href="">About</a>
+                  </li>
+                  <li class="nav-item nav-items">
+                    <a class="nav-link nav-links" href="#new">Shop</a>
+                  </li>
+                  <li class="nav-item nav-items">
+                    <a class="nav-link nav-links" href="contact.php">Contact</a>
+                  </li>
+                </ul>
+                <div class="position-relative">
+                  <a href="cart.php" class="text-decoration-none text-dark ">
+                    <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+                  </a>
+                  <a href="login.php" class="text-decoration-none text-dark">
+                    <i class="fa-solid fa-user nav-icon"></i>
+                  </a>
+                </div>
+                <div class="position-absolute rounded-circle cart"><?php if(isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0){?>
+                      <span><?php echo $_SESSION['quantity']; ?></span>
+                    <?php }?></div>
+                <div class="position-absolute rounded-circle user"><span>+99</span></div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </nav>
+  
+    </header>
 
         <section class="container single-product my-5 pt-5">
             
