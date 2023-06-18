@@ -55,13 +55,18 @@
                   <a class="nav-link nav-links" href="contact.php">Contact</a>
                 </li>
               </ul>
+              <!-- add_product -->
               <div class="position-relative">
-                <a href="cart.php" class="text-decoration-none text-dark ">
-                  <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
-                </a>
+                  <form action="cart.php" method="POST">
+
+                  <!-- <i class="fa-solid fa-cart-arrow-down nav-icon"></i> -->
+                  <button type="submit" class="submit-btn" name="add_product">
+      <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+    </button>
                 <a href="login.php" class="text-decoration-none text-dark">
                   <i class="fa-solid fa-user nav-icon"></i>
                 </a>
+                  </form>
               </div>
               <div class="position-absolute rounded-circle cart"><span>7</span></div>
               <div class="position-absolute rounded-circle user"><span>+99</span></div>

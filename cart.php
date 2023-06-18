@@ -18,6 +18,9 @@
            'product_name'=> $_POST['product_name'],
            'product_price'=> $_POST['product_price'],
            'product_quantity'=> $_POST['product_quantity'],
+           'option1'=> $_POST['option1'],
+           'option2'=> $_POST['option2'],
+           'option3'=> $_POST['option3'],
         );
 
         $_SESSION['cart'][$product_id] = $product_array;
@@ -35,6 +38,10 @@
         $product_name = $_POST['product_name'];
         $product_price = $_POST['product_price'];
         $product_quantity = $_POST['product_quantity'];
+        $option1 = $_POST['option1'];
+        $option2 = $_POST['option2'];
+        $option3 = $_POST['option3'];
+
 
         $product_array = array (
            'product_id'=> $product_id,
@@ -42,6 +49,9 @@
            'product_name'=> $product_name,
            'product_price'=> $product_price,
            'product_quantity'=> $product_quantity,
+           'option1'=> $option1,
+           'option2'=> $option2,
+           'option3'=> $option3,
         );
 
         $_SESSION['cart'][$product_id] = $product_array;
@@ -187,7 +197,7 @@ function calculateTotal (){
                         <img src="<?php echo $value['product_image'] ?>" alt="#">
                     <div>
                         <p><?php echo $value['product_name'] ?></p>
-                        <small><span>Dt</span><?php echo $value['product_price'] ?></small>
+                        <small><span>Dt</span><?php echo $value['option1'] ?></small>
                         <br>
                           <form method="POST" action='cart.php'>
                             <input type='hidden' name="product_id" value="<?php echo $value['product_id'] ?>" />

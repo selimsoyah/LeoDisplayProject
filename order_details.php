@@ -109,6 +109,9 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
             <th>Product Name :</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Type</th>
+            <th>Taille</th>
+            <th>Base</th>
           </tr>
 
 
@@ -133,6 +136,18 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
             
               <span><?php echo $row['product_quantity'] ?></span>
             </td>
+            <td>
+            
+            <span><?php echo $row['option1'] ?></span>
+          </td>
+          <td>
+            
+            <span><?php echo $row['option2'] ?></span>
+          </td>
+          <td>
+            
+            <span><?php echo $row['option3'] ?></span>
+          </td>
 
           </tr>
 

@@ -141,57 +141,58 @@ if (isset($_GET['product_id'])) {
               <h4>Choisissez le type de drapeau : </h4>
 
               <label>
-                <input type="radio" name="type" value="2m50">
+                
+                <input type="radio" name="option1" value="Courbé">
                 <img src="assets/imgs//2m50.png" alt="2m50">
               </label>
 
               <label>
-                <input type="radio" name="type" value="2m80">
+                <input type="radio" name="option1" value="Droit">
                 <img src="assets/imgs/2m80.png" alt="2m80">
               </label>
 
               <label>
-                <input type="radio" name="type" value="3m20">
+                <input type="radio" name="option1" value="Incliné">
                 <img src="assets/imgs/3m20.png" alt="3m20">
               </label>
               <label>
-                <input type="radio" name="type" value="3m80">
+                <input type="radio" name="option1" value="Rectangulaire">
                 <img src="assets/imgs/3m80.png" alt="3m80">
               </label>
-              <label>
-                <input type="radio" name="type" value="4m50">
+              <!-- <label>
+                <input type="radio" name="option1" value="4m50">
                 <img src="assets/imgs/4m50.png" alt="4m50">
               </label>
               <label>
-                <input type="radio" name="type" value="5m">
+                <input type="radio" name="option1" value="5m">
                 <img src="assets/imgs/5m.png" alt="5m">
-              </label>
+              </label> -->
               <h3 class="py-4">Etape 2</h3>
               <h4>Choissisez La Taille : </h4>
               <label>
-                <input type="radio" name="taille" value="2m50">
+                <input type="radio" name="option2" value="2m50">
                 <img src="assets/imgs//2m50.png" alt="2m50">
               </label>
 
               <label>
-                <input type="radio" name="taille" value="2m80">
+                <input type="radio" name="option2" value="2m80">
                 <img src="assets/imgs/2m80.png" alt="2m80">
               </label>
 
               <label>
-                <input type="radio" name="taille" value="3m20">
+                <input type="radio" name="option2" value="3m20">
                 <img src="assets/imgs/3m20.png" alt="3m20">
               </label>
               <label>
-                <input type="radio" name="taille" value="3m80">
+                <input type="radio" name="option2" value="3m80">
                 <img src="assets/imgs/3m80.png" alt="3m80">
               </label>
               <label>
-                <input type="radio" name="taille" value="4m50">
+                <input type="radio" name="option2" value="4m50">
                 <img src="assets/imgs/4m50.png" alt="4m50">
               </label>
               <label>
-                <input type="radio" name="taille" value="5m">
+                <input type="radio" name="option2" value="5m">
                 <img src="assets/imgs/5m.png" alt="5m">
               </label>
 
@@ -200,25 +201,25 @@ if (isset($_GET['product_id'])) {
               <div class="base">
 
                 <label>
-                  <input type="radio" name="base" value="2m50">
+                  <input type="radio" name="option3" value="Water Base">
                   <img src="assets/imgs/baseAEau.png" alt="Base">
                 </label>
 
                 <label>
-                  <input type="radio" name="base" value="2m80">
+                  <input type="radio" name="option3" value="Beton base">
                   <img src="assets/imgs/baseBeton.png" alt="Base">
                 </label>
 
                 <label>
-                  <input type="radio" name="base" value="3m20">
+                  <input type="radio" name="option3" value="Metal Base 7Kg">
                   <img src="assets/imgs/baseMetalique.png" alt="Base">
                 </label>
                 <label>
-                  <input type="radio" name="base" value="3m80">
+                  <input type="radio" name="option3" value="Metal Base 7.5Kg">
                   <img src="assets/imgs/baseAEau.png" alt="Base">
                 </label>
                 <label>
-                  <input type="radio" name="base" value="4m50">
+                  <input type="radio" name="option3" value="Metal Base 10Kg">
                   <img src="assets/imgs/baseAEau.png" alt="Base">
                 </label>
 

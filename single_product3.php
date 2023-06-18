@@ -101,7 +101,11 @@ if (isset($_GET['product_id'])) {
 
   <?php while ($row = $products->fetch_assoc()) { ?>
 
-    <form>
+    <form method="POST" action='cart.php'>
+      <input type='hidden' name="product_id" value='<?php echo $row['product_id'] ?>' />
+      <input type='hidden' name="product_image" value='<?php echo $row['product_image'] ?>' />
+      <input type='hidden' name="product_name" value='<?php echo $row['product_name'] ?>' />
+      <input type='hidden' name="product_price" value='<?php echo $row['product_price'] ?>' />
       <section class="container single-product my-5 pt-5">
         <div class="row mt-5">
           <div class="col-lg-5 col-md-6 col-sm-12">
@@ -137,57 +141,58 @@ if (isset($_GET['product_id'])) {
               <h4>Choisissez le type de drapeau : </h4>
 
               <label>
-                <input type="radio" name="type" value="2m50">
+                
+                <input type="radio" name="option1" value="Courbé">
                 <img src="assets/imgs//2m50.png" alt="2m50">
               </label>
 
               <label>
-                <input type="radio" name="type" value="2m80">
+                <input type="radio" name="option1" value="Droit">
                 <img src="assets/imgs/2m80.png" alt="2m80">
               </label>
 
               <label>
-                <input type="radio" name="type" value="3m20">
+                <input type="radio" name="option1" value="Incliné">
                 <img src="assets/imgs/3m20.png" alt="3m20">
               </label>
               <label>
-                <input type="radio" name="type" value="3m80">
+                <input type="radio" name="option1" value="Rectangulaire">
                 <img src="assets/imgs/3m80.png" alt="3m80">
               </label>
-              <label>
-                <input type="radio" name="type" value="4m50">
+              <!-- <label>
+                <input type="radio" name="option1" value="4m50">
                 <img src="assets/imgs/4m50.png" alt="4m50">
               </label>
               <label>
-                <input type="radio" name="type" value="5m">
+                <input type="radio" name="option1" value="5m">
                 <img src="assets/imgs/5m.png" alt="5m">
-              </label>
+              </label> -->
               <h3 class="py-4">Etape 2</h3>
               <h4>Choissisez La Taille : </h4>
               <label>
-                <input type="radio" name="taille" value="2m50">
+                <input type="radio" name="option2" value="2m50">
                 <img src="assets/imgs//2m50.png" alt="2m50">
               </label>
 
               <label>
-                <input type="radio" name="taille" value="2m80">
+                <input type="radio" name="option2" value="2m80">
                 <img src="assets/imgs/2m80.png" alt="2m80">
               </label>
 
               <label>
-                <input type="radio" name="taille" value="3m20">
+                <input type="radio" name="option2" value="3m20">
                 <img src="assets/imgs/3m20.png" alt="3m20">
               </label>
               <label>
-                <input type="radio" name="taille" value="3m80">
+                <input type="radio" name="option2" value="3m80">
                 <img src="assets/imgs/3m80.png" alt="3m80">
               </label>
               <label>
-                <input type="radio" name="taille" value="4m50">
+                <input type="radio" name="option2" value="4m50">
                 <img src="assets/imgs/4m50.png" alt="4m50">
               </label>
               <label>
-                <input type="radio" name="taille" value="5m">
+                <input type="radio" name="option2" value="5m">
                 <img src="assets/imgs/5m.png" alt="5m">
               </label>
 
@@ -196,25 +201,25 @@ if (isset($_GET['product_id'])) {
               <div class="base">
 
                 <label>
-                  <input type="radio" name="base" value="2m50">
+                  <input type="radio" name="option3" value="Water Base">
                   <img src="assets/imgs/baseAEau.png" alt="Base">
                 </label>
 
                 <label>
-                  <input type="radio" name="base" value="2m80">
+                  <input type="radio" name="option3" value="Beton base">
                   <img src="assets/imgs/baseBeton.png" alt="Base">
                 </label>
 
                 <label>
-                  <input type="radio" name="base" value="3m20">
+                  <input type="radio" name="option3" value="Metal Base 7Kg">
                   <img src="assets/imgs/baseMetalique.png" alt="Base">
                 </label>
                 <label>
-                  <input type="radio" name="base" value="3m80">
+                  <input type="radio" name="option3" value="Metal Base 7.5Kg">
                   <img src="assets/imgs/baseAEau.png" alt="Base">
                 </label>
                 <label>
-                  <input type="radio" name="base" value="4m50">
+                  <input type="radio" name="option3" value="Metal Base 10Kg">
                   <img src="assets/imgs/baseAEau.png" alt="Base">
                 </label>
 
@@ -234,7 +239,8 @@ if (isset($_GET['product_id'])) {
               </div>
 
               <div class="buttonContainer">
-                <input type="submit" class="buy-btn" value="Ajouter Au Pannier">
+                <input type='number' name='product_quantity' value='1'>
+                <input type="submit" name='add_product'class="buy-btn" value="Ajouter Au Pannier">
               </div>
             </div>
             <!-- </form>    -->
@@ -302,7 +308,7 @@ if (isset($_GET['product_id'])) {
           <p>© 2023 VORTECH Media. All Rights Reserved.</p>
           </div>
         </div>
-      </div>  
+      </div>
 
 
 

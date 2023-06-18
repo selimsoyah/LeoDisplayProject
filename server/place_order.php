@@ -41,14 +41,18 @@ if(isset($_POST['place_order'])){
             $product_image = $product['product_image'];
             $product_price = $product['product_price'];
             $product_quantity = $product['product_quantity'];
+            $option1 = $product['option1'];
+            $option2 = $product['option2'];
+            $option3 = $product['option3'];
+
             $order_date = date('Y-m-d H:i:s');
 
     //4. store each single item in order_items database
 
-            $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price, product_quantity)
-                            VALUES (?,?,?,?,?,?,?,?)");
+            $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price, product_quantity,option1,option2,option3)
+                            VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             
-            $stmt1->bind_param('iissiiis', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity );
+            $stmt1->bind_param('iissiiissss', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option2,$option3 );
             
             $stmt1->execute();
             // header('location: account.php');
