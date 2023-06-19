@@ -1,6 +1,6 @@
-<?php
+<?php include('header.php');?>
 
-session_start();
+<?php
 
 include('../server/connection.php');
 
@@ -28,9 +28,9 @@ if(isset($_POST['login_btn'])){
       if($stmt->num_rows() == 1){
         $row = $stmt->fetch();
 
-        $_SESSION['admin_id'] = $user_id;
-        $_SESSION['admin_name'] = $user_name;
-        $_SESSION['admin_email'] = $user_email;
+        $_SESSION['admin_id'] = $admin_id;
+        $_SESSION['admin_name'] = $admin_name;
+        $_SESSION['admin_email'] = $admin_email;
         $_SESSION['admin_logged_in'] = true;
 
         header('location: index.php?login_success=Logged in successfully');
@@ -51,22 +51,15 @@ if(isset($_POST['login_btn'])){
 ?>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Admin Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
 
+  
+<style>
     h1 {
       text-align: center;
     }
 
     .login-form {
+      margin-top: 100px;
       max-width: 300px;
       margin: 0 auto;
       padding: 20px;
@@ -79,15 +72,10 @@ if(isset($_POST['login_btn'])){
     }
 
     .form-group label {
-      display: block;
-      margin-bottom: 5px;
       font-weight: bold;
     }
 
     .form-group input {
-      width: 100%;
-      padding: 5px;
-      border: 1px solid #ccc;
       border-radius: 3px;
     }
 
@@ -101,23 +89,26 @@ if(isset($_POST['login_btn'])){
       cursor: pointer;
     }
   </style>
-</head>
-<body>
-  <h1>Admin Login</h1>
+
+<h1>Admin Login</h1>
   <div class="login-form">
     <form method="POST" action="login.php">
       <div class="form-group">
         <label for="username">Email:</label>
-        <input type="text" id="username" name="email" required>
+        <input type="text" id="username" name="email" class="form-control" required>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" class="form-control" required>
       </div>
       <div class="form-group">
-        <button type="submit" name="login_btn">Login</button>
+        <button type="submit" name="login_btn" class="btn btn-primary">Login</button>
       </div>
     </form>
   </div>
+
+
 </body>
 </html>
+
+
