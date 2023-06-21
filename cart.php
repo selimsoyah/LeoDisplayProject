@@ -233,6 +233,7 @@ function calculateTotal (){
 
         <div class="checkout-container">
           <form method="POST" action="checkout.php">
+          <input type='hidden' name="product_id" value="<?php echo $value['product_id'] ?>" />
             <input type="submit" class="btn checkout-btn" value="Checkout" name="checkout">
           </form>
         </div>

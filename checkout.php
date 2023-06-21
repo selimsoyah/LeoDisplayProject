@@ -2,7 +2,7 @@
 
 session_start();
 
-if( !empty($_SESSION['cart']) && isset($_POST['checkout'])){
+if( !empty($_SESSION['cart']) && isset($_POST['checkout']) && isset($_POST['product_id'])){
 
 //let user in
 
@@ -135,7 +135,7 @@ if( !empty($_SESSION['cart']) && isset($_POST['checkout'])){
               </div>
               
               <div class="form-group checkout-btn-container">
-                <p>Total: Dt <?php echo $_SESSION[$total]?></p>
+                <p>Total: Dt <?php echo $_SESSION['total']?></p>                 
                 <input type="submit" class="btn" id="checkout-btn" name="place_order" value="Place Order">
               </div>
 

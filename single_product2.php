@@ -141,26 +141,36 @@ if (isset($_GET['product_id'])) {
               <h3 class="py-4">Etape 1</h3>
               <!-- <h2>240 DT</h2> -->
               <!-- <input type="number" value="1" > -->
-              <h4>Choisissez le type de drapeau : </h4>
+              <h4>Choisissez Le Type et La  Taille Du Stand: </h4>
 
               <label>
                 
-                <input type="radio" name="option1" value="Courbé">
-                <img src="assets/imgs//2m50.png" alt="2m50">
+                <input type="radio" name="option1" value="standParapluiePlat1/3">
+
+                <img src="assets/imgs/standParapluiePlat13.png" alt="standParapluiePlat1/3">
               </label>
 
               <label>
-                <input type="radio" name="option1" value="Droit">
-                <img src="assets/imgs/2m80.png" alt="2m80">
+                <input type="radio" name="option1" value="standParapluiePlat2/3">
+                <img src="assets/imgs/standParapluiePlat23.png" alt="standParapluiePlat2/3">
               </label>
 
               <label>
-                <input type="radio" name="option1" value="Incliné">
-                <img src="assets/imgs/3m20.png" alt="3m20">
+                <input type="radio" name="option1" value="standParapluiePlat3/3">
+                <img src="assets/imgs/standParapluiePlat33.png" alt="standParapluieCurve3/3">
               </label>
               <label>
-                <input type="radio" name="option1" value="Rectangulaire">
-                <img src="assets/imgs/3m80.png" alt="3m80">
+                <input type="radio" name="option1" value="standParapluiePlat4/3">
+                <img src="assets/imgs/standParapluiePlat43.png" alt="standParapluiePlat4/3">
+              </label>
+              <label>
+                <input type="radio" name="option1" value="standParapluieCurve3/3">
+                <img src="assets/imgs/standParapluieCurve33.png" alt="standParapluieCurve3/3">
+              </label>
+
+              <label>
+                <input type="radio" name="option1" value="standParapluieCurve4/3">
+                <img src="assets/imgs/standParapluieCurve43.png" alt="standParapluieCurve4/3">
               </label>
               <!-- <label>
                 <input type="radio" name="option1" value="4m50">
@@ -170,7 +180,7 @@ if (isset($_GET['product_id'])) {
                 <input type="radio" name="option1" value="5m">
                 <img src="assets/imgs/5m.png" alt="5m">
               </label> -->
-              <h3 class="py-4">Etape 2</h3>
+              <!-- <h3 class="py-4">Etape 2</h3>
               <h4>Choissisez La Taille : </h4>
               <label>
                 <input type="radio" name="option2" value="2m50">
@@ -227,8 +237,8 @@ if (isset($_GET['product_id'])) {
                 </label>
 
 
-              </div>
-              <h3 class="py-4">Etape 4</h3>
+              </div> -->
+              <h3 class="py-4">Etape 2</h3>
               <h4> Inserez Votre Image : </h4>
               <div class="mainUpContainer">
                 <label for="photo-upload" class="upload-container">

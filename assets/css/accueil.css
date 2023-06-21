@@ -306,6 +306,8 @@ ul{
 }
 .radioForm img{
     width: 100px;
+    /* aspect-ratio:3/2;
+    object-fit: contain; */
     cursor: pointer;
 }
 .boxx {
@@ -324,12 +326,12 @@ ul{
     margin: 20px;
     display: flex;
     justify-content:center;
-    background-color: red;
+    
 }
 
-/*.buttonContainer input{
-    width:100px; 
-}*/
+.buttonContainer input{
+   margin: 10px;
+}
 /* .buttonContainer input{
     width:100000px;
 } */
