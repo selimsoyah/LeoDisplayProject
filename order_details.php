@@ -116,6 +116,7 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
             <th>Type</th>
             <th>Taille</th>
             <th>Base</th>
+            <th>Image</th>
           </tr>
 
 
@@ -152,7 +153,7 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
             
             <span><?php echo $row['option3'] ?></span>
           </td>
-
+              <td> <img src="data:image/jpeg;base64,<?php echo base64_encode($row['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px;"></td>
           </tr>
 
 <?php } ?>
