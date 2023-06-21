@@ -10,7 +10,9 @@
       if (!in_array($_POST['product_id'],$product_array_ids)){
 
         $product_id = $_POST['product_id'];
-       
+        $imageName = $_FILES['option4']['name'];
+        $imageTmpName = $_FILES['option4']['tmp_name'];
+        $option4 = file_get_contents($imageTmpName);
 
         $product_array = array (
            'product_id'=> $_POST['product_id'],
@@ -21,6 +23,7 @@
            'option1'=> $_POST['option1'],
            'option2'=> $_POST['option2'],
            'option3'=> $_POST['option3'],
+           'option4'=> $option4,
         );
 
         $_SESSION['cart'][$product_id] = $product_array;
@@ -41,6 +44,9 @@
         $option1 = $_POST['option1'];
         $option2 = $_POST['option2'];
         $option3 = $_POST['option3'];
+        $imageName = $_FILES['option4']['name'];
+        $imageTmpName = $_FILES['option4']['tmp_name'];
+        $option4 = file_get_contents($imageTmpName);
 
 
         $product_array = array (
@@ -52,6 +58,7 @@
            'option1'=> $option1,
            'option2'=> $option2,
            'option3'=> $option3,
+           'option4'=> $option4,
         );
 
         $_SESSION['cart'][$product_id] = $product_array;

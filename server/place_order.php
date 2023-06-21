@@ -44,6 +44,7 @@ if(isset($_POST['place_order'])){
             $option1 = $product['option1'];
             $option2 = $product['option2'];
             $option3 = $product['option3'];
+            $option4 = $product['option4'];
 
             $order_date = date('Y-m-d H:i:s');
 
@@ -60,13 +61,16 @@ if(isset($_POST['place_order'])){
                     header('location:../account.php');
             }else if (($product_id == 3 || $product_id == 1)){
                             //4. store each single item in order_items database
-
-                            $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price, product_quantity,option1,option2,option3)
-                            VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-        
-                            $stmt1->bind_param('iissiiissss', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option2,$option3 );
-        
+                            $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image, order_date, product_price, product_quantity, option1, option2, option3, option4)
+                            VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+                            
+                            $stmt1->bind_param('iissiiissssb', $order_id, $product_id, $user_id, $product_name, $product_image, $order_date, $product_price, $product_quantity, $option1, $option2, $option3, $option4);
+                            
+                            $stmt1->send_long_data(11, $option4);
+                            
                             $stmt1->execute();
+                            
+                            // $stmt1->execute();
                             header('location:../account.php');
             }else if ($product_id == 2 && empty($option2) && empty($option3)){
                                    //4. store each single item in order_items database
