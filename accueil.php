@@ -60,7 +60,7 @@
                   <form action="cart.php" method="POST">
 
                   <!-- <i class="fa-solid fa-cart-arrow-down nav-icon"></i> -->
-                  <button type="submit" class="submit-btn" name="add_product">
+                  <button type="submit" class="submit-btn" name="cart_btn">
       <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
     </button>
                 <a href="login.php" class="text-decoration-none text-dark">

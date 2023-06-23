@@ -1,93 +1,66 @@
-<?php 
+<?php
+session_start();
 
-  session_start();
+if (isset($_POST['add_product'])) {
+    $product_id = $_POST['product_id'];
+    $product_image = $_POST['product_image'];
+    $product_name = $_POST['product_name'];
+    $product_price = $_POST['product_price'];
+    $product_quantity = $_POST['product_quantity'];
+    $option1 = $_POST['option1'];
+    $option2 = $_POST['option2'];
+    $option3 = $_POST['option3'];
+    $imageName = $_FILES['option4']['name'];
+    $imageTmpName = $_FILES['option4']['tmp_name'];
+    $option4 = file_get_contents($imageTmpName);
 
-  if(isset($_POST['add_product'])){
+    $product_array = array(
+        'product_id' => $product_id,
+        'product_image' => $product_image,
+        'product_name' => $product_name,
+        'product_price' => $product_price,
+        'product_quantity' => $product_quantity,
+        'option1' => $option1,
+        'option2' => $option2,
+        'option3' => $option3,
+        'option4' => $option4,
+    );
 
-    if(isset($_SESSION['cart'])){
-      $product_array_ids = array_column ($_SESSION['cart'],'product_id');
-      
-      if (!in_array($_POST['product_id'],$product_array_ids)){
+    $_SESSION['cart'][] = $product_array;
 
-        $product_id = $_POST['product_id'];
-        $imageName = $_FILES['option4']['name'];
-        $imageTmpName = $_FILES['option4']['tmp_name'];
-        $option4 = file_get_contents($imageTmpName);
+    calculateTotal();
+} elseif (isset($_POST['remove_product'])) {
+    $product_id = $_POST['product_id'];
+    foreach ($_SESSION['cart'] as $key => $product) {
+        if ($product['product_id'] === $product_id) {
+            unset($_SESSION['cart'][$key]);
+            break;
+        }
+    }
+    calculateTotal();
+} elseif (isset($_POST['edit_btn'])) {
+    $product_id = $_POST['product_id'];
+    $product_quantity = $_POST['product_quantity'];
 
-        $product_array = array (
-           'product_id'=> $_POST['product_id'],
-           'product_image'=> $_POST['product_image'],
-           'product_name'=> $_POST['product_name'],
-           'product_price'=> $_POST['product_price'],
-           'product_quantity'=> $_POST['product_quantity'],
-           'option1'=> $_POST['option1'],
-           'option2'=> $_POST['option2'],
-           'option3'=> $_POST['option3'],
-           'option4'=> $option4,
-        );
+    foreach ($_SESSION['cart'] as &$product) {
+        if ($product['product_id'] === $product_id) {
+            $product['product_quantity'] = $product_quantity;
+            break;
+        }
+    }
 
-        $_SESSION['cart'][$product_id] = $product_array;
-
-
-      }else{
-          echo '<script>alert("Product was already to cart ")</script>';
-          // echo '<script>window.location="accueil.php"</script>';
-
-      }
-      }else{
-
-        $product_id = $_POST['product_id'];
-        $product_image = $_POST['product_image'];
-        $product_name = $_POST['product_name'];
-        $product_price = $_POST['product_price'];
-        $product_quantity = $_POST['product_quantity'];
-        $option1 = $_POST['option1'];
-        $option2 = $_POST['option2'];
-        $option3 = $_POST['option3'];
-        $imageName = $_FILES['option4']['name'];
-        $imageTmpName = $_FILES['option4']['tmp_name'];
-        $option4 = file_get_contents($imageTmpName);
-
-
-        $product_array = array (
-           'product_id'=> $product_id,
-           'product_image'=> $product_image,
-           'product_name'=> $product_name,
-           'product_price'=> $product_price,
-           'product_quantity'=> $product_quantity,
-           'option1'=> $option1,
-           'option2'=> $option2,
-           'option3'=> $option3,
-           'option4'=> $option4,
-        );
-
-        $_SESSION['cart'][$product_id] = $product_array;
-
-      }
-     
-      calculateTotal();
-    }else if (isset($_POST['remove_product'])){
-          
-      $product_id = $_POST['product_id'];
-      unset($_SESSION['cart'][$product_id]);
-      calculateTotal();
-    }else if (isset($_POST['edit_btn'])){
-//// ON HOLD
-          $product_id = $_POST['product_id'];
-          $product_quantity = $_POST['product_quantity'];
-
-          $product_array = $_SESSION['cart'][$product_id];
-
-          $product_array['product_quantity'] = $product_quantity;
-
-          $_SESSION['cart'][$product_id] = $product_array;
-
-          calculateTotal();
-
-    }else{
-    header('location:accueil.php');
-  }
-
+    calculateTotal();
+} elseif (isset($_POST['cart_btn'])) {
+    // Retrieve the cart data from the session
+    $cart_data = $_SESSION['cart'] ?? array();
+    // Display the cart data
+    foreach ($cart_data as $product) {
+        // Display each product in the cart
+        // ...
+    }
+} else {
+    header('location: accueil.php');
+}
 
 function calculateTotal (){
 
