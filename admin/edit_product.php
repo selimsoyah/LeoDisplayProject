@@ -66,13 +66,6 @@
                                 <option value="standparapluie">Stand Parapluie</option>
                             </select>
                         </div>
-                        <div class="form-group mt-2">
-                            <label>Price</label>
-                            <input type="text" class="form-control" id="product-price" value="<?php echo $product['product_price'] ?>" name="price" placeholder="Price" required> 
-                        </div>
-
-                        
-
                         <div class="form-group mt-3">
                             <input type="submit" class="btn btn-primary" name="edit_product" value="Edit"/> 
                         </div>

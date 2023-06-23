@@ -90,7 +90,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($products as $order){ ?>
+                        <?php foreach($products as $product){ ?>
                         <tr>
                             <td><?php echo $product['product_id']; ?></td>
                             <td><img src="<?php echo " ../assets/imgs/". $product['product_image']; ?>" style="width: 70px; height:70px"/></td>
@@ -98,7 +98,7 @@
                             <td><?php echo "Dt". $product['product_price']; ?></td>
                             <td><?php echo $product['product_type']; ?></td>
                             <td><?php echo $product['product_size']; ?></td>
-                            td><?php echo $product['product_up_img']; ?></td>
+                            <td><?php echo $product['product_up_img']; ?></td>
 
                             <td><a class="btn btn-primary" href="edit_product.php?product_id=<?php echo $product['product_id']; ?>">Edit</a></td>
                             <td><a class="btn btn-danger">Delete</a></td>

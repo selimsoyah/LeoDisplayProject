@@ -45,7 +45,6 @@
     $orders = $stmt2->get_result();
 
 
-  
 
 ?>
 
@@ -58,9 +57,6 @@
 
         <?php include('sidemenu.php'); ?>
         
-
-
-    
         <main class="col-md-9 ms_sm_auto col_lg-10 px_md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                 <h1 class="h2">Dashboard</h1>
@@ -82,26 +78,42 @@
                             <th scope="col">Order Date</th>
                             <th scope="col">User Phone</th>
                             <th scope="col">User Address</th>
-                            <th scope="col">Edit</th>
+                            <th scope="col">Details</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach($orders as $order){ ?>
                         <tr>
+                            
                             <td><?php echo $order['order_id']; ?></td>
                             <td><?php echo $order['order_status']; ?></td>
                             <td><?php echo $order['user_id']; ?></td>
                             <td><?php echo $order['order_date']; ?></td>
                             <td><?php echo $order['user_phone']; ?></td>
                             <td><?php echo $order['user_address']; ?></td>
-
-                            <td><a class="btn btn-primary">Edit</a></td>
+                            <form action="details.php" method="GET">
+                            <input type='hidden' value="<?php echo $order['order_id'] ?>" name='order_id' />
+                            <td><button class="btn btn-primary order-details-btn" type="submit" value="details" name="order_details_btn">Details</button></td>
+                            </form>
+                            <td><a class="btn btn-primary">Status</a></td>
                             <td><a class="btn btn-danger">Delete</a></td>
+                            
                         </tr>
                         <?php } ?>
                     </tbody>
                 </table>
+
+
+
+
+
+
+
+
+
+
 
                 <!-- pagination -->
                 <nav aria-label="Page navigation example" class="mx-auto">
