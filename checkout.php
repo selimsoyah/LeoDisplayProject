@@ -4,10 +4,13 @@ session_start();
 
 if( !empty($_SESSION['cart']) && isset($_POST['checkout']) && isset($_POST['product_id'])){
 
+
 //let user in
 
 }else{
-  //send user to home page
+
+
+
   header('location: accueil.php');
 
 }

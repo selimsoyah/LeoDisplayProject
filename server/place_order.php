@@ -58,6 +58,7 @@ if(isset($_POST['place_order'])){
                     $stmt1->bind_param('iissiiisssb', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option2,$option4 );
                     $stmt1->send_long_data(10, $option4);
                     $stmt1->execute();
+                    array_splice($_SESSION['cart'], 0);
                     header('location:../account.php');
             }else if (($product_id == 3 || $product_id == 1)){
                             //4. store each single item in order_items database
@@ -71,6 +72,7 @@ if(isset($_POST['place_order'])){
                             $stmt1->execute();
                             
                             // $stmt1->execute();
+                            array_splice($_SESSION['cart'], 0);
                             header('location:../account.php');
             }else if ($product_id == 2 && empty($option2) && empty($option3)){
                                    //4. store each single item in order_items database
@@ -81,6 +83,7 @@ if(isset($_POST['place_order'])){
                                    $stmt1->bind_param('iissiiissb', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option4 );
                                    $stmt1->send_long_data(9, $option4);
                                    $stmt1->execute();
+                                   array_splice($_SESSION['cart'], 0);
                                    header('location:../account.php');
             }
         }
