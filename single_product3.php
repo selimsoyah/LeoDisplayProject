@@ -104,7 +104,7 @@ if (isset($_GET['product_id'])) {
 
   <?php while ($row = $products->fetch_assoc()) { ?>
 
-    <form method="POST" action='cart.php'>
+    <form method="POST" action='cart.php' enctype="multipart/form-data">
       <input type='hidden' name="product_id" value='<?php echo $row['product_id'] ?>' />
       <input type='hidden' name="product_image" value='<?php echo $row['product_image'] ?>' />
       <input type='hidden' name="product_name" value='<?php echo $row['product_name'] ?>' />
@@ -233,7 +233,7 @@ if (isset($_GET['product_id'])) {
               <div class="mainUpContainer">
                 <label for="photo-upload" class="upload-container">
                   <span>Click here to upload a photo</span>
-                  <input type="file" id="photo-upload" accept="image/*">
+                  <input type="file" id="photo-upload" accept="image/*" name='option4'>
                 </label>
 
                 <div class="uploaded-image-container">

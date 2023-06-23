@@ -52,11 +52,11 @@ if(isset($_POST['place_order'])){
             if (($product_id == 3 || $product_id == 1) && empty($option3)){
                 //4. store each single item in order_items database
 
-                    $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price, product_quantity,option1,option2)
-                    VALUES (?,?,?,?,?,?,?,?,?,?)");
+                    $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price, product_quantity,option1,option2,option4)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
-                    $stmt1->bind_param('iissiiisss', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option2 );
-
+                    $stmt1->bind_param('iissiiisssb', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option2,$option4 );
+                    $stmt1->send_long_data(10, $option4);
                     $stmt1->execute();
                     header('location:../account.php');
             }else if (($product_id == 3 || $product_id == 1)){
@@ -75,11 +75,11 @@ if(isset($_POST['place_order'])){
             }else if ($product_id == 2 && empty($option2) && empty($option3)){
                                    //4. store each single item in order_items database
 
-                                   $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price, product_quantity,option1)
-                                   VALUES (?,?,?,?,?,?,?,?,?)");
+                                   $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price, product_quantity,option1,option4)
+                                   VALUES (?,?,?,?,?,?,?,?,?,?)");
                
-                                   $stmt1->bind_param('iissiiiss', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1 );
-               
+                                   $stmt1->bind_param('iissiiissb', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option4 );
+                                   $stmt1->send_long_data(9, $option4);
                                    $stmt1->execute();
                                    header('location:../account.php');
             }
