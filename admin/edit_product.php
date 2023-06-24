@@ -1,11 +1,11 @@
 <?php include('header.php'); ?>
 
 <?php 
-    
-    if($_GET['product_id']){
+
+    if(isset($_GET['product_id'])){
 
         $product_id = $_GET['product_id'];
-        $stmt = $conn->prepare("SELECT * FROM products WHERE product_id =?");
+        $stmt = $conn->prepare("SELECT * FROM products WHERE product_id = ?");
         $stmt->bind_param('i', $product_id);
         $stmt->execute();
         
@@ -57,14 +57,6 @@
                         <div class="form-group mt-2">
                             <label>Price</label>
                             <input type="text" class="form-control" id="product-price" value="<?php echo $product['product_price'] ?>" name="price" placeholder="Price" required> 
-                        </div>
-                        <div class="form-group mt-2">
-                            <label>Category</label>
-                            <select class="form-select" required name="category">
-                                <option value="flags">Flag</option>
-                                <option value="standmodulaire">Stand Modulaire</option>
-                                <option value="standparapluie">Stand Parapluie</option>
-                            </select>
                         </div>
                         <div class="form-group mt-3">
                             <input type="submit" class="btn btn-primary" name="edit_product" value="Edit"/> 

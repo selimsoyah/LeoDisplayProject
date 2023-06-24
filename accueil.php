@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+function calculateTotal (){
+
+  $total_quantity = 0;
+
+    foreach($_SESSION['cart'] as $key => $values){
+
+      $product = $_SESSION['cart'][$key];
+
+      $quantity = $product['product_quantity'];
+
+      
+      $total_quantity = $total_quantity + $quantity;
+    }
+   
+   $_SESSION['quantity'] = $total_quantity;
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -46,7 +69,7 @@
                   <a class="nav-link nav-links" aria-current="page" href="accueil.php">Accueil</a>
                 </li>
                 <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" href="">About</a>
+                  <a class="nav-link nav-links" href="#mainBox">About</a>
                 </li>
                 <li class="nav-item nav-items">
                   <a class="nav-link nav-links" href="#new">Shop</a>
@@ -58,11 +81,10 @@
               <!-- add_product -->
               <div class="position-relative">
                   <form action="cart.php" method="POST">
-
                   <!-- <i class="fa-solid fa-cart-arrow-down nav-icon"></i> -->
                   <button type="submit" class="submit-btn" name="cart_btn">
-      <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
-    </button>
+                <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+                  </button>
                 <a href="login.php" class="text-decoration-none text-dark">
                   <i class="fa-solid fa-user nav-icon"></i>
                 </a>
@@ -71,7 +93,7 @@
               <div class="position-absolute rounded-circle cart"><?php if(isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0){?>
                     <span><?php echo $_SESSION['quantity']; ?></span>
                   <?php }?></div>
-              <div class="position-absolute rounded-circle user"><span>+99</span></div>
+              <div class="position-absolute rounded-circle user"><span></span></div>
             </div>
           </div>
         </nav>

@@ -147,7 +147,7 @@ if (isset($_POST['register'])) {
               <div class="position-absolute rounded-circle cart"><?php if(isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0){?>
                     <span><?php echo $_SESSION['quantity']; ?></span>
                   <?php }?></div>
-              <div class="position-absolute rounded-circle user"><span>+99</span></div>
+              <div class="position-absolute rounded-circle user"><span></span></div>
             </div>
           </div>
         </nav>

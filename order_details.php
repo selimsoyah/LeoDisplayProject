@@ -72,7 +72,7 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
                   <a class="nav-link nav-links" aria-current="page" href="accueil.php">Accueil</a>
                 </li>
                 <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" href="">About</a>
+                  <a class="nav-link nav-links" href="#mainBox">About</a>
                 </li>
                 <li class="nav-item nav-items">
                   <a class="nav-link nav-links" href="#new">Shop</a>
@@ -92,7 +92,7 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
               <div class="position-absolute rounded-circle cart"><?php if(isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0){?>
                     <span><?php echo $_SESSION['quantity']; ?></span>
                   <?php }?></div>
-              <div class="position-absolute rounded-circle user"><span>+99</span></div>
+              <div class="position-absolute rounded-circle user"><span></span></div>
             </div>
           </div>
         </nav>
