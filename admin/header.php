@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>LeoDisplay admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
   <body>
@@ -18,7 +18,6 @@
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggler="collapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
       <?php if(isset($_SESSION['admin_logged_in'])){ ?>

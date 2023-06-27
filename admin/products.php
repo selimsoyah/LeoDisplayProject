@@ -74,6 +74,14 @@
 
             <!-- Database config needed -->
             <h2>Products</h2>
+            <?php if(isset($_GET['edit_success_message'])){?>
+                <p class="text-center" style="color:green;"> <?php echo $_GET['edit_success_message'] ?> </p>
+                <?php } ?>
+
+                <?php if(isset($_GET['edit_failure_message'])){?>
+                <p class="text-center" style="color:red;"> <?php echo $_GET['edit_failure_message'] ?> </p>
+                <?php } ?>
+                
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
@@ -81,6 +89,7 @@
                             <th scope="col">Product Id</th>
                             <th scope="col">Product Image</th>
                             <th scope="col">Product Name</th>
+                            <th scope="col">Product Description</th>
                             <th scope="col">Product Price</th>
                             
                             <th scope="col">Edit</th>
@@ -93,7 +102,8 @@
                             <td><?php echo $product['product_id']; ?></td>
                             <td><img src="<?php echo " ../assets/imgs/". $product['product_image']; ?>" style="width: 70px; height:70px"/></td>
                             <td><?php echo $product['product_name']; ?></td>
-                            <td><?php echo "Dt". $product['product_price']; ?></td>
+                            <td><?php echo $product['product_description']; ?></td>
+                            <td><?php echo  $product['product_price']."Dt"; ?></td>
                            
 
                             <td><a class="btn btn-primary" href="edit_product.php?product_id=<?php echo $product['product_id']; ?>">Edit</a></td>

@@ -68,6 +68,18 @@
             </div>
 
             <h2>Orders</h2>
+
+
+
+            <?php if(isset($_GET['order_updated'])){?>
+                <p class="text-center" style="color:green;"> <?php echo $_GET['order_updated'] ?> </p>
+                <?php } ?>
+
+                <?php if(isset($_GET['order_failed'])){?>
+                <p class="text-center" style="color:red;"> <?php echo $_GET['order_failed'] ?> </p>
+                <?php } ?>
+
+
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
@@ -97,7 +109,7 @@
                             <input type='hidden' value="<?php echo $order['order_id'] ?>" name='order_id' />
                             <td><button class="btn btn-primary order-details-btn" type="submit" value="details" name="order_details_btn">Details</button></td>
                             </form>
-                            <td><a class="btn btn-primary">Status</a></td>
+                            <td><a class="btn btn-primary" href="edit_order.php?order_id=<?php echo $order['order_id']; ?>">Edit</a></td>
                             <td><a class="btn btn-danger">Delete</a></td>
                             
                         </tr>
