@@ -250,4 +250,7 @@ th:last-child{
 }
 
 
-
+.product-infoo{
+    display: flex;
+    align-items: center;
+}

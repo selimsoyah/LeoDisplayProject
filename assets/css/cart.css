@@ -254,12 +254,14 @@ th:last-child{
 .checkout-container{
     display: flex;
     justify-content: flex-end;
+    padding:20px;
 }
 
 
 .checkout-btn{
     background-color:orange;
     color: #fff;
+    margin:10px;
 }
 
 

@@ -123,10 +123,10 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
         <?php while ($row = $order_details->fetch_assoc()){ ?>
           <tr>
             <td>
-              <div class="product-info">
-                <img src="assets/imgs/StandModulaire.png" alt="StandModulaire">
+              <div class="product-infoo">
+                <img src="<?php echo $row['product_image'] ?>" alt="StandModulaire">
                   <div>
-                    <p class="mr-3"><?php echo $row['product_name'] ?></p>
+                    <span class="mr-3"><?php echo $row['product_name'] ?></span>
                   </div>
               </div>
               

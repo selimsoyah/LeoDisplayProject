@@ -218,7 +218,7 @@ function calculateTotal (){
           </form>
           <form action="single_product<?php echo $value['product_id'] ?>.php" method="GET">
               <input type="hidden" name="product_id" value="<?php echo $value['product_id']; ?>">
-              <button type="submit" class="text-uppercase">Ajouter Un Autre Produit</button>
+              <button type="submit" class="btn checkout-btn"  >Ajouter Un Autre Produit</button>
             </form>
         </div>
               <div class="cart-total">

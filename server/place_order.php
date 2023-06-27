@@ -4,7 +4,7 @@ session_start();
 
 
 include('connection.php');
-
+   $order_date = date('Y-m-d H:i:s');
 if(isset($_POST['place_order'])){
 
     //1. get user info and store it in database
@@ -17,7 +17,7 @@ if(isset($_POST['place_order'])){
         $order_cost = $_SESSION['total'];
         $order_status = "on_hold";
         $user_id = $_SESSION['user_id'];
-        $order_date = date('Y-m-d H:i:s');
+     
 
         $stmt = $conn->prepare("INSERT INTO orders (order_cost,order_status,user_id,user_phone,user_city,user_address,order_date)
                             VALUES (?,?,?,?,?,?,?) ");
@@ -45,7 +45,6 @@ if(isset($_POST['place_order'])){
             $option2 = $product['option2'];
             $option3 = $product['option3'];
             $option4 = $product['option4'];
-
             $order_date = date('Y-m-d H:i:s');
 
             
@@ -55,24 +54,24 @@ if(isset($_POST['place_order'])){
                     $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price, product_quantity,option1,option2,option4)
                     VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
-                    $stmt1->bind_param('iissiiisssb', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option2,$option4 );
+                    $stmt1->bind_param('iiisssisssb', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option2,$option4 );
                     $stmt1->send_long_data(10, $option4);
                     $stmt1->execute();
-                    array_splice($_SESSION['cart'], 0);
+                    // array_splice($_SESSION['cart'], 0);
                     header('location:../account.php');
             }else if (($product_id == 3 || $product_id == 1)){
                             //4. store each single item in order_items database
                             $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image, order_date, product_price, product_quantity, option1, option2, option3, option4)
                             VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
                             
-                            $stmt1->bind_param('iissiiissssb', $order_id, $product_id, $user_id, $product_name, $product_image, $order_date, $product_price, $product_quantity, $option1, $option2, $option3, $option4);
+                            $stmt1->bind_param('iiisssissssb', $order_id, $product_id, $user_id, $product_name, $product_image, $order_date, $product_price, $product_quantity, $option1, $option2, $option3, $option4);
                             
                             $stmt1->send_long_data(11, $option4);
                             
                             $stmt1->execute();
                             
                             // $stmt1->execute();
-                            array_splice($_SESSION['cart'], 0);
+                            // array_splice($_SESSION['cart'], 0);
                             header('location:../account.php');
             }else if ($product_id == 2 && empty($option2) && empty($option3)){
                                    //4. store each single item in order_items database
@@ -80,15 +79,18 @@ if(isset($_POST['place_order'])){
                                    $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price, product_quantity,option1,option4)
                                    VALUES (?,?,?,?,?,?,?,?,?,?)");
                
-                                   $stmt1->bind_param('iissiiissb', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option4 );
+                                   $stmt1->bind_param('iiisssissb', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option4 );
                                    $stmt1->send_long_data(9, $option4);
                                    $stmt1->execute();
-                                   array_splice($_SESSION['cart'], 0);
+                                //    array_splice($_SESSION['cart'], 0);
                                    header('location:../account.php');
             }
+        
         }
 
-
+        array_splice($_SESSION['cart'], 0);
+        $_SESSION['total'] = 0;
+        $_SESSION['quantity'] = 0;
 
     //5. remove everything from cart
 
