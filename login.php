@@ -166,9 +166,6 @@ if(isset($_POST['login_btn'])){
               <div class="form-group">
                 <input type="submit" class="btn" id="login-button" name="login_btn" value="Log In">
               </div>
-              <div class="form-group">
-                <a id="register-url" href="register.php" class="btn">Pas de compte ?</a>
-              </div>
             </form>
           </div>
         </div>

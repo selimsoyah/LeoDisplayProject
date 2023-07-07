@@ -3,7 +3,7 @@
 <?php include('header.php'); ?>
 
 <?php
-
+ 
     if(isset($_GET['order_id'])){
 
         $order_id = $_GET['order_id'];
@@ -18,7 +18,7 @@
         $order_status = $_POST['order_status'];
         $order_id = $_POST['order_id'];
 
-        $stmt = $conn->prepare("UPDATE or   ders SET order_status = ? WHERE order_id = ?");
+        $stmt = $conn->prepare("UPDATE orders SET order_status = ? WHERE order_id = ?");
         $stmt->bind_param('si', $order_status, $order_id);
 
 
@@ -96,7 +96,9 @@
                         </div>
 
                         <div class="form-group mt-3">
-                            <input type="submit" class="btn btn-primary" name="edit_btn" value="Edit"/> 
+                            <form action="edit_order.php" method='post'>
+                            <input type="submit" class="btn btn-primary" name="edit_order" value="Edit"/> 
+                            </form>
                         </div>
                             
                     <?php } ?>        

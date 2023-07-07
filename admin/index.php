@@ -91,7 +91,7 @@
                             <th scope="col">User Phone</th>
                             <th scope="col">User Address</th>
                             <th scope="col">Details</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -109,7 +109,13 @@
                             <input type='hidden' value="<?php echo $order['order_id'] ?>" name='order_id' />
                             <td><button class="btn btn-primary order-details-btn" type="submit" value="details" name="order_details_btn">Details</button></td>
                             </form>
-                            <td><a class="btn btn-primary" href="edit_order.php?order_id=<?php echo $order['order_id']; ?>">Edit</a></td>
+                            <!-- <td><a class="btn btn-primary" href="edit_order.php?order_id=<?php echo $order['order_id']; ?>">Edit</a></td> -->
+                       
+                       <form action="edit_order.php" method='GET'>
+                          <input type='hidden' value="<?php echo $order['order_id'] ?>" name='order_id' />
+                            <td><button class="btn btn-primary " type="submit" value="details" name="order_details_btn">Edit</button></td>
+                       
+                            </form>
                             <td><a class="btn btn-danger">Delete</a></td>
                             
                         </tr>
