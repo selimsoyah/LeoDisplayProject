@@ -142,28 +142,28 @@ if (isset($_GET['product_id'])) {
   <div class="option-container">
     <h4>Choisissez le type de drapeau : </h4>
     <label>
-      <input type="radio" name="option1" value="Courbé">
+      <input type="radio" name="option1" value="Courbé"  onclick="toggleInputGroup('input-group1')">
       <img src="assets/imgs//2m50.png" alt="2m50">
     </label>
 
     <label>
-      <input type="radio" name="option1" value="Droit">
+      <input type="radio" name="option1" value="Droit" onclick="toggleInputGroup('input-group1')">
       <img src="assets/imgs/2m80.png" alt="2m80">
     </label>
 
     <label>
-      <input type="radio" name="option1" value="Incliné">
+      <input type="radio" name="option1" value="Incliné" onclick="toggleInputGroup('input-group1')">
       <img src="assets/imgs/3m20.png" alt="3m20">
     </label>
     
     <label>
-      <input type="radio" name="option1" value="Rectangulaire">
+      <input type="radio" name="option1" value="Rectangulaire" onclick="toggleInputGroup('input-group1')">
       <img src="assets/imgs/3m80.png" alt="3m80">
     </label>
 
-    <div class="input-group">
-                      <input type='number' name='quantity_1' value='1'>
-                <input type="submit" name='add_product'class="buy-btn" value="Ajouter Au Pannier">
+    <div class="input-group" id="input-group1" style="display: none;">
+      <input type="number" name="quantity_1" value="1">
+      <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
       <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option1')">Remove from Cart</button>
     </div>
   </div>
@@ -172,28 +172,29 @@ if (isset($_GET['product_id'])) {
   <div class="option-container">
     <h4>Choissisez La Taille : </h4>
     <label>
-      <input type="radio" name="option2" value="2m50">
+      <input type="radio" name="option2" value="2m50" onclick="toggleInputGroup('input-group2')" >
       <img src="assets/imgs//2m50.png" alt="2m50">
     </label>
 
     <label>
-      <input type="radio" name="option2" value="2m80">
+      <input type="radio" name="option2" value="2m80" onclick="toggleInputGroup('input-group2')" >
       <img src="assets/imgs/2m80.png" alt="2m80">
     </label>
 
     <label>
-      <input type="radio" name="option2" value="3m20">
+      <input type="radio" name="option2" value="3m20" onclick="toggleInputGroup('input-group2')" >
       <img src="assets/imgs/3m20.png" alt="3m20">
     </label>
     
     <label>
-      <input type="radio" name="option2" value="3m80">
+      <input type="radio" name="option2" value="3m80" onclick="toggleInputGroup('input-group2')" >
       <img src="assets/imgs/3m80.png" alt="3m80">
     </label>
 
-    <div class="input-group">
-                      <input type='number' name='quantity_2' value='1'>
-                <input type="submit" name='add_product'class="buy-btn" value="Ajouter Au Pannier">
+  
+    <div class="input-group" id="input-group2" style="display: none;">
+      <input type="number" name="quantity_2" value="1">
+      <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
       <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option2')">Remove from Cart</button>
     </div>
   </div>
@@ -203,32 +204,32 @@ if (isset($_GET['product_id'])) {
     <h4>Choissisez La Base (Optionnelle) :</h4>
     <div class="base">
       <label>
-        <input type="radio" name="option3" value="Water Base">
+        <input type="radio" name="option3" value="Water Base" onclick="toggleInputGroup('input-group3')">
         <img src="assets/imgs/baseAEau.png" alt="Base">
       </label>
 
       <label>
-        <input type="radio" name="option3" value="Beton base">
+        <input type="radio" name="option3" value="Beton base" onclick="toggleInputGroup('input-group3')">
         <img src="assets/imgs/baseBeton.png" alt="Base">
       </label>
 
       <label>
-        <input type="radio" name="option3" value="Metal Base 7Kg">
+        <input type="radio" name="option3" value="Metal Base 7Kg" onclick="toggleInputGroup('input-group3')">
         <img src="assets/imgs/baseMetalique.png" alt="Base">
       </label>
       
       <label>
-        <input type="radio" name="option3" value="Metal Base 7.5Kg">
+        <input type="radio" name="option3" value="Metal Base 7.5Kg" onclick="toggleInputGroup('input-group3')">
         <img src="assets/imgs/baseAEau.png" alt="Base">
       </label>
       
       <label>
-        <input type="radio" name="option3" value="Metal Base 10Kg">
+        <input type="radio" name="option3" value="Metal Base 10Kg" onclick="toggleInputGroup('input-group3')">
         <img src="assets/imgs/baseAEau.png" alt="Base">
       </label>
-      <div class="input-group">
-                      <input type='number' name='quantity_3' value='1'>
-                <input type="submit" name='add_product'class="buy-btn" value="Ajouter Au Pannier">
+      <div class="input-group" id="input-group3" style="display: none;">
+      <input type="number" name="quantity_3" value=null>
+      <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
       <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option3')">Remove from Cart</button>
     </div>
     </div>
@@ -258,6 +259,73 @@ if (isset($_GET['product_id'])) {
   </div>
 </div>
 
+<style>
+  /* Custom radio button */
+  input[type="radio"] {
+    /* Hide the default radio button */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    margin-right: 5px;
+    position: relative;
+    top: 3px;
+    cursor: pointer;
+  }
+
+  /* Custom radio button - checked state */
+  input[type="radio"]:checked {
+    background-color: #FFA500; /* Set the desired color */
+    border-color: #FFA500;
+  }
+
+  /* Custom radio button - checked state (after) */
+  input[type="radio"]:checked:after {
+  
+    background-color: white;
+  }
+</style>
+
+<script>
+  // Add event listeners to radio buttons
+  var radioButtons = document.querySelectorAll('input[type="radio"]');
+  for (var i = 0; i < radioButtons.length; i++) {
+    radioButtons[i].addEventListener('click', function() {
+      // Remove 'checked' class from all radio buttons
+      for (var j = 0; j < radioButtons.length; j++) {
+        radioButtons[j].parentNode.classList.remove('checked');
+      }
+      // Add 'checked' class to the clicked radio button
+      this.parentNode.classList.add('checked');
+    });
+  }
+</script>
+
+<script>
+  var lastSelectedOption = null;
+
+  function toggleInputGroup(inputGroupId) {
+    var inputGroup = document.getElementById(inputGroupId);
+    inputGroup.style.display = 'block';
+
+    if (lastSelectedOption !== null && lastSelectedOption !== inputGroup) {
+      lastSelectedOption.querySelector('[name="add_product"]').style.display = 'none';
+    }
+
+    lastSelectedOption = inputGroup;
+    lastSelectedOption.querySelector('[name="add_product"]').style.display = 'block';
+  }
+
+ 
+</script>
+
+
+ 
 <script>
   function addToCart(optionName) {
     // Add to cart functionality
@@ -273,6 +341,11 @@ if (isset($_GET['product_id'])) {
     radioButtons.forEach((radioButton) => {
       radioButton.checked = false;
     });
+
+
+
+    var inputGroup = document.getElementById(optionName).closest('.option-container');
+    inputGroup.querySelector('[name="add_product"]').style.display = 'block';
   }
 </script>
 
