@@ -1,0 +1,35 @@
+<div class="radio-container">
+    <label>
+      <input type="radio" name="option" value="option1" checked>
+      Option 1
+    </label>
+  
+    <label>
+      <input type="radio" name="option" value="option2">
+      Option 2
+    </label>
+  
+    <label>
+      <input type="radio" name="option" value="option3">
+      Option 3
+    </label>
+  </div>
+  
+  <script>
+    const radioButtons = document.querySelectorAll('.radio-container input[type="radio"]');
+  
+    radioButtons.forEach((radioButton) => {
+      radioButton.addEventListener('click', function() {
+        if (this.checked) {
+          radioButtons.forEach((btn) => {
+            btn.checked = false;
+            btn.parentNode.classList.remove('selected');
+          });
+        } else {
+          this.checked = true;
+          this.parentNode.classList.add('selected');
+        }
+      });
+    });
+  </script>
+  

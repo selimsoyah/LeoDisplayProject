@@ -7,13 +7,20 @@ if (isset($_POST['add_product'])) {
     $product_image = $_POST['product_image'];
     $product_name = $_POST['product_name'];
     $product_price = $_POST['product_price'];
-    $product_quantity = $_POST['product_quantity'];
-    $option1 = $_POST['option1'];
-    $option2 = $_POST['option2'];
-    $option3 = $_POST['option3'];
-    $imageName = $_FILES['option4']['name'];
-    $imageTmpName = $_FILES['option4']['tmp_name'];
-    $option4 = file_get_contents($imageTmpName);
+    // $product_quantity = $_POST['product_quantity'];
+    $option1 =  isset($_POST['option1']) ? $_POST['option1'] : null;
+    $option2 =  isset($_POST['option2']) ? $_POST['option2'] : null;
+    $option3 =  isset($_POST['option3']) ? $_POST['option3'] : null;
+    $quantity_1 = isset($_POST['quantity_1']) ? $_POST['quantity_1'] : null;
+    $quantity_2 = isset($_POST['quantity_2']) ? $_POST['quantity_2'] : null;
+    $quantity_3 = isset($_POST['quantity_3']) ? $_POST['quantity_3'] : null;
+    if (isset($_POST['option4'])){
+      $imageName = $_FILES['option4']['name'];
+      $imageTmpName = $_FILES['option4']['tmp_name'];
+      $option4 = file_get_contents($imageTmpName);
+    }else{
+      $option4= null;
+    }
 
     $product_array = array(
         'product_id' => $product_id,
@@ -25,6 +32,9 @@ if (isset($_POST['add_product'])) {
         'option2' => $option2,
         'option3' => $option3,
         'option4' => $option4,
+        'quantity_1' => $quantity_1,
+        'quantity_2' => $quantity_2,
+        'quantity_3' => $quantity_3,
     );
 
     $_SESSION['cart'][] = $product_array;
@@ -206,7 +216,9 @@ function calculateTotal (){
 
             <td>
                 <span>Dt</span>
-                <span class="product-price"><?php echo $value['product_price']*$value['product_quantity'] ?></span>
+                <span class="product-price"><?php echo $value['quantity_1'] ?></span>
+                <span class="product-price"><?php echo $value['quantity_2'] ?></span>
+                <span class="product-price"><?php echo $value['quantity_3'] ?></span>
             </td>
 
             </tr>

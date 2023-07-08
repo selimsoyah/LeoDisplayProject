@@ -138,114 +138,144 @@ if (isset($_GET['product_id'])) {
 
             <!-- <form class="radioForm"> -->
             <div class="radioForm">
-              <h3 class="py-4">Etape 1</h3>
-              <!-- <h2>240 DT</h2> -->
-              <!-- <input type="number" value="1" > -->
-              <h4>Choisissez le type de drapeau : </h4>
+  <h3 class="py-4">Etape 1</h3>
+  <div class="option-container">
+    <h4>Choisissez le type de drapeau : </h4>
+    <label>
+      <input type="radio" name="option1" value="Courbé">
+      <img src="assets/imgs//2m50.png" alt="2m50">
+    </label>
 
-              <label>
-                
-                <input type="radio" name="option1" value="Courbé">
-                <img src="assets/imgs//2m50.png" alt="2m50">
-              </label>
+    <label>
+      <input type="radio" name="option1" value="Droit">
+      <img src="assets/imgs/2m80.png" alt="2m80">
+    </label>
 
-              <label>
-                <input type="radio" name="option1" value="Droit">
-                <img src="assets/imgs/2m80.png" alt="2m80">
-              </label>
+    <label>
+      <input type="radio" name="option1" value="Incliné">
+      <img src="assets/imgs/3m20.png" alt="3m20">
+    </label>
+    
+    <label>
+      <input type="radio" name="option1" value="Rectangulaire">
+      <img src="assets/imgs/3m80.png" alt="3m80">
+    </label>
 
-              <label>
-                <input type="radio" name="option1" value="Incliné">
-                <img src="assets/imgs/3m20.png" alt="3m20">
-              </label>
-              <label>
-                <input type="radio" name="option1" value="Rectangulaire">
-                <img src="assets/imgs/3m80.png" alt="3m80">
-              </label>
-              <!-- <label>
-                <input type="radio" name="option1" value="4m50">
-                <img src="assets/imgs/4m50.png" alt="4m50">
-              </label>
-              <label>
-                <input type="radio" name="option1" value="5m">
-                <img src="assets/imgs/5m.png" alt="5m">
-              </label> -->
-              <h3 class="py-4">Etape 2</h3>
-              <h4>Choissisez La Taille : </h4>
-              <label>
-                <input type="radio" name="option2" value="2m50">
-                <img src="assets/imgs//2m50.png" alt="2m50">
-              </label>
+    <div class="input-group">
+                      <input type='number' name='quantity_1' value='1'>
+                <input type="submit" name='add_product'class="buy-btn" value="Ajouter Au Pannier">
+      <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option1')">Remove from Cart</button>
+    </div>
+  </div>
 
-              <label>
-                <input type="radio" name="option2" value="2m80">
-                <img src="assets/imgs/2m80.png" alt="2m80">
-              </label>
+  <h3 class="py-4">Etape 2</h3>
+  <div class="option-container">
+    <h4>Choissisez La Taille : </h4>
+    <label>
+      <input type="radio" name="option2" value="2m50">
+      <img src="assets/imgs//2m50.png" alt="2m50">
+    </label>
 
-              <label>
-                <input type="radio" name="option2" value="3m20">
-                <img src="assets/imgs/3m20.png" alt="3m20">
-              </label>
-              <label>
-                <input type="radio" name="option2" value="3m80">
-                <img src="assets/imgs/3m80.png" alt="3m80">
-              </label>
-              <label>
-                <input type="radio" name="option2" value="4m50">
-                <img src="assets/imgs/4m50.png" alt="4m50">
-              </label>
-              <label>
-                <input type="radio" name="option2" value="5m">
-                <img src="assets/imgs/5m.png" alt="5m">
-              </label>
+    <label>
+      <input type="radio" name="option2" value="2m80">
+      <img src="assets/imgs/2m80.png" alt="2m80">
+    </label>
 
-              <h3 class="py-4">Etape 3</h3>
-              <h4>Choissisez La Base ( Optionelle ) : </h4>
-              <div class="base">
+    <label>
+      <input type="radio" name="option2" value="3m20">
+      <img src="assets/imgs/3m20.png" alt="3m20">
+    </label>
+    
+    <label>
+      <input type="radio" name="option2" value="3m80">
+      <img src="assets/imgs/3m80.png" alt="3m80">
+    </label>
 
-                <label>
-                  <input type="radio" name="option3" value="Water Base">
-                  <img src="assets/imgs/baseAEau.png" alt="Base">
-                </label>
+    <div class="input-group">
+                      <input type='number' name='quantity_2' value='1'>
+                <input type="submit" name='add_product'class="buy-btn" value="Ajouter Au Pannier">
+      <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option2')">Remove from Cart</button>
+    </div>
+  </div>
 
-                <label>
-                  <input type="radio" name="option3" value="Beton base">
-                  <img src="assets/imgs/baseBeton.png" alt="Base">
-                </label>
+  <h3 class="py-4">Etape 3</h3>
+  <div class="option-container">
+    <h4>Choissisez La Base (Optionnelle) :</h4>
+    <div class="base">
+      <label>
+        <input type="radio" name="option3" value="Water Base">
+        <img src="assets/imgs/baseAEau.png" alt="Base">
+      </label>
 
-                <label>
-                  <input type="radio" name="option3" value="Metal Base 7Kg">
-                  <img src="assets/imgs/baseMetalique.png" alt="Base">
-                </label>
-                <label>
-                  <input type="radio" name="option3" value="Metal Base 7.5Kg">
-                  <img src="assets/imgs/baseAEau.png" alt="Base">
-                </label>
-                <label>
-                  <input type="radio" name="option3" value="Metal Base 10Kg">
-                  <img src="assets/imgs/baseAEau.png" alt="Base">
-                </label>
+      <label>
+        <input type="radio" name="option3" value="Beton base">
+        <img src="assets/imgs/baseBeton.png" alt="Base">
+      </label>
+
+      <label>
+        <input type="radio" name="option3" value="Metal Base 7Kg">
+        <img src="assets/imgs/baseMetalique.png" alt="Base">
+      </label>
+      
+      <label>
+        <input type="radio" name="option3" value="Metal Base 7.5Kg">
+        <img src="assets/imgs/baseAEau.png" alt="Base">
+      </label>
+      
+      <label>
+        <input type="radio" name="option3" value="Metal Base 10Kg">
+        <img src="assets/imgs/baseAEau.png" alt="Base">
+      </label>
+      <div class="input-group">
+                      <input type='number' name='quantity_3' value='1'>
+                <input type="submit" name='add_product'class="buy-btn" value="Ajouter Au Pannier">
+      <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option3')">Remove from Cart</button>
+    </div>
+    </div>
 
 
-              </div>
-              <h3 class="py-4">Etape 4</h3>
-              <h4> Inserez Votre Image : </h4>
-              <div class="mainUpContainer">
-                <label for="photo-upload" class="upload-container">
-                  <span>Click here to upload a photo</span>
-                  <input type="file" id="photo-upload" accept="image/*" name='option4'>
-                </label>
+  </div>
 
-                <div class="uploaded-image-container">
-                  <img class="uploaded-image" id="uploaded-image-preview" src="#" alt="Uploaded Image">
-                </div>
-              </div>
+  <h3 class="py-4">Etape 4</h3>
+  <div class="option-container">
+    <h4>Insérez Votre Image :</h4>
+    <div class="mainUpContainer">
+      <label for="photo-upload" class="upload-container">
+        <span>Click here to upload a photo</span>
+        <input type="file" id="photo-upload" accept="image/*" name="option4">
+      </label>
 
-              <div class="buttonContainer">
-                <input type='number' name='product_quantity' value='1'>
+      <div class="uploaded-image-container">
+        <img class="uploaded-image" id="uploaded-image-preview" src="#" alt="Uploaded Image">
+      </div>
+    </div>
+
+
+    <div class="buttonContainer">
+                <!-- <input type='number' name='quantity_1' value='1'> -->
                 <input type="submit" name='add_product'class="buy-btn" value="Ajouter Au Pannier">
               </div>
-            </div>
+  </div>
+</div>
+
+<script>
+  function addToCart(optionName) {
+    // Add to cart functionality
+    console.log('Added ' + optionName + ' to cart');
+  }
+
+  function removeFromCart(optionName) {
+    // Remove from cart functionality
+    console.log('Removed ' + optionName + ' from cart');
+    
+    // Clear radio selection
+    const radioButtons = document.getElementsByName(optionName);
+    radioButtons.forEach((radioButton) => {
+      radioButton.checked = false;
+    });
+  }
+</script>
+
             <!-- </form>    -->
           </div>
         </div>

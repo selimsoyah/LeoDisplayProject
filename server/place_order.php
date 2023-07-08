@@ -45,46 +45,67 @@ if(isset($_POST['place_order'])){
             $option2 = $product['option2'];
             $option3 = $product['option3'];
             $option4 = $product['option4'];
+            $quantity_1 = $product['quantity_1'];
+            $quantity_2 = $product['quantity_2'];
+            $quantity_3 = $product['quantity_3'];
             $order_date = date('Y-m-d H:i:s');
 
             
-            if (($product_id == 3 || $product_id == 1) && empty($option3)){
-                //4. store each single item in order_items database
+            // if (($product_id == 3 || $product_id == 1) && empty($option3)){
+            //     //4. store each single item in order_items database
 
-                    $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price, product_quantity,option1,option2,option4)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            //         $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price,option1,option2,option4,quantity_1,quantity_2)
+            //         VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 
-                    $stmt1->bind_param('iiisssisssb', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option2,$option4 );
+            //         $stmt1->bind_param('iiissssssbii', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price,$option1,$option2,$option4,$quantity_1,$quantity_2 );
+            //         $stmt1->send_long_data(9, $option4);
+            //         $stmt1->execute();
+            //         // array_splice($_SESSION['cart'], 0);
+            //         header('location:../account.php');
+            // }else if (($product_id == 3 || $product_id == 1)){
+            //                 //4. store each single item in order_items database
+            //                 $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image, order_date, product_price, product_quantity, option1, option2, option3, option4)
+            //                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+                            
+            //                 $stmt1->bind_param('iiisssissssb', $order_id, $product_id, $user_id, $product_name, $product_image, $order_date, $product_price, $product_quantity, $option1, $option2, $option3, $option4);
+                            
+            //                 $stmt1->send_long_data(11, $option4);
+                            
+            //                 $stmt1->execute();
+                            
+            //                 // $stmt1->execute();
+            //                 // array_splice($_SESSION['cart'], 0);
+            //                 header('location:../account.php');
+            // }else if ($product_id == 2 && empty($option2) && empty($option3)){
+            //                        //4. store each single item in order_items database
+
+            //                        $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price, product_quantity,option1,option4)
+            //                        VALUES (?,?,?,?,?,?,?,?,?,?)");
+               
+            //                        $stmt1->bind_param('iiisssissb', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option4 );
+            //                        $stmt1->send_long_data(9, $option4);
+            //                        $stmt1->execute();
+            //                     //    array_splice($_SESSION['cart'], 0);
+            //                        header('location:../account.php');
+            // }
+
+            
+                    // $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price,option1,option2,option4,quantity_1,quantity_2)
+                    // VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                    // $stmt1->bind_param('iiissssssbii', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price,$option1,$option2,$option4,$quantity_1,$quantity_2 );
+                    // $stmt1->send_long_data(9, $option4);
+                    // $stmt1->execute();
+                    // // array_splice($_SESSION['cart'], 0);
+                    // header('location:../account.php');
+                    $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price,option1,option2,option3,option4,quantity_1,quantity_2,quantity_3)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                    $stmt1->bind_param('iiisssssssbiii', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price,$option1,$option2,$option3,$option4,$quantity_1,$quantity_2,$quantity_3 );
                     $stmt1->send_long_data(10, $option4);
                     $stmt1->execute();
                     // array_splice($_SESSION['cart'], 0);
                     header('location:../account.php');
-            }else if (($product_id == 3 || $product_id == 1)){
-                            //4. store each single item in order_items database
-                            $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image, order_date, product_price, product_quantity, option1, option2, option3, option4)
-                            VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-                            
-                            $stmt1->bind_param('iiisssissssb', $order_id, $product_id, $user_id, $product_name, $product_image, $order_date, $product_price, $product_quantity, $option1, $option2, $option3, $option4);
-                            
-                            $stmt1->send_long_data(11, $option4);
-                            
-                            $stmt1->execute();
-                            
-                            // $stmt1->execute();
-                            // array_splice($_SESSION['cart'], 0);
-                            header('location:../account.php');
-            }else if ($product_id == 2 && empty($option2) && empty($option3)){
-                                   //4. store each single item in order_items database
-
-                                   $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price, product_quantity,option1,option4)
-                                   VALUES (?,?,?,?,?,?,?,?,?,?)");
-               
-                                   $stmt1->bind_param('iiisssissb', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price, $product_quantity,$option1,$option4 );
-                                   $stmt1->send_long_data(9, $option4);
-                                   $stmt1->execute();
-                                //    array_splice($_SESSION['cart'], 0);
-                                   header('location:../account.php');
-            }
         
         }
 

@@ -143,15 +143,15 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
             </td>
             <td>
             
-            <span><?php echo $row['option1'] ?></span>
+            <span><?php echo $row['option1'] ?> X <?php echo $row['quantity_1'] ?></span>
           </td>
           <td>
             
-            <span><?php echo $row['option2'] ?></span>
+            <span><?php echo $row['option2'] ?>  X <?php echo $row['quantity_2'] ?></span>
           </td>
           <td>
             
-            <span><?php echo $row['option3'] ?></span>
+            <span><?php echo $row['option3']  ?>   X <?php echo $row['quantity_3'] ?></span>
           </td>
               <td> <img src="data:image/jpeg;base64,<?php echo base64_encode($row['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px;"></td>
           </tr>
