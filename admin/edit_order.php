@@ -82,10 +82,7 @@
                         <div class="form-group my-3">
                             <label>Order Status</label>
                             <select name="order_status" class="form-select" required>
-                                
-                                <option value="not paid" <?php if($r['order_status'] == 'not paid'){echo "selected";}?> >Not paid</option>
-                                <option value="paid" <?php if($r['order_status'] == 'paid'){echo "selected";}?>>Paid</option>
-                                <option value="shipped" <?php if($r['order_status'] == 'shipped'){echo "selected";}?>>Shipped</option>
+                                <option value="on hold" <?php if($r['order_status'] == 'not paid'){echo "selected";}?> >On hold</option>
                                 <option value="delivered" <?php if($r['order_status'] == 'delivered'){echo "selected";}?>>Delivered</option>
                             </select>
                         </div>

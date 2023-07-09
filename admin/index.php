@@ -40,10 +40,40 @@
 
     //4 get all products
 
-    $stmt2 = $conn->prepare("SELECT * FROM orders LIMIT $offset, $total_records_per_page");
+    $stmt2 = $conn->prepare("SELECT orders.*, users.user_name FROM orders JOIN users ON orders.user_id = users.user_id ORDER BY order_date DESC LIMIT $offset, $total_records_per_page");
     $stmt2->execute();
     $orders = $stmt2->get_result();
 
+    // Group orders by order date
+    $grouped_orders = [];
+    while ($order = $orders->fetch_assoc()) {
+        $order_date = date('d-m-Y', strtotime($order['order_date']));
+        $grouped_orders[$order_date][] = $order;
+    }
+    
+
+    if (isset($_POST['edit_order_status_btn'])) {
+        $order_id = $_POST['order_id'];
+        $order_status = $_POST['order_status'];
+
+        // Modify the order status based on the current status
+        if ($order_status == 'on_hold') {
+            $new_status = 'delivered';
+        } else {
+            $new_status = 'on_hold';
+        }
+
+        $stmt = $conn->prepare("UPDATE orders SET order_status = ? WHERE order_id = ?");
+        $stmt->bind_param('si', $new_status, $order_id);
+
+        if ($stmt->execute()) {
+            header('Location: index.php?order_updated=Order status has been updated successfully');
+            exit;
+        } else {
+            header('Location: index.php?order_failed=Error occurred, try again');
+            exit;
+        }
+    }
 
 
 ?>
@@ -81,13 +111,14 @@
 
 
             <div class="table-responsive">
+                <?php foreach ($grouped_orders as $order_date => $orders) { ?>
+                <h3><?php echo $order_date; ?></h3>
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
                             <th scope="col">Order Id</th>
                             <th scope="col">Order Status</th>
-                            <th scope="col">User Id</th>
-                            <th scope="col">Order Date</th>
+                            <th scope="col">Username</th>
                             <th scope="col">User Phone</th>
                             <th scope="col">User Address</th>
                             <th scope="col">Details</th>
@@ -101,8 +132,7 @@
                             
                             <td><?php echo $order['order_id']; ?></td>
                             <td><?php echo $order['order_status']; ?></td>
-                            <td><?php echo $order['user_id']; ?></td>
-                            <td><?php echo $order['order_date']; ?></td>
+                            <td><?php echo $order['user_name']; ?></td>
                             <td><?php echo $order['user_phone']; ?></td>
                             <td><?php echo $order['user_address']; ?></td>
                             <form action="details.php" method="GET">
@@ -111,17 +141,25 @@
                             </form>
                             <!-- <td><a class="btn btn-primary" href="edit_order.php?order_id=<?php echo $order['order_id']; ?>">Edit</a></td> -->
                        
-                       <form action="edit_order.php" method='GET'>
-                          <input type='hidden' value="<?php echo $order['order_id'] ?>" name='order_id' />
-                            <td><button class="btn btn-primary " type="submit" value="details" name="order_details_btn">Edit</button></td>
-                       
-                            </form>
+                            <td>
+                                <form action="index.php" method="POST">
+                                    <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
+                                    <input type="hidden" name="order_status" value="<?php echo $order['order_status']; ?>">
+                                    <button class="btn btn-primary" type="submit" name="edit_order_status_btn">
+                                        <?php echo ($order['order_status'] == 'on_hold') ? 'On Hold' : 'Delivered'; ?>
+                                    </button>
+                                </form>
+
+
+                            </td>
+
                             <td><a class="btn btn-danger">Delete</a></td>
                             
                         </tr>
                         <?php } ?>
                     </tbody>
                 </table>
+                <?php } ?>
 
 
 
