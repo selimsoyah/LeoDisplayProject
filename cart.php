@@ -1,46 +1,10 @@
 <?php
+
+ 
 session_start();
 
 
-if (isset($_POST['add_product'])) {
-    $product_id = $_POST['product_id'];
-    $product_image = $_POST['product_image'];
-    $product_name = $_POST['product_name'];
-    $product_price = $_POST['product_price'];
-    // $product_quantity = $_POST['product_quantity'];
-    $option1 =  isset($_POST['option1']) ? $_POST['option1'] : null;
-    $option2 =  isset($_POST['option2']) ? $_POST['option2'] : null;
-    $option3 =  isset($_POST['option3']) ? $_POST['option3'] : null;
-    $quantity_1 = isset($_POST['quantity_1']) ? $_POST['quantity_1'] : null;
-    $quantity_2 = isset($_POST['quantity_2']) ? $_POST['quantity_2'] : null;
-    $quantity_3 = isset($_POST['quantity_3']) ? $_POST['quantity_3'] : null;
-    if (isset($_POST['option4'])){
-      $imageName = $_FILES['option4']['name'];
-      $imageTmpName = $_FILES['option4']['tmp_name'];
-      $option4 = file_get_contents($imageTmpName);
-    }else{
-      $option4= null;
-    }
-
-    $product_array = array(
-        'product_id' => $product_id,
-        'product_image' => $product_image,
-        'product_name' => $product_name,
-        'product_price' => $product_price,
-        'product_quantity' => $product_quantity,
-        'option1' => $option1,
-        'option2' => $option2,
-        'option3' => $option3,
-        'option4' => $option4,
-        'quantity_1' => $quantity_1,
-        'quantity_2' => $quantity_2,
-        'quantity_3' => $quantity_3,
-    );
-
-    $_SESSION['cart'][] = $product_array;
-
-    calculateTotal();
-} elseif (isset($_POST['remove_product'])) {
+ if (isset($_POST['remove_product'])) {
     $product_id = $_POST['product_id'];
     foreach ($_SESSION['cart'] as $key => $product) {
         if ($product['product_id'] === $product_id) {

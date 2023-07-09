@@ -3,20 +3,66 @@
 session_start();
 include('server/connection.php');
 
-if (isset($_GET['product_id'])) {
+if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
+    $product_id = $_POST['product_id'];
+    $product_image = $_POST['product_image'];
+    $product_name = $_POST['product_name'];
+    $product_price = $_POST['product_price'];
 
+    $option1 = isset($_POST['option1']) ? $_POST['option1'] : null;
+    $option2 = isset($_POST['option2']) ? $_POST['option2'] : null;
+    $option3 = isset($_POST['option3']) ? $_POST['option3'] : null;
+    $quantity_1 = isset($_POST['quantity_1']) ? $_POST['quantity_1'] : null;
+    $quantity_2 = isset($_POST['quantity_2']) ? $_POST['quantity_2'] : null;
+    $quantity_3 = isset($_POST['quantity_3']) ? $_POST['quantity_3'] : null;
 
+    if (!empty($_FILES['option4']['name'])) {
+      $imageName = $_FILES['option4']['name'];
+      $imageTmpName = $_FILES['option4']['tmp_name'];
+      $option4 = file_get_contents($imageTmpName);
+  } else {
+      $option4 = null;
+  }
+  
 
-  $product_id = $_GET['product_id'];
+    $product_array = array(
+        'product_id' => $product_id,
+        'product_image' => $product_image,
+        'product_name' => $product_name,
+        'product_price' => $product_price,
+        'option1' => $option1,
+        'option2' => $option2,
+        'option3' => $option3,
+        'option4' => $option4,
+        'quantity_1' => $quantity_1,
+        'quantity_2' => $quantity_2,
+        'quantity_3' => $quantity_3,
+    );
+
+    $_SESSION['cart'][] = $product_array;
+
+  // calculateTotal();
+  $product_id = 1;
 
   $request = $conn->prepare('SELECT * FROM products WHERE product_id = ? ');
   $request->bind_param("i", $product_id);
 
   $request->execute();
   $products = $request->get_result();
+
+
+
+  
 } else {
-  header('location:accueil.php');
+ 
+header('location:accueil.php');
+    
 }
+
+
+
+
+
 
 ?>
 
@@ -104,7 +150,7 @@ if (isset($_GET['product_id'])) {
 
   <?php while ($row = $products->fetch_assoc()) { ?>
 
-    <form method="POST" action='cart.php' enctype="multipart/form-data">
+    <form method="POST" action='single_product1.php' enctype="multipart/form-data">
       <input type='hidden' name="product_id" value='<?php echo $row['product_id'] ?>' />
       <input type='hidden' name="product_image" value='<?php echo $row['product_image'] ?>' />
       <input type='hidden' name="product_name" value='<?php echo $row['product_name'] ?>' />
@@ -359,6 +405,22 @@ if (isset($_GET['product_id'])) {
     </form>
 
   <?php } ?>
+  <?php if(isset($_SESSION['cart'])){ ?>
+
+<?php foreach($_SESSION['cart'] as $key => $value){?>
+
+            <p><?php echo $value['product_name'] ?></p>
+            <p><?php echo $value['option1'] ?></p>
+            <p><?php echo $value['option2'] ?></p>
+            <p><?php echo $value['option3'] ?></p>
+          
+
+
+
+    
+<?php } ?>
+
+<?php }?>
 
 
   <footer class="footer">
