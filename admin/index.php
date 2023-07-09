@@ -50,7 +50,7 @@
         $order_date = date('d-m-Y', strtotime($order['order_date']));
         $grouped_orders[$order_date][] = $order;
     }
-    
+
 
     if (isset($_POST['edit_order_status_btn'])) {
         $order_id = $_POST['order_id'];
@@ -71,6 +71,21 @@
             exit;
         } else {
             header('Location: index.php?order_failed=Error occurred, try again');
+            exit;
+        }
+    }
+
+    if (isset($_POST['delete_order_btn'])) {
+        $order_id = $_POST['order_id'];
+
+        $stmt = $conn->prepare("DELETE FROM orders WHERE order_id = ?");
+        $stmt->bind_param('i', $order_id);
+
+        if ($stmt->execute()) {
+            header('Location: index.php?order_deleted=Order has been deleted successfully');
+            exit;
+        } else {
+            header('Location: index.php?delete_failed=Error occurred while deleting the order');
             exit;
         }
     }
@@ -122,7 +137,7 @@
                             <th scope="col">User Phone</th>
                             <th scope="col">User Address</th>
                             <th scope="col">Details</th>
-                            <th scope="col">Edit</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -150,10 +165,24 @@
                                     </button>
                                 </form>
 
-
                             </td>
 
-                            <td><a class="btn btn-danger">Delete</a></td>
+                            <?php if (isset($_GET['order_deleted'])) { ?>
+    <p class="text-center" style="color: green;"><?php echo $_GET['order_deleted']; ?></p>
+<?php } ?>
+
+<?php if (isset($_GET['delete_failed'])) { ?>
+    <p class="text-center" style="color: red;"><?php echo $_GET['delete_failed']; ?></p>
+<?php } ?>
+
+
+                            <td>
+    <form action="index.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?');">
+        <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
+        <button class="btn btn-danger" type="submit" name="delete_order_btn">Delete</button>
+    </form>
+</td>
+
                             
                         </tr>
                         <?php } ?>
