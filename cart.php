@@ -173,8 +173,8 @@ function calculateTotal (){
             <td>
                 <form action="cart.php" method="POST">
                     <input type='hidden' name="product_id" value="<?php echo $value['product_id'] ?>" />
-                    <input type="number" name='product_quantity' value="<?php echo $value['product_quantity'] ?>">
-                    <input type="submit" class="edit-btn" name="edit-btn" value="Edit" >
+
+                    <!-- <input type="submit" class="edit-btn" name="edit-btn" value="Edit" > -->
                 </form>
             </td>
 

@@ -4,6 +4,7 @@ session_start();
 include('server/connection.php');
 
 if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
+  if (isset($_POST['add_product'])) {
     $product_id = $_POST['product_id'];
     $product_image = $_POST['product_image'];
     $product_name = $_POST['product_name'];
@@ -20,26 +21,29 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
       $imageName = $_FILES['option4']['name'];
       $imageTmpName = $_FILES['option4']['tmp_name'];
       $option4 = file_get_contents($imageTmpName);
-  } else {
+    } else {
       $option4 = null;
-  }
-  
+    }
+
 
     $product_array = array(
-        'product_id' => $product_id,
-        'product_image' => $product_image,
-        'product_name' => $product_name,
-        'product_price' => $product_price,
-        'option1' => $option1,
-        'option2' => $option2,
-        'option3' => $option3,
-        'option4' => $option4,
-        'quantity_1' => $quantity_1,
-        'quantity_2' => $quantity_2,
-        'quantity_3' => $quantity_3,
+      'product_id' => $product_id,
+      'product_image' => $product_image,
+      'product_name' => $product_name,
+      'product_price' => $product_price,
+      'option1' => $option1,
+      'option2' => $option2,
+      'option3' => $option3,
+      'option4' => $option4,
+      'quantity_1' => $quantity_1,
+      'quantity_2' => $quantity_2,
+      'quantity_3' => $quantity_3,
     );
 
-    $_SESSION['cart'][] = $product_array;
+    if (!empty($product_array)) {
+      $_SESSION['cart'][] = $product_array;
+    }
+  }
 
   // calculateTotal();
   $product_id = 1;
@@ -49,14 +53,9 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
   $request->execute();
   $products = $request->get_result();
-
-
-
-  
 } else {
- 
-header('location:accueil.php');
-    
+
+  header('location:accueil.php');
 }
 
 
@@ -84,8 +83,8 @@ header('location:accueil.php');
 </head>
 
 <body>
-	  <!--Navbar-->
-    <header>
+  <!--Navbar-->
+  <header>
     <nav class="navbar navbar-expand-lg bg-dark">
       <div class="container">
         <div class="w-100 d-flex justify-content-between">
@@ -127,16 +126,20 @@ header('location:accueil.php');
                 </li>
               </ul>
               <div class="position-relative">
-                <a href="cart.php" class="text-decoration-none text-dark ">
-                  <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
-                </a>
+                  <form action="cart.php" method="POST">
+                  <!-- <i class="fa-solid fa-cart-arrow-down nav-icon"></i> -->
+                  <button type="submit" class="submit-btn" name="cart_btn">
+                <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+                  </button>
                 <a href="login.php" class="text-decoration-none text-dark">
                   <i class="fa-solid fa-user nav-icon"></i>
                 </a>
+                  </form>
               </div>
-              <div class="position-absolute rounded-circle cart"><?php if(isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0){?>
-                    <span><?php echo $_SESSION['quantity']; ?></span>
-                  <?php }?></div>
+              <div class="position-absolute rounded-circle cart"><?php if (isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0) { ?>
+                  <span><?php echo $_SESSION['quantity']; ?></span>
+                <?php } ?>
+              </div>
               <div class="position-absolute rounded-circle user"><span></span></div>
             </div>
           </div>
@@ -178,222 +181,221 @@ header('location:accueil.php');
 
           <div class="boxx col-lg-6 col-md-12 col-sm-12">
             <h6>
-             <?php echo $row['product_name'] ?>
+              <?php echo $row['product_name'] ?>
             </h6>
 
 
             <!-- <form class="radioForm"> -->
             <div class="radioForm">
-  <h3 class="py-4">Etape 1</h3>
-  <div class="option-container">
-    <h4>Choisissez le type de drapeau : </h4>
-    <label>
-      <input type="radio" name="option1" value="Courbé"  onclick="toggleInputGroup('input-group1')">
-      <img src="assets/imgs//2m50.png" alt="2m50">
-    </label>
+              <h3 class="py-4">Etape 1</h3>
+              <div class="option-container">
+                <h4>Choisissez le type de drapeau : </h4>
+                <label>
+                  <input type="radio" name="option1" value="Courbé" onclick="toggleInputGroup('input-group1')">
+                  <img src="assets/imgs//2m50.png" alt="2m50">
+                </label>
 
-    <label>
-      <input type="radio" name="option1" value="Droit" onclick="toggleInputGroup('input-group1')">
-      <img src="assets/imgs/2m80.png" alt="2m80">
-    </label>
+                <label>
+                  <input type="radio" name="option1" value="Droit" onclick="toggleInputGroup('input-group1')">
+                  <img src="assets/imgs/2m80.png" alt="2m80">
+                </label>
 
-    <label>
-      <input type="radio" name="option1" value="Incliné" onclick="toggleInputGroup('input-group1')">
-      <img src="assets/imgs/3m20.png" alt="3m20">
-    </label>
-    
-    <label>
-      <input type="radio" name="option1" value="Rectangulaire" onclick="toggleInputGroup('input-group1')">
-      <img src="assets/imgs/3m80.png" alt="3m80">
-    </label>
+                <label>
+                  <input type="radio" name="option1" value="Incliné" onclick="toggleInputGroup('input-group1')">
+                  <img src="assets/imgs/3m20.png" alt="3m20">
+                </label>
 
-    <div class="input-group" id="input-group1" style="display: none;">
-      <input type="number" name="quantity_1" value="1">
-      <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-      <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option1')">Remove from Cart</button>
-    </div>
-  </div>
+                <label>
+                  <input type="radio" name="option1" value="Rectangulaire" onclick="toggleInputGroup('input-group1')">
+                  <img src="assets/imgs/3m80.png" alt="3m80">
+                </label>
 
-  <h3 class="py-4">Etape 2</h3>
-  <div class="option-container">
-    <h4>Choissisez La Taille : </h4>
-    <label>
-      <input type="radio" name="option2" value="2m50" onclick="toggleInputGroup('input-group2')" >
-      <img src="assets/imgs//2m50.png" alt="2m50">
-    </label>
-
-    <label>
-      <input type="radio" name="option2" value="2m80" onclick="toggleInputGroup('input-group2')" >
-      <img src="assets/imgs/2m80.png" alt="2m80">
-    </label>
-
-    <label>
-      <input type="radio" name="option2" value="3m20" onclick="toggleInputGroup('input-group2')" >
-      <img src="assets/imgs/3m20.png" alt="3m20">
-    </label>
-    
-    <label>
-      <input type="radio" name="option2" value="3m80" onclick="toggleInputGroup('input-group2')" >
-      <img src="assets/imgs/3m80.png" alt="3m80">
-    </label>
-
-  
-    <div class="input-group" id="input-group2" style="display: none;">
-      <input type="number" name="quantity_2" value="1">
-      <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-      <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option2')">Remove from Cart</button>
-    </div>
-  </div>
-
-  <h3 class="py-4">Etape 3</h3>
-  <div class="option-container">
-    <h4>Choissisez La Base (Optionnelle) :</h4>
-    <div class="base">
-      <label>
-        <input type="radio" name="option3" value="Water Base" onclick="toggleInputGroup('input-group3')">
-        <img src="assets/imgs/baseAEau.png" alt="Base">
-      </label>
-
-      <label>
-        <input type="radio" name="option3" value="Beton base" onclick="toggleInputGroup('input-group3')">
-        <img src="assets/imgs/baseBeton.png" alt="Base">
-      </label>
-
-      <label>
-        <input type="radio" name="option3" value="Metal Base 7Kg" onclick="toggleInputGroup('input-group3')">
-        <img src="assets/imgs/baseMetalique.png" alt="Base">
-      </label>
-      
-      <label>
-        <input type="radio" name="option3" value="Metal Base 7.5Kg" onclick="toggleInputGroup('input-group3')">
-        <img src="assets/imgs/baseAEau.png" alt="Base">
-      </label>
-      
-      <label>
-        <input type="radio" name="option3" value="Metal Base 10Kg" onclick="toggleInputGroup('input-group3')">
-        <img src="assets/imgs/baseAEau.png" alt="Base">
-      </label>
-      <div class="input-group" id="input-group3" style="display: none;">
-      <input type="number" name="quantity_3" value=null>
-      <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-      <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option3')">Remove from Cart</button>
-    </div>
-    </div>
-
-
-  </div>
-
-  <h3 class="py-4">Etape 4</h3>
-  <div class="option-container">
-    <h4>Insérez Votre Image :</h4>
-    <div class="mainUpContainer">
-      <label for="photo-upload" class="upload-container">
-        <span>Click here to upload a photo</span>
-        <input type="file" id="photo-upload" accept="image/*" name="option4">
-      </label>
-
-      <div class="uploaded-image-container">
-        <img class="uploaded-image" id="uploaded-image-preview" src="#" alt="Uploaded Image">
-      </div>
-    </div>
-
-
-    <div class="buttonContainer">
-                <!-- <input type='number' name='quantity_1' value='1'> -->
-                <input type="submit" name='add_product'class="buy-btn" value="Ajouter Au Pannier">
+                <div class="input-group" id="input-group1" style="display: none;">
+                  <input type="number" name="quantity_1" value="1">
+                  <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                  <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option1')">Remove from Cart</button>
+                </div>
               </div>
-  </div>
-</div>
 
-<style>
-  /* Custom radio button */
-  input[type="radio"] {
-    /* Hide the default radio button */
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    outline: none;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-    margin-right: 5px;
-    position: relative;
-    top: 3px;
-    cursor: pointer;
-  }
+              <h3 class="py-4">Etape 2</h3>
+              <div class="option-container">
+                <h4>Choissisez La Taille : </h4>
+                <label>
+                  <input type="radio" name="option2" value="2m50" onclick="toggleInputGroup('input-group2')">
+                  <img src="assets/imgs//2m50.png" alt="2m50">
+                </label>
 
-  /* Custom radio button - checked state */
-  input[type="radio"]:checked {
-    background-color: #FFA500; /* Set the desired color */
-    border-color: #FFA500;
-  }
+                <label>
+                  <input type="radio" name="option2" value="2m80" onclick="toggleInputGroup('input-group2')">
+                  <img src="assets/imgs/2m80.png" alt="2m80">
+                </label>
 
-  /* Custom radio button - checked state (after) */
-  input[type="radio"]:checked:after {
-  
-    background-color: white;
-  }
-</style>
+                <label>
+                  <input type="radio" name="option2" value="3m20" onclick="toggleInputGroup('input-group2')">
+                  <img src="assets/imgs/3m20.png" alt="3m20">
+                </label>
 
-<script>
-  // Add event listeners to radio buttons
-  var radioButtons = document.querySelectorAll('input[type="radio"]');
-  for (var i = 0; i < radioButtons.length; i++) {
-    radioButtons[i].addEventListener('click', function() {
-      // Remove 'checked' class from all radio buttons
-      for (var j = 0; j < radioButtons.length; j++) {
-        radioButtons[j].parentNode.classList.remove('checked');
-      }
-      // Add 'checked' class to the clicked radio button
-      this.parentNode.classList.add('checked');
-    });
-  }
-</script>
-
-<script>
-  var lastSelectedOption = null;
-
-  function toggleInputGroup(inputGroupId) {
-    var inputGroup = document.getElementById(inputGroupId);
-    inputGroup.style.display = 'block';
-
-    if (lastSelectedOption !== null && lastSelectedOption !== inputGroup) {
-      lastSelectedOption.querySelector('[name="add_product"]').style.display = 'none';
-    }
-
-    lastSelectedOption = inputGroup;
-    lastSelectedOption.querySelector('[name="add_product"]').style.display = 'block';
-  }
-
- 
-</script>
+                <label>
+                  <input type="radio" name="option2" value="3m80" onclick="toggleInputGroup('input-group2')">
+                  <img src="assets/imgs/3m80.png" alt="3m80">
+                </label>
 
 
- 
-<script>
-  function addToCart(optionName) {
-    // Add to cart functionality
-    console.log('Added ' + optionName + ' to cart');
-  }
+                <div class="input-group" id="input-group2" style="display: none;">
+                  <input type="number" name="quantity_2" value="1">
+                  <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                  <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option2')">Remove from Cart</button>
+                </div>
+              </div>
 
-  function removeFromCart(optionName) {
-    // Remove from cart functionality
-    console.log('Removed ' + optionName + ' from cart');
-    
-    // Clear radio selection
-    const radioButtons = document.getElementsByName(optionName);
-    radioButtons.forEach((radioButton) => {
-      radioButton.checked = false;
-    });
+              <h3 class="py-4">Etape 3</h3>
+              <div class="option-container">
+                <h4>Choissisez La Base (Optionnelle) :</h4>
+                <div class="base">
+                  <label>
+                    <input type="radio" name="option3" value="Water Base" onclick="toggleInputGroup('input-group3')">
+                    <img src="assets/imgs/baseAEau.png" alt="Base">
+                  </label>
+
+                  <label>
+                    <input type="radio" name="option3" value="Beton base" onclick="toggleInputGroup('input-group3')">
+                    <img src="assets/imgs/baseBeton.png" alt="Base">
+                  </label>
+
+                  <label>
+                    <input type="radio" name="option3" value="Metal Base 7Kg" onclick="toggleInputGroup('input-group3')">
+                    <img src="assets/imgs/baseMetalique.png" alt="Base">
+                  </label>
+
+                  <label>
+                    <input type="radio" name="option3" value="Metal Base 7.5Kg" onclick="toggleInputGroup('input-group3')">
+                    <img src="assets/imgs/baseAEau.png" alt="Base">
+                  </label>
+
+                  <label>
+                    <input type="radio" name="option3" value="Metal Base 10Kg" onclick="toggleInputGroup('input-group3')">
+                    <img src="assets/imgs/baseAEau.png" alt="Base">
+                  </label>
+                  <div class="input-group" id="input-group3" style="display: none;">
+                    <input type="number" name="quantity_3" value=null>
+                    <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                    <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option3')">Remove from Cart</button>
+                  </div>
+                </div>
+
+
+              </div>
+
+              <h3 class="py-4">Etape 4</h3>
+              <div class="option-container">
+                <h4>Insérez Votre Image :</h4>
+                <div class="mainUpContainer">
+                  <label for="photo-upload" class="upload-container">
+                    <span>Click here to upload a photo</span>
+                    <input type="file" id="photo-upload" accept="image/*" name="option4">
+                  </label>
+
+                  <div class="uploaded-image-container">
+                    <img class="uploaded-image" id="uploaded-image-preview" src="#" alt="Uploaded Image">
+                  </div>
+                </div>
+
+
+                <div class="buttonContainer">
+                  <!-- <input type='number' name='quantity_1' value='1'> -->
+                  <input type="submit" name='add_product' class="buy-btn" value="Ajouter Au Pannier">
+                </div>
+              </div>
+            </div>
+
+            <style>
+              /* Custom radio button */
+              input[type="radio"] {
+                /* Hide the default radio button */
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                outline: none;
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                border: 2px solid #ccc;
+                margin-right: 5px;
+                position: relative;
+                top: 3px;
+                cursor: pointer;
+              }
+
+              /* Custom radio button - checked state */
+              input[type="radio"]:checked {
+                background-color: #FFA500;
+                /* Set the desired color */
+                border-color: #FFA500;
+              }
+
+              /* Custom radio button - checked state (after) */
+              input[type="radio"]:checked:after {
+
+                background-color: white;
+              }
+            </style>
+
+            <script>
+              // Add event listeners to radio buttons
+              var radioButtons = document.querySelectorAll('input[type="radio"]');
+              for (var i = 0; i < radioButtons.length; i++) {
+                radioButtons[i].addEventListener('click', function() {
+                  // Remove 'checked' class from all radio buttons
+                  for (var j = 0; j < radioButtons.length; j++) {
+                    radioButtons[j].parentNode.classList.remove('checked');
+                  }
+                  // Add 'checked' class to the clicked radio button
+                  this.parentNode.classList.add('checked');
+                });
+              }
+            </script>
+
+            <script>
+              var lastSelectedOption = null;
+
+              function toggleInputGroup(inputGroupId) {
+                var inputGroup = document.getElementById(inputGroupId);
+                inputGroup.style.display = 'block';
+
+                if (lastSelectedOption !== null && lastSelectedOption !== inputGroup) {
+                  lastSelectedOption.querySelector('[name="add_product"]').style.display = 'none';
+                }
+
+                lastSelectedOption = inputGroup;
+                lastSelectedOption.querySelector('[name="add_product"]').style.display = 'block';
+              }
+            </script>
 
 
 
-    var inputGroup = document.getElementById(optionName).closest('.option-container');
-    inputGroup.querySelector('[name="add_product"]').style.display = 'block';
-  }
-</script>
+            <script>
+              function addToCart(optionName) {
+                // Add to cart functionality
+                console.log('Added ' + optionName + ' to cart');
+              }
+
+              function removeFromCart(optionName) {
+                // Remove from cart functionality
+                console.log('Removed ' + optionName + ' from cart');
+
+                // Clear radio selection
+                const radioButtons = document.getElementsByName(optionName);
+                radioButtons.forEach((radioButton) => {
+                  radioButton.checked = false;
+                });
+
+
+
+                var inputGroup = document.getElementById(optionName).closest('.option-container');
+                inputGroup.querySelector('[name="add_product"]').style.display = 'block';
+              }
+            </script>
 
             <!-- </form>    -->
           </div>
@@ -405,78 +407,102 @@ header('location:accueil.php');
     </form>
 
   <?php } ?>
-  <?php if(isset($_SESSION['cart'])){ ?>
 
-<?php foreach($_SESSION['cart'] as $key => $value){?>
+  <?php
+  // Assuming the $_SESSION['cart'] array contains the products
 
-            <p><?php echo $value['product_name'] ?></p>
-            <p><?php echo $value['option1'] ?></p>
-            <p><?php echo $value['option2'] ?></p>
-            <p><?php echo $value['option3'] ?></p>
-          
-
-
-
-    
-<?php } ?>
-
-<?php }?>
+  if (isset($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $product) {
+      echo "Product ID: " . $product['product_id'] . "<br>";
+      echo "Product Image: " . $product['product_image'] . "<br>";
+      echo "Product Name: " . $product['product_name'] . "<br>";
+      echo "Product Price: " . $product['product_price'] . "<br>";
+      echo "Option 1: " . $product['option1'] . "<br>";
+      echo "Option 2: " . $product['option2'] . "<br>";
+      echo "Option 3: " . $product['option3'] . "<br>";
+      echo "Option 4: " . $product['option4'] . "<br>";
+      echo "Quantity 1: " . $product['quantity_1'] . "<br>";
+      echo "Quantity 2: " . $product['quantity_2'] . "<br>";
+      echo "Quantity 3: " . $product['quantity_3'] . "<br>";
+      echo "<br>";
+      echo "**********************************************************";
+    }
+  }
+  ?>
 
 
   <footer class="footer">
-        <div class="container">
-          <div class="row">
-            <h2 style="color: #ffffff; padding-bottom: 50px; text-align: center;">Trouver nos revendeurs :</h2>
+    <div class="container">
+      <div class="row">
+        <h2 style="color: #ffffff; padding-bottom: 50px; text-align: center;">Trouver nos revendeurs :</h2>
 
-            <div class="footer-col">
-              <h4>S3P Distribution Tunis</h4>
-              <ul>
-                <li><p>E-mail : s3ptunis.contact@gmail.com</p></li>
-                <li><p>Tel : +216 58 402 416</p></li>
-                <li><p>Adresse : 21 Cité ennour, 2080 Ariana, Tunisie</p></li>
-              </ul>
-            </div>
-
-            <div class="footer-col">
-              <h4>S3P Distribution Sousse</h4>
-              <ul>
-                <li><p>E-mail : s3p.contact@gnet.tn</p></li>
-                <li><p>Tel : +216 58 306 649</p></li>
-                <li><p>Adresse : 9 Avenue de la Cité Olympique 4000 Sousse, Tunisie</p></li>
-              </ul>
-            </div>
-
-            <div class="footer-col">
-              <h4>S3P Distribution Sfax</h4>
-              <ul>
-                <li><p>E-mail : s3p.sfax@gnet.tn</p></li>
-                <li><p>Tel : +216 56 114 500</p></li>
-                <li><p>Adresse : Z.I. Poudriere 1, Rue 13 Aout 5000 Sfax, Tunisie</p></li>
-              </ul>
-            </div>
-
-          </div>
+        <div class="footer-col">
+          <h4>S3P Distribution Tunis</h4>
+          <ul>
+            <li>
+              <p>E-mail : s3ptunis.contact@gmail.com</p>
+            </li>
+            <li>
+              <p>Tel : +216 58 402 416</p>
+            </li>
+            <li>
+              <p>Adresse : 21 Cité ennour, 2080 Ariana, Tunisie</p>
+            </li>
+          </ul>
         </div>
 
-        <hr style="border: none; height: 2px; background-color: #ffffff;">
-       
-      </footer>
-    
-      <div class="footer-bottom">
-        <div class="content">
-          <div class="child">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          </div>
-
-          <div class="child">
-          <img src="#" alt="#">
-          </div>
-
-          <div class="child">
-          <p>© 2023 VORTECH Media. All Rights Reserved.</p>
-          </div>
+        <div class="footer-col">
+          <h4>S3P Distribution Sousse</h4>
+          <ul>
+            <li>
+              <p>E-mail : s3p.contact@gnet.tn</p>
+            </li>
+            <li>
+              <p>Tel : +216 58 306 649</p>
+            </li>
+            <li>
+              <p>Adresse : 9 Avenue de la Cité Olympique 4000 Sousse, Tunisie</p>
+            </li>
+          </ul>
         </div>
+
+        <div class="footer-col">
+          <h4>S3P Distribution Sfax</h4>
+          <ul>
+            <li>
+              <p>E-mail : s3p.sfax@gnet.tn</p>
+            </li>
+            <li>
+              <p>Tel : +216 56 114 500</p>
+            </li>
+            <li>
+              <p>Adresse : Z.I. Poudriere 1, Rue 13 Aout 5000 Sfax, Tunisie</p>
+            </li>
+          </ul>
+        </div>
+
       </div>
+    </div>
+
+    <hr style="border: none; height: 2px; background-color: #ffffff;">
+
+  </footer>
+
+  <div class="footer-bottom">
+    <div class="content">
+      <div class="child">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+      </div>
+
+      <div class="child">
+        <img src="#" alt="#">
+      </div>
+
+      <div class="child">
+        <p>© 2023 VORTECH Media. All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
 
 
 

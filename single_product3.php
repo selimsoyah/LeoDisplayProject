@@ -3,20 +3,70 @@
 session_start();
 include('server/connection.php');
 
-if (isset($_GET['product_id'])) {
+if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
+  if(isset($_POST['add_product'])){
+    $product_id = $_POST['product_id'];
+    $product_image = $_POST['product_image'];
+    $product_name = $_POST['product_name'];
+    $product_price = $_POST['product_price'];
 
+    $option1 = isset($_POST['option1']) ? $_POST['option1'] : null;
+    $option2 = isset($_POST['option2']) ? $_POST['option2'] : null;
+    $option3 = isset($_POST['option3']) ? $_POST['option3'] : null;
+    $quantity_1 = isset($_POST['quantity_1']) ? $_POST['quantity_1'] : null;
+    $quantity_2 = isset($_POST['quantity_2']) ? $_POST['quantity_2'] : null;
+    $quantity_3 = isset($_POST['quantity_3']) ? $_POST['quantity_3'] : null;
 
+    if (!empty($_FILES['option4']['name'])) {
+      $imageName = $_FILES['option4']['name'];
+      $imageTmpName = $_FILES['option4']['tmp_name'];
+      $option4 = file_get_contents($imageTmpName);
+  } else {
+      $option4 = null;
+  }
+  
 
-  $product_id = $_GET['product_id'];
+  $product_array = array(
+    'product_id' => $product_id,
+    'product_image' => $product_image,
+    'product_name' => $product_name,
+    'product_price' => $product_price,
+    'option1' => $option1,
+    'option2' => $option2,
+    'option3' => $option3,
+    'option4' => $option4,
+    'quantity_1' => $quantity_1,
+    'quantity_2' => $quantity_2,
+    'quantity_3' => $quantity_3,
+);
+
+if (!empty($product_array)) {
+  $_SESSION['cart'][] = $product_array;
+}
+  }
+ 
+  // calculateTotal();
+  $product_id = 3;
 
   $request = $conn->prepare('SELECT * FROM products WHERE product_id = ? ');
   $request->bind_param("i", $product_id);
 
   $request->execute();
   $products = $request->get_result();
+
+
+
+  
 } else {
-  header('location:accueil.php');
+ 
+header('location:accueil.php');
+    
 }
+
+
+
+
+
 
 ?>
 
@@ -81,12 +131,15 @@ if (isset($_GET['product_id'])) {
                 </li>
               </ul>
               <div class="position-relative">
-                <a href="cart.php" class="text-decoration-none text-dark ">
-                  <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
-                </a>
+                  <form action="cart.php" method="POST">
+                  <!-- <i class="fa-solid fa-cart-arrow-down nav-icon"></i> -->
+                  <button type="submit" class="submit-btn" name="cart_btn">
+                <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+                  </button>
                 <a href="login.php" class="text-decoration-none text-dark">
                   <i class="fa-solid fa-user nav-icon"></i>
                 </a>
+                  </form>
               </div>
               <div class="position-absolute rounded-circle cart"><?php if(isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0){?>
                     <span><?php echo $_SESSION['quantity']; ?></span>
@@ -104,7 +157,7 @@ if (isset($_GET['product_id'])) {
 
   <?php while ($row = $products->fetch_assoc()) { ?>
 
-    <form method="POST" action='cart.php' enctype="multipart/form-data">
+    <form method="POST" action='single_product1.php' enctype="multipart/form-data">
       <input type='hidden' name="product_id" value='<?php echo $row['product_id'] ?>' />
       <input type='hidden' name="product_image" value='<?php echo $row['product_image'] ?>' />
       <input type='hidden' name="product_name" value='<?php echo $row['product_name'] ?>' />
@@ -140,25 +193,25 @@ if (isset($_GET['product_id'])) {
             <div class="radioForm">
   <h3 class="py-4">Etape 1</h3>
   <div class="option-container">
-    <h4>Choisissez le type de drapeau :</h4>
+    <h4>Choisissez le type de drapeau : </h4>
     <label>
-      <input type="radio" name="option1" value="Courbé" onclick="toggleInputGroup('input-group1')">
-      Courbé
+      <input type="radio" name="option1" value="Courbé"  onclick="toggleInputGroup('input-group1')">
+      <img src="assets/imgs//2m50.png" alt="2m50">
     </label>
 
     <label>
       <input type="radio" name="option1" value="Droit" onclick="toggleInputGroup('input-group1')">
-      Droit
+      <img src="assets/imgs/2m80.png" alt="2m80">
     </label>
 
     <label>
       <input type="radio" name="option1" value="Incliné" onclick="toggleInputGroup('input-group1')">
-      Incliné
+      <img src="assets/imgs/3m20.png" alt="3m20">
     </label>
     
     <label>
       <input type="radio" name="option1" value="Rectangulaire" onclick="toggleInputGroup('input-group1')">
-      Rectangulaire
+      <img src="assets/imgs/3m80.png" alt="3m80">
     </label>
 
     <div class="input-group" id="input-group1" style="display: none;">
@@ -170,27 +223,28 @@ if (isset($_GET['product_id'])) {
 
   <h3 class="py-4">Etape 2</h3>
   <div class="option-container">
-    <h4>Choissisez La Taille :</h4>
+    <h4>Choissisez La Taille : </h4>
     <label>
-      <input type="radio" name="option2" value="2m50" onclick="toggleInputGroup('input-group2')">
-      2m50
+      <input type="radio" name="option2" value="2m50" onclick="toggleInputGroup('input-group2')" >
+      <img src="assets/imgs//2m50.png" alt="2m50">
     </label>
 
     <label>
-      <input type="radio" name="option2" value="2m80" onclick="toggleInputGroup('input-group2')">
-      2m80
+      <input type="radio" name="option2" value="2m80" onclick="toggleInputGroup('input-group2')" >
+      <img src="assets/imgs/2m80.png" alt="2m80">
     </label>
 
     <label>
-      <input type="radio" name="option2" value="3m20" onclick="toggleInputGroup('input-group2')">
-      3m20
+      <input type="radio" name="option2" value="3m20" onclick="toggleInputGroup('input-group2')" >
+      <img src="assets/imgs/3m20.png" alt="3m20">
     </label>
     
     <label>
-      <input type="radio" name="option2" value="3m80" onclick="toggleInputGroup('input-group2')">
-      3m80
+      <input type="radio" name="option2" value="3m80" onclick="toggleInputGroup('input-group2')" >
+      <img src="assets/imgs/3m80.png" alt="3m80">
     </label>
 
+  
     <div class="input-group" id="input-group2" style="display: none;">
       <input type="number" name="quantity_2" value="1">
       <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
@@ -204,35 +258,36 @@ if (isset($_GET['product_id'])) {
     <div class="base">
       <label>
         <input type="radio" name="option3" value="Water Base" onclick="toggleInputGroup('input-group3')">
-        Water Base
+        <img src="assets/imgs/baseAEau.png" alt="Base">
       </label>
 
       <label>
         <input type="radio" name="option3" value="Beton base" onclick="toggleInputGroup('input-group3')">
-        Beton Base
+        <img src="assets/imgs/baseBeton.png" alt="Base">
       </label>
 
       <label>
         <input type="radio" name="option3" value="Metal Base 7Kg" onclick="toggleInputGroup('input-group3')">
-        Metal Base 7Kg
+        <img src="assets/imgs/baseMetalique.png" alt="Base">
       </label>
       
       <label>
         <input type="radio" name="option3" value="Metal Base 7.5Kg" onclick="toggleInputGroup('input-group3')">
-        Metal Base 7.5Kg
+        <img src="assets/imgs/baseAEau.png" alt="Base">
       </label>
       
       <label>
         <input type="radio" name="option3" value="Metal Base 10Kg" onclick="toggleInputGroup('input-group3')">
-        Metal Base 10Kg
+        <img src="assets/imgs/baseAEau.png" alt="Base">
       </label>
-    </div>
-
-    <div class="input-group" id="input-group3" style="display: none;">
+      <div class="input-group" id="input-group3" style="display: none;">
       <input type="number" name="quantity_3" value=null>
       <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
       <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option3')">Remove from Cart</button>
     </div>
+    </div>
+
+
   </div>
 
   <h3 class="py-4">Etape 4</h3>
@@ -249,11 +304,14 @@ if (isset($_GET['product_id'])) {
       </div>
     </div>
 
+
     <div class="buttonContainer">
-      <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-    </div>
+                <!-- <input type='number' name='quantity_1' value='1'> -->
+                <input type="submit" name='add_product'class="buy-btn" value="Ajouter Au Pannier">
+              </div>
   </div>
 </div>
+
 <style>
   /* Custom radio button */
   input[type="radio"] {
@@ -354,6 +412,28 @@ if (isset($_GET['product_id'])) {
     </form>
 
   <?php } ?>
+
+  <?php
+// Assuming the $_SESSION['cart'] array contains the products
+
+if (isset($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $product) {
+        echo "Product ID: " . $product['product_id'] . "<br>";
+        echo "Product Image: " . $product['product_image'] . "<br>";
+        echo "Product Name: " . $product['product_name'] . "<br>";
+        echo "Product Price: " . $product['product_price'] . "<br>";
+        echo "Option 1: " . $product['option1'] . "<br>";
+        echo "Option 2: " . $product['option2'] . "<br>";
+        echo "Option 3: " . $product['option3'] . "<br>";
+        echo "Option 4: " . $product['option4'] . "<br>";
+        echo "Quantity 1: " . $product['quantity_1'] . "<br>";
+        echo "Quantity 2: " . $product['quantity_2'] . "<br>";
+        echo "Quantity 3: " . $product['quantity_3'] . "<br>";
+        echo "<br>"; 
+        echo "**********************************************************";
+    }
+}
+?>
 
 
   <footer class="footer">
