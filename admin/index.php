@@ -40,9 +40,10 @@
 
     //4 get all products
 
-    $stmt2 = $conn->prepare("SELECT orders.*, users.user_name FROM orders JOIN users ON orders.user_id = users.user_id ORDER BY order_date DESC LIMIT $offset, $total_records_per_page");
+    $stmt2 = $conn->prepare("SELECT orders.*, users.user_name, order_items.option1, order_items.option2 FROM orders JOIN users ON orders.user_id = users.user_id JOIN order_items ON orders.order_id = order_items.order_id ORDER BY order_date DESC LIMIT $offset, $total_records_per_page");
     $stmt2->execute();
     $orders = $stmt2->get_result();
+
 
     // Group orders by order date
     $grouped_orders = [];
@@ -131,12 +132,15 @@
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
-                            <th scope="col">Order Id</th>
-                            <th scope="col">Order Status</th>
+                            <th scope="col">Produit</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Username</th>
                             <th scope="col">User Phone</th>
                             <th scope="col">User Address</th>
-                            <th scope="col">Details</th>
+                            <th scope="col">Taille</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Quantite</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Status</th>
                             <th scope="col">Delete</th>
                         </tr>
@@ -145,15 +149,39 @@
                         <?php foreach($orders as $order){ ?>
                         <tr>
                             
-                            <td><?php echo $order['order_id']; ?></td>
+                                            <?php
+                    // Retrieve product_id from order_items
+                    $stmt = $conn->prepare("SELECT product_id FROM order_items WHERE order_id = ?");
+                    $stmt->bind_param('i', $order['order_id']);
+                    $stmt->execute();
+                    $stmt->bind_result($product_id);
+                    $stmt->fetch();
+                    $stmt->close();
+
+                    // Retrieve product image from products
+                    $stmt2 = $conn->prepare("SELECT product_image FROM products WHERE product_id = ?");
+                    $stmt2->bind_param('i', $product_id);
+                    $stmt2->execute();
+                    $stmt2->bind_result($product_image);
+                    $stmt2->fetch();
+                    $stmt2->close();
+
+                    // Display the product image
+                    ?>
+                    <td>
+                        <img src="<?php echo $product_image; ?>" alt="Product Image" width="100">
+                    </td>
+
                             <td><?php echo $order['order_status']; ?></td>
                             <td><?php echo $order['user_name']; ?></td>
                             <td><?php echo $order['user_phone']; ?></td>
                             <td><?php echo $order['user_address']; ?></td>
-                            <form action="details.php" method="GET">
-                            <input type='hidden' value="<?php echo $order['order_id'] ?>" name='order_id' />
-                            <td><button class="btn btn-primary order-details-btn" type="submit" value="details" name="order_details_btn">Details</button></td>
-                            </form>
+                            <td><?php echo $order['option2']; ?></td>
+                            <td><?php echo $order['option1']; ?></td>
+                            <td>quantity</td>
+                            <td>image</td>
+                            
+                            
                             <!-- <td><a class="btn btn-primary" href="edit_order.php?order_id=<?php echo $order['order_id']; ?>">Edit</a></td> -->
                        
                             <td>
@@ -164,7 +192,7 @@
                                         <?php echo ($order['order_status'] == 'on_hold') ? 'On Hold' : 'Delivered'; ?>
                                     </button>
                                 </form>
-
+                            
                             </td>
 
                             <?php if (isset($_GET['order_deleted'])) { ?>
