@@ -435,12 +435,28 @@ ul{
   }
 .input-group{
     padding: 20px;
+    align-items: center;
 }
   .input-group input{
-      margin-right:20px;
+      margin:20px;
+      /* height: auto; */
+      /* border: none; */
+      /* background-color: blue; */
   }
+  .input-group button{
+    margin:20px;
+    height: auto;
+    /* border: none; */
+    padding:5px;
+    /* background-color: blue; */
+}
+  
 
 .input-group input[type="number"]{
     width: 100px;
     padding: 10px;
+}
+
+.input-group a{
+ 
 }
