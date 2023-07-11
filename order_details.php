@@ -120,43 +120,55 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
           </tr>
 
 
-        <?php while ($row = $order_details->fetch_assoc()){ ?>
-          <tr>
-            <td>
-              <div class="product-infoo">
-                <img src="<?php echo $row['product_image'] ?>" alt="StandModulaire">
-                  <div>
-                    <span class="mr-3"><?php echo $row['product_name'] ?></span>
-                  </div>
-              </div>
-              
-            </td>
+          <?php while ($row = $order_details->fetch_assoc()){ ?>
+  <tr>
+    <td>
+      <div class="product-infoo">
+        <img src="<?php echo $row['product_image'] ?>" alt="StandModulaire">
+        <div>
+          <span class="mr-3"><?php echo $row['product_name'] ?></span>
+        </div>
+      </div>
+    </td>
 
-            <td>
-            <span><?php echo $row['product_price'] ?></span>
-         
-            </td>
+    <td>
+      <?php if ($row['product_price'] !== null): ?>
+        <span><?php echo $row['product_price'] ?></span>
+      <?php endif; ?>
+    </td>
 
-            <td>
-            
-              <span><?php echo $row['product_quantity'] ?></span>
-            </td>
-            <td>
-            
-            <span><?php echo $row['option1'] ?> X <?php echo $row['quantity_1'] ?></span>
-          </td>
-          <td>
-            
-            <span><?php echo $row['option2'] ?>  X <?php echo $row['quantity_2'] ?></span>
-          </td>
-          <td>
-            
-            <span><?php echo $row['option3']  ?>   X <?php echo $row['quantity_3'] ?></span>
-          </td>
-              <td> <img src="data:image/jpeg;base64,<?php echo base64_encode($row['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px;"></td>
-          </tr>
+    <td>
+      <?php if ($row['product_quantity'] !== null): ?>
+        <span><?php echo $row['product_quantity'] ?></span>
+      <?php endif; ?>
+    </td>
 
+    <td>
+      <?php if ($row['option1'] !== null && $row['quantity_1'] !== null): ?>
+        <span><?php echo $row['option1'] ?> X <?php echo $row['quantity_1'] ?></span>
+      <?php endif; ?>
+    </td>
+
+    <td>
+      <?php if ($row['option2'] !== null && $row['quantity_2'] !== null): ?>
+        <span><?php echo $row['option2'] ?> X <?php echo $row['quantity_2'] ?></span>
+      <?php endif; ?>
+    </td>
+
+    <td>
+      <?php if ($row['option3'] !== null && $row['quantity_3'] !== null): ?>
+        <span><?php echo $row['option3'] ?> X <?php echo $row['quantity_3'] ?></span>
+      <?php endif; ?>
+    </td>
+
+    <td>
+      <?php if ($row['option4'] !== null): ?>
+        <img src="data:image/jpeg;base64,<?php echo base64_encode($row['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px;">
+      <?php endif; ?>
+    </td>
+  </tr>
 <?php } ?>
+
 
 
         </table>

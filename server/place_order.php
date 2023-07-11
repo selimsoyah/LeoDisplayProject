@@ -40,14 +40,16 @@ if(isset($_POST['place_order'])){
             $product_name = $product['product_name'];
             $product_image = $product['product_image'];
             $product_price = $product['product_price'];
-            $product_quantity = $product['product_quantity'];
+            // $product_quantity = $product['product_quantity'];
             $option1 = $product['option1'];
             $option2 = $product['option2'];
             $option3 = $product['option3'];
             $option4 = $product['option4'];
+            $option5 = $product['option5'];
             $quantity_1 = $product['quantity_1'];
             $quantity_2 = $product['quantity_2'];
             $quantity_3 = $product['quantity_3'];
+            $quantity_5 = $product['quantity_5'];
             $order_date = date('Y-m-d H:i:s');
 
             
@@ -98,10 +100,10 @@ if(isset($_POST['place_order'])){
                     // $stmt1->execute();
                     // // array_splice($_SESSION['cart'], 0);
                     // header('location:../account.php');
-                    $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price,option1,option2,option3,option4,quantity_1,quantity_2,quantity_3)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price,option1,option2,option3,option4,option5,quantity_1,quantity_2,quantity_3,quantity_5)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-                    $stmt1->bind_param('iiisssssssbiii', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price,$option1,$option2,$option3,$option4,$quantity_1,$quantity_2,$quantity_3 );
+                    $stmt1->bind_param('iiisssssssbiiiii', $order_id, $product_id,  $user_id, $product_name, $product_image,$order_date, $product_price,$option1,$option2,$option3,$option4,$option5,$quantity_1,$quantity_2,$quantity_3,$quantity_5 );
                     $stmt1->send_long_data(10, $option4);
                     $stmt1->execute();
                     // array_splice($_SESSION['cart'], 0);

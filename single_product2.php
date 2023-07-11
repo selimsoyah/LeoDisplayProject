@@ -13,9 +13,11 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
     $option1 = isset($_POST['option1']) ? $_POST['option1'] : null;
     $option2 = isset($_POST['option2']) ? $_POST['option2'] : null;
     $option3 = isset($_POST['option3']) ? $_POST['option3'] : null;
+    $option5 = isset($_POST['option5']) ? $_POST['option5'] : 0;
     $quantity_1 = isset($_POST['quantity_1']) ? $_POST['quantity_1'] : null;
     $quantity_2 = isset($_POST['quantity_2']) ? $_POST['quantity_2'] : null;
     $quantity_3 = isset($_POST['quantity_3']) ? $_POST['quantity_3'] : null;
+    $quantity_5 = isset($_POST['quantity_5']) ? $_POST['quantity_5'] : null;
 
     if (!empty($_FILES['option4']['name'])) {
       $imageName = $_FILES['option4']['name'];
@@ -35,9 +37,11 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
       'option2' => $option2,
       'option3' => $option3,
       'option4' => $option4,
+      'option5' => $option5,
       'quantity_1' => $quantity_1,
       'quantity_2' => $quantity_2,
       'quantity_3' => $quantity_3,
+      'quantity_5' => $quantity_5,
     );
 
     if (!empty($product_array)) {
@@ -204,11 +208,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 <!-- <img src="assets/imgs/standParapluiePlat23.png" alt="Stand Curve"> -->
               </label>
 
-              <div class="input-group" id="input-group1" style="display: none;">
-                <input type="number" name="quantity_1" value="1">
-                <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-                <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option1','input-group1')">Remove from Cart</button>
-              </div>
+             
               <h3 class="py-4">Etape 2</h3>
               <!-- <h2>240 DT</h2> -->
               <!-- <input type="number" value="1" > -->
@@ -216,24 +216,28 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
               <label>
 
-                <input type="radio" name="option2" value="standParapluiePlat1/3" onclick="toggleInputGroup('input-group2')">
+                <input type="radio" name="option2" value="Dimension 1/3" onclick="toggleInputGroup('input-group2')">
 
-                <img src="assets/imgs/standParapluiePlat13.png" alt="standParapluiePlat1/3">
+                <!-- <img src="assets/imgs/standParapluiePlat13.png" alt="standParapluiePlat1/3"> -->
+                Dimension :1/3
               </label>
 
               <label>
-                <input type="radio" name="option2" value="standParapluiePlat2/3" onclick="toggleInputGroup('input-group2')">
-                <img src="assets/imgs/standParapluiePlat23.png" alt="standParapluiePlat2/3">
+                <input type="radio" name="option2" value="Dimension 2/3" onclick="toggleInputGroup('input-group2')">
+                <!-- <img src="assets/imgs/standParapluiePlat23.png" alt="standParapluiePlat2/3"> -->
+                Dimension :2/3
               </label>
 
               <label>
-                <input type="radio" name="option2" value="standParapluiePlat3/3" onclick="toggleInputGroup('input-group2')">
-                <img src="assets/imgs/standParapluiePlat33.png" alt="standParapluieCurve3/3">
+                <input type="radio" name="option2" value="Dimension 3/3" onclick="toggleInputGroup('input-group2')">
+                <!-- <img src="assets/imgs/standParapluiePlat33.png" alt="standParapluieCurve3/3"> -->
+                Dimension :3/3
               </label>
             
               <label>
-                <input type="radio" name="option2" value="standParapluieCurve4/3" onclick="toggleInputGroup('input-group2')">
-                <img src="assets/imgs/standParapluieCurve43.png" alt="standParapluieCurve4/3">
+                <input type="radio" name="option2" value="Dimension 4/3 " onclick="toggleInputGroup('input-group2')">
+                <!-- <img src="assets/imgs/standParapluieCurve43.png" alt="standParapluieCurve4/3"> -->
+                Dimension :4/3
               </label>
               <div class="input-group" id="input-group2" style="display: none;">
                 <input type="number" name="quantity_2" value="1">
