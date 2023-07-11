@@ -213,7 +213,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 <div class="input-group" id="input-group1" style="display: none;">
                   <input type="number" name="quantity_1" value="1">
                   <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-                  <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option1')">Remove from Cart</button>
+                  <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option1','input-group1')">Remove from Cart</button>
                 </div>
               </div>
 
@@ -244,7 +244,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 <div class="input-group" id="input-group2" style="display: none;">
                   <input type="number" name="quantity_2" value="1">
                   <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-                  <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option2')">Remove from Cart</button>
+                  <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option2','input-group2')">Remove from Cart</button>
                 </div>
               </div>
 
@@ -277,9 +277,9 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                     <img src="assets/imgs/baseAEau.png" alt="Base">
                   </label>
                   <div class="input-group" id="input-group3" style="display: none;">
-                    <input type="number" name="quantity_3" value=null>
+                    <input type="number" name="quantity_3" value='1'>
                     <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-                    <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option3')">Remove from Cart</button>
+                    <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option3','input-group3')">Remove from Cart</button>
                   </div>
                 </div>
 
@@ -308,38 +308,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
               </div>
             </div>
 
-            <style>
-              /* Custom radio button */
-              input[type="radio"] {
-                /* Hide the default radio button */
-                appearance: none;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                outline: none;
-                display: inline-block;
-                width: 16px;
-                height: 16px;
-                border-radius: 50%;
-                border: 2px solid #ccc;
-                margin-right: 5px;
-                position: relative;
-                top: 3px;
-                cursor: pointer;
-              }
-
-              /* Custom radio button - checked state */
-              input[type="radio"]:checked {
-                background-color: #FFA500;
-                /* Set the desired color */
-                border-color: #FFA500;
-              }
-
-              /* Custom radio button - checked state (after) */
-              input[type="radio"]:checked:after {
-
-                background-color: white;
-              }
-            </style>
+          
 
             <script>
               // Add event listeners to radio buttons
@@ -361,14 +330,14 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
               function toggleInputGroup(inputGroupId) {
                 var inputGroup = document.getElementById(inputGroupId);
-                inputGroup.style.display = 'block';
+                inputGroup.style.display = 'flex';
 
                 if (lastSelectedOption !== null && lastSelectedOption !== inputGroup) {
                   lastSelectedOption.querySelector('[name="add_product"]').style.display = 'none';
                 }
 
                 lastSelectedOption = inputGroup;
-                lastSelectedOption.querySelector('[name="add_product"]').style.display = 'block';
+                lastSelectedOption.querySelector('[name="add_product"]').style.display = 'flex';
               }
             </script>
 
@@ -380,7 +349,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 console.log('Added ' + optionName + ' to cart');
               }
 
-              function removeFromCart(optionName) {
+              function removeFromCart(optionName,inputGroupId) {
                 // Remove from cart functionality
                 console.log('Removed ' + optionName + ' from cart');
 
@@ -390,10 +359,11 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                   radioButton.checked = false;
                 });
 
-
+                var inputGroup = document.getElementById(inputGroupId);
+                inputGroup.style.display = 'none';
 
                 var inputGroup = document.getElementById(optionName).closest('.option-container');
-                inputGroup.querySelector('[name="add_product"]').style.display = 'block';
+                inputGroup.querySelector('[name="add_product"]').style.display = 'flex';
               }
             </script>
 

@@ -143,6 +143,7 @@ header{
         
 }
 
+
 #new .one .details button{
 
     border: none;
@@ -311,6 +312,10 @@ ul{
     transition:0.5s;
     color:coral;
 }
+#radioFormm{
+    margin: 50px;
+    
+}
 .radioForm img{
     width: 100px;
     /* aspect-ratio:3/2;
@@ -393,4 +398,49 @@ ul{
 
 
 
+   /* Custom radio button */
+   input[type="radio"] {
+    /* Hide the default radio button */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    margin-right: 5px;
+    position: relative;
+    top: 3px;
+    cursor: pointer;
+  }
 
+  /* Custom radio button - checked state */
+  input[type="radio"]:checked {
+    background-color: #FFA500;
+    /* Set the desired color */
+    border-color: #FFA500;
+  }
+
+  /* Custom radio button - checked state (after) */
+  input[type="radio"]:checked:after {
+
+    background-color: white;
+  }
+
+
+  label{
+    cursor: pointer;
+  }
+.input-group{
+    padding: 20px;
+}
+  .input-group input{
+      margin-right:20px;
+  }
+
+.input-group input[type="number"]{
+    width: 100px;
+    padding: 10px;
+}

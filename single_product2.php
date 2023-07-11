@@ -185,112 +185,61 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
 
             <!-- <form class="radioForm"> -->
-            <div class="radioForm">
+            <div class="radioForm" id="radioFormm">
               <h3 class="py-4">Etape 1</h3>
               <!-- <h2>240 DT</h2> -->
               <!-- <input type="number" value="1" > -->
-              <h4>Choisissez Le Type et La Taille Du Stand: </h4>
+              <h4>Choisissez Le Type De Stand: </h4>
 
               <label>
 
-                <input type="radio" name="option1" value="standParapluiePlat1/3" onclick="toggleInputGroup('input-group1')">
+                <input type="radio" name="option1" value="Stand Plat" onclick="toggleInputGroup('input-group1')">
+                    Stand Plat
+                <!-- <img src="assets/imgs/standParapluiePlat13.png" alt="Stand Plat"> -->
+              </label>
+
+              <label>
+                <input type="radio" name="option1" value="Stand Curve" onclick="toggleInputGroup('input-group1')">
+                Stand Curve
+                <!-- <img src="assets/imgs/standParapluiePlat23.png" alt="Stand Curve"> -->
+              </label>
+
+              <div class="input-group" id="input-group1" style="display: none;">
+                <input type="number" name="quantity_1" value="1">
+                <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option1','input-group1')">Remove from Cart</button>
+              </div>
+              <h3 class="py-4">Etape 2</h3>
+              <!-- <h2>240 DT</h2> -->
+              <!-- <input type="number" value="1" > -->
+              <h4>Choisissez La Taille De Stand: </h4>
+
+              <label>
+
+                <input type="radio" name="option2" value="standParapluiePlat1/3" onclick="toggleInputGroup('input-group2')">
 
                 <img src="assets/imgs/standParapluiePlat13.png" alt="standParapluiePlat1/3">
               </label>
 
               <label>
-                <input type="radio" name="option1" value="standParapluiePlat2/3" onclick="toggleInputGroup('input-group1')">
+                <input type="radio" name="option2" value="standParapluiePlat2/3" onclick="toggleInputGroup('input-group2')">
                 <img src="assets/imgs/standParapluiePlat23.png" alt="standParapluiePlat2/3">
               </label>
 
               <label>
-                <input type="radio" name="option1" value="standParapluiePlat3/3" onclick="toggleInputGroup('input-group1')">
+                <input type="radio" name="option2" value="standParapluiePlat3/3" onclick="toggleInputGroup('input-group2')">
                 <img src="assets/imgs/standParapluiePlat33.png" alt="standParapluieCurve3/3">
               </label>
+            
               <label>
-                <input type="radio" name="option1" value="standParapluiePlat4/3" onclick="toggleInputGroup('input-group1')">
-                <img src="assets/imgs/standParapluiePlat43.png" alt="standParapluiePlat4/3">
-              </label>
-              <label>
-                <input type="radio" name="option1" value="standParapluieCurve3/3" onclick="toggleInputGroup('input-group1')">
-                <img src="assets/imgs/standParapluieCurve33.png" alt="standParapluieCurve3/3">
-              </label>
-
-              <label>
-                <input type="radio" name="option1" value="standParapluieCurve4/3" onclick="toggleInputGroup('input-group1')">
+                <input type="radio" name="option2" value="standParapluieCurve4/3" onclick="toggleInputGroup('input-group2')">
                 <img src="assets/imgs/standParapluieCurve43.png" alt="standParapluieCurve4/3">
               </label>
-              <div class="input-group" id="input-group1" style="display: none;">
-                <input type="number" name="quantity_1" value="1">
+              <div class="input-group" id="input-group2" style="display: none;">
+                <input type="number" name="quantity_2" value="1">
                 <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-                <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option1')">Remove from Cart</button>
+                <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option2','input-group2')">Remove from Cart</button>
               </div>
-              <!-- <label>
-                <input type="radio" name="option1" value="4m50">
-                <img src="assets/imgs/4m50.png" alt="4m50">
-              </label>
-              <label>
-                <input type="radio" name="option1" value="5m">
-                <img src="assets/imgs/5m.png" alt="5m">
-              </label> -->
-              <!-- <h3 class="py-4">Etape 2</h3>
-              <h4>Choissisez La Taille : </h4>
-              <label>
-                <input type="radio" name="option2" value="2m50">
-                <img src="assets/imgs//2m50.png" alt="2m50">
-              </label>
-
-              <label>
-                <input type="radio" name="option2" value="2m80">
-                <img src="assets/imgs/2m80.png" alt="2m80">
-              </label>
-
-              <label>
-                <input type="radio" name="option2" value="3m20">
-                <img src="assets/imgs/3m20.png" alt="3m20">
-              </label>
-              <label>
-                <input type="radio" name="option2" value="3m80">
-                <img src="assets/imgs/3m80.png" alt="3m80">
-              </label>
-              <label>
-                <input type="radio" name="option2" value="4m50">
-                <img src="assets/imgs/4m50.png" alt="4m50">
-              </label>
-              <label>
-                <input type="radio" name="option2" value="5m">
-                <img src="assets/imgs/5m.png" alt="5m">
-              </label>
-
-              <h3 class="py-4">Etape 3</h3>
-              <h4>Choissisez La Base ( Optionelle ) : </h4>
-              <div class="base">
-
-                <label>
-                  <input type="radio" name="option3" value="Water Base">
-                  <img src="assets/imgs/baseAEau.png" alt="Base">
-                </label>
-
-                <label>
-                  <input type="radio" name="option3" value="Beton base">
-                  <img src="assets/imgs/baseBeton.png" alt="Base">
-                </label>
-
-                <label>
-                  <input type="radio" name="option3" value="Metal Base 7Kg">
-                  <img src="assets/imgs/baseMetalique.png" alt="Base">
-                </label>
-                <label>
-                  <input type="radio" name="option3" value="Metal Base 7.5Kg">
-                  <img src="assets/imgs/baseAEau.png" alt="Base">
-                </label>
-                <label>
-                  <input type="radio" name="option3" value="Metal Base 10Kg">
-                  <img src="assets/imgs/baseAEau.png" alt="Base">
-                </label>
-
-
-              </div> -->
               <h3 class="py-4">Etape 2</h3>
               <h4> Inserez Votre Image : </h4>
               <div class="mainUpContainer">
@@ -310,22 +259,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
               </div>
             </div>
 
-            <style>
-              /* Custom radio button */
-              
-
-              /* Custom radio button - checked state */
-              input[type="radio"]:checked {
-                background-color: #FFA500;
-                /* Set the desired color */
-                border-color: #FFA500;
-              }
-
-              /* Custom radio button - checked state (after) */
-              input[type="radio"]:checked:after {
-                background-color: white;
-              }
-            </style>
+          
 
             <script>
               // Add event listeners to radio buttons
@@ -347,26 +281,26 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
               function toggleInputGroup(inputGroupId) {
                 var inputGroup = document.getElementById(inputGroupId);
-                inputGroup.style.display = 'block';
+                inputGroup.style.display = 'flex';
 
                 if (lastSelectedOption !== null && lastSelectedOption !== inputGroup) {
                   lastSelectedOption.querySelector('[name="add_product"]').style.display = 'none';
                 }
 
                 lastSelectedOption = inputGroup;
-                lastSelectedOption.querySelector('[name="add_product"]').style.display = 'block';
+                lastSelectedOption.querySelector('[name="add_product"]').style.display = 'flex';
               }
             </script>
 
 
 
             <script>
-              function addToCart(optionName) {
+          function addToCart(optionName) {
                 // Add to cart functionality
                 console.log('Added ' + optionName + ' to cart');
               }
 
-              function removeFromCart(optionName) {
+              function removeFromCart(optionName,inputGroupId) {
                 // Remove from cart functionality
                 console.log('Removed ' + optionName + ' from cart');
 
@@ -376,10 +310,11 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                   radioButton.checked = false;
                 });
 
+                var inputGroup = document.getElementById(inputGroupId);
+                inputGroup.style.display = 'none';
 
-
-                var inputGroup = document.getElementById(optionName).closest('.option-container');
-                inputGroup.querySelector('[name="add_product"]').style.display = 'block';
+                // var inputGroup = document.getElementById(optionName).closest('.option-container');
+                // inputGroup.querySelector('[name="add_product"]').style.display = 'flex';
               }
             </script>
 
