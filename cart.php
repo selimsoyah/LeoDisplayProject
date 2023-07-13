@@ -227,9 +227,9 @@ function calculateTotal()
     </div>
 
     <div class="checkout-container">
-      <form method="POST" action="checkout.php">
+      <form method="POST" action="server/place_order.php">
         <input type='hidden' name="product_id" value="<?php echo $value['product_id'] ?>" />
-        <input type="submit" class="btn checkout-btn" value="Checkout" name="checkout">
+        <input type="submit" class="btn checkout-btn" value="Checkout" name="place_order">
       </form>
       <form action="single_product<?php echo $value['product_id'] ?>.php" method="GET">
         <input type="hidden" name="product_id" value="<?php echo $value['product_id']; ?>">
