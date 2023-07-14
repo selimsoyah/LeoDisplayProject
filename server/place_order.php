@@ -1,15 +1,13 @@
 <?php
 
 session_start();
+require 'includes/PHPMailer.php';
+require 'includes/SMTP.php';
+require 'includes/Exception.php';
+//Define name spaces
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-
-//Load Composer's autoloader
-// require 'vendor/autoload.php';
-
-//Create an instance; passing `true` enables exceptions
-$mail = new PHPMailer(true);
 
 
 //Create an instance; passing `true` enables exceptions
@@ -153,5 +151,25 @@ if (isset($_POST['place_order'])) {
       // Get the form data
 
 
-
+      $email = 'selimsoyah86@gmail.com'; 
+      $mail = new PHPMailer();
+      $mail->IsSMTP();
+      $mail->SMTPAuth = true;                 
+      $mail->SMTPSecure = "tls";      
+      $mail->Host = 'smtp.gmail.com';
+      $mail->Port = 587; 
+      $mail->Username = "selimsoyah86@gmail.com";       //your email address
+      $mail->Password = "ileledxucbmzqjtm";       //your 16 digits app password
+      $mail->FromName = "Tech Area";
+      $mail->setFrom('selimsoyah86@gmail.com');
+      $mail->AddAddress('soyahselim@gmail.com');
+      $mail->Subject = "Enquiry";
+      $mail->isHTML( TRUE );
+      $mail->Body = "Options: $option1, $option2, $option3, $option4, $option5";
+      if($mail->send())
+         {
+          $success =  "Feedback submitted successfully";
+         }else{
+          echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+      }
 }
