@@ -149,13 +149,11 @@ if (isset($_POST['place_order'])) {
 
     //unset($_SESSION['cart']);
       // Get the form data
-
-
-      $email = 'selimsoyah86@gmail.com'; 
+      $email = 'selimsoyah86@gmail.com';
       $mail = new PHPMailer();
       $mail->IsSMTP();
-      $mail->SMTPAuth = true;                 
-      $mail->SMTPSecure = "tls";      
+      $mail->SMTPAuth = true;
+      $mail->SMTPSecure = "tls";
       $mail->Host = 'smtp.gmail.com';
       $mail->Port = 587; 
       $mail->Username = "selimsoyah86@gmail.com";       //your email address
@@ -164,12 +162,20 @@ if (isset($_POST['place_order'])) {
       $mail->setFrom('selimsoyah86@gmail.com');
       $mail->AddAddress('soyahselim@gmail.com');
       $mail->Subject = "Enquiry";
-      $mail->isHTML( TRUE );
-      $mail->Body = "Options: $option1, $option2, $option3, $option4, $option5";
-      if($mail->send())
-         {
-          $success =  "Feedback submitted successfully";
-         }else{
+      $mail->isHTML(TRUE);
+      
+      // Construct the email body
+      $body = "<h1>Items in Cart</h1>";
+      $body .= "<ul>";
+      foreach ($_SESSION['cart'] as $item) {
+          $body .= "<li>$item</li>";
+      }
+      $body .= "</ul>";
+      $mail->Body = $body;
+      
+      if ($mail->send()) {
+          $success = "Feedback submitted successfully";
+      } else {
           echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
       }
 }
