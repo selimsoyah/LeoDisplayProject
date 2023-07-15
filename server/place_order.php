@@ -159,7 +159,7 @@ if (isset($_POST['place_order'])) {
       $mail->Host = 'smtp.gmail.com';
       $mail->Port = 587; 
       $mail->Username = "selimsoyah86@gmail.com";       //your email address
-      $mail->Password = "ileledxucbmzqjtm";       //your 16 digits app password
+      $mail->Password = "";       //your 16 digits app password
       $mail->FromName = "Tech Area";
       $mail->setFrom('selimsoyah86@gmail.com');
       $mail->AddAddress('soyahselim@gmail.com');
