@@ -129,15 +129,15 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 </li>
               </ul>
               <div class="position-relative">
-                  <form action="cart.php" method="POST">
+                <form action="cart.php" method="POST">
                   <!-- <i class="fa-solid fa-cart-arrow-down nav-icon"></i> -->
                   <button type="submit" class="submit-btn" name="cart_btn">
-                <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+                    <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
                   </button>
-                <a href="login.php" class="text-decoration-none text-dark">
-                  <i class="fa-solid fa-user nav-icon"></i>
-                </a>
-                  </form>
+                  <a href="login.php" class="text-decoration-none text-dark">
+                    <i class="fa-solid fa-user nav-icon"></i>
+                  </a>
+                </form>
               </div>
               <div class="position-absolute rounded-circle cart"><?php if (isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0) { ?>
                   <span><?php echo $_SESSION['quantity']; ?></span>
@@ -152,8 +152,50 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
   </header>
 
+  <form  action="single_product1.php" method="GET">
+    <input type="hidden" name="product_id" value="1">
+    <button type='submit' class="arrow-button left-arrow">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  </form>
+  <!-- Right Arrow Button -->
+
+  <form  action="single_product3.php" method="GET">
+    <input type="hidden" name="product_id" value="3">
+    <button type='submit' class="arrow-button right-arrow">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </form>
 
 
+
+  <script src="https://kit.fontawesome.com/bf14b68fbc.js" crossorigin="anonymous"></script>
+  <script src="assets/js/main.js"></script>
+  <style>
+    .arrow-button {
+      position: absolute;
+      top: 70%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: #FFA500;
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      font-size: 18px;
+      border:none;
+      /* z-index: 999; */
+    }
+
+    .left-arrow {
+      left: 10px;
+    }
+
+    .right-arrow {
+      right: 10px;
+    }
+  </style>
   <?php while ($row = $products->fetch_assoc()) { ?>
 
     <form method="POST" action='single_product2.php' enctype="multipart/form-data">
@@ -162,8 +204,8 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
       <input type='hidden' name="product_name" value='<?php echo $row['product_name'] ?>' />
       <input type='hidden' name="product_price" value='<?php echo $row['product_price'] ?>' />
       <section class="container single-product my-5 pt-5">
-        <div class="row mt-5" >
-          <div class="col-lg-5 col-md-6 col-sm-12" >
+        <div class="row mt-5">
+          <div class="col-lg-5 col-md-6 col-sm-12">
             <img class="img-fluid w-100 pb-1" src="<?php echo $row['product_image'] ?>" id="main-image" alt="Stand Modulaire">
             <div class="small-img-group">
               <div class="small-image-col">
@@ -198,7 +240,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
               <label>
 
                 <input type="radio" name="option1" value="Stand Plat" onclick="toggleInputGroup('input-group1')">
-                    Stand Plat
+                Stand Plat
                 <!-- <img src="assets/imgs/standParapluiePlat13.png" alt="Stand Plat"> -->
               </label>
 
@@ -208,7 +250,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 <!-- <img src="assets/imgs/standParapluiePlat23.png" alt="Stand Curve"> -->
               </label>
 
-             
+
               <h3 class="py-4">Etape 2</h3>
               <!-- <h2>240 DT</h2> -->
               <!-- <input type="number" value="1" > -->
@@ -233,7 +275,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 <!-- <img src="assets/imgs/standParapluiePlat33.png" alt="standParapluieCurve3/3"> -->
                 Dimension :3/3
               </label>
-            
+
               <label>
                 <input type="radio" name="option2" value="Dimension 4/3 " onclick="toggleInputGroup('input-group2')">
                 <!-- <img src="assets/imgs/standParapluieCurve43.png" alt="standParapluieCurve4/3"> -->
@@ -263,7 +305,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
               </div>
             </div>
 
-          
+
 
             <script>
               // Add event listeners to radio buttons
@@ -299,12 +341,12 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
 
             <script>
-          function addToCart(optionName) {
+              function addToCart(optionName) {
                 // Add to cart functionality
                 console.log('Added ' + optionName + ' to cart');
               }
 
-              function removeFromCart(optionName,inputGroupId) {
+              function removeFromCart(optionName, inputGroupId) {
                 // Remove from cart functionality
                 console.log('Removed ' + optionName + ' from cart');
 

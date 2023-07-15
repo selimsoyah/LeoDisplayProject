@@ -150,6 +150,40 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
   </header>
 
 
+ 
+  <!-- Right Arrow Button -->
+
+  <form  action="single_product2.php" method="GET">
+    <input type="hidden" name="product_id" value="2">
+    <button type='submit' class="arrow-button right-arrow">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </form>
+
+
+
+  <script src="https://kit.fontawesome.com/bf14b68fbc.js" crossorigin="anonymous"></script>
+  <script src="assets/js/main.js"></script>
+  <style>
+    .arrow-button {
+      position: absolute;
+      top: 70%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: #FFA500;
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      font-size: 18px;
+      border:none;
+      /* z-index: 999; */
+    }
+  .right-arrow {
+      right: 10px;
+    }
+  </style>
 
   <?php while ($row = $products->fetch_assoc()) { ?>
 

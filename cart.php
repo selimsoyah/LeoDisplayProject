@@ -151,7 +151,7 @@ function calculateTotal()
     <table class="mt-5 pt-5">
       <tr>
         <th>Product</th>
-        <th>Details</th>
+        <th style="text-align: center;">Details</th>
         <th></th>
       </tr>
 
@@ -159,58 +159,66 @@ function calculateTotal()
 
         <?php foreach ($_SESSION['cart'] as $key => $value) { ?>
           <tr>
-            <td>
-              <div class="product-info" style="width:100px;">
+            <td style="width:200px; display:flex;">
+              <div class="product-info">
                 <img src="<?php echo $value['product_image'] ?>" alt="#">
                 <div>
-                  <p><?php echo $value['product_name'] ?></p>
                   <br>
                   <form method="POST" action='cart.php'>
                     <input type='hidden' name="product_id" value="<?php echo $value['product_id'] ?>" />
-                    <input type='submit' name="remove_product" class="remove_btn" value='remove' />
+                    <input type='submit' name="remove_product" class="remove-btn" value='remove' style="    color: white;
+    background-color: orange;
+    border:none;
+    text-decoration: none;
+    font-size: 14px;
+    padding:5px;
+    border-radius:5px;" />
                   </form>
                 </div>
               </div>
             </td>
-          
-            <td>
+
+            <td style="font-size:20px;">
               <form action="cart.php" method="POST">
                 <!-- <input type='hidden' name="product_id" value="<?php echo $value['product_id'] ?>" /> -->
                 <div class="cart_items" style="display: flex; ">
-    <?php if ($value['option1'] !== null): ?>
-        <span class="product-price"><?php echo $value['option1'] ?></span>
-   
-    <?php if ($value['option2'] !== null): ?>
-        <span class="product-price"><?php echo $value['option2'] ?></span><span> X</span>
-    <?php endif; ?>
-    <?php endif; ?>
-    <?php if ($value['quantity_2'] !== "0"): ?>
-        <span class="product-price"><?php echo $value['quantity_2'] ?></span>
-    <?php endif; ?>
-    <?php if ($value['option3'] !== null): ?>
-        <span class="product-price"><?php echo $value['option3'] ?></span><span> X</span>
-    <?php endif; ?>
-    <?php if ($value['quantity_3'] !== "0"): ?>
-        <span class="product-price"><?php echo $value['quantity_3'] ?></span>
-    <?php endif; ?>
-    <?php if ($value['option5'] !== 0): ?>
-      <?php if ($value['option5'] == "1"): ?>
-        <span class="product-price">Avec Bare Metalique</span><span> X</span>
-    <?php endif; ?>
-    <?php if ($value['option5'] == "0"): ?>
-        <span class="product-price">Sans Bare Metalique</span>
-    <?php endif; ?>
-    <?php endif; ?>
-    <?php if ($value['quantity_5'] !== "0"): ?>
-        <span class="product-price"><?php echo $value['quantity_5'] ?></span>
-    <?php endif; ?>
-</div>
+                  <?php if ($value['option1'] !== null) : ?>
+                    <span class="product-price"><?php echo $value['option1'] ?></span>
+
+                    <?php if ($value['option2'] !== null) : ?>
+                      <span class="product-price"><?php echo $value['option2'] ?></span><span> X</span>
+                    <?php endif; ?>
+                  <?php endif; ?>
+                  <?php if ($value['quantity_2'] !== "0") : ?>
+                    <span class="product-price"><?php echo $value['quantity_2'] ?></span>
+                  <?php endif; ?>
+                  <?php if ($value['option3'] !== null) : ?>
+                    <span class="product-price"><?php echo $value['option3'] ?></span><span> X</span>
+                  <?php endif; ?>
+                  <?php if ($value['quantity_3'] !== "0") : ?>
+                    <span class="product-price"><?php echo $value['quantity_3'] ?></span>
+                  <?php endif; ?>
+                  <?php if ($value['option5'] !== 0) : ?>
+                    <?php if ($value['option5'] == "1") : ?>
+                      <span class="product-price">Avec Bare Metalique</span><span> X</span>
+                    <?php endif; ?>
+                    <?php if ($value['option5'] == "0") : ?>
+                      <span class="product-price">Sans Bare Metalique</span>
+                    <?php endif; ?>
+                  <?php endif; ?>
+                  <?php if ($value['quantity_5'] !== "0") : ?>
+                    <span class="product-price"><?php echo $value['quantity_5'] ?></span>
+                  <?php endif; ?>
+                  <?php if ($value['option4'] !== null) : ?>
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($value['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px; position:absolute; right:120px;">
+                    <?php endif; ?>
+                </div>
 
                 <!-- <input type="submit" class="edit-btn" name="edit-btn" value="Edit" > -->
               </form>
             </td>
 
-            
+
 
           </tr>
         <?php } ?>
@@ -220,9 +228,9 @@ function calculateTotal()
     </table>
     <style>
       .cart_items span {
-    padding: 10px;
-    /* background-color: red; */
-}
+        padding: 10px;
+        /* background-color: red; */
+      }
     </style>
     </div>
 
@@ -236,16 +244,7 @@ function calculateTotal()
         <button type="submit" class="btn checkout-btn">Ajouter Un Autre Produit</button>
       </form>
     </div>
-    <div class="cart-total">
-      <table>
-        <tr>
-          <td>Total</td>
-          <?php if (isset($_SESSION['cart'])) { ?>
-            <td><?php echo $_SESSION['total'] ?></td>
-          <?php } ?>
-        </tr>
-      </table>
-    </div>
+
 
   </section>
 

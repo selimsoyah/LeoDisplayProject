@@ -196,7 +196,7 @@ ul{
 }
 
 .cart th{
-    text-align: left;
+    text-align: center;
     padding: 5px 10px;
     color: #ffff;
     background-color: orange;
@@ -217,7 +217,9 @@ ul{
 }
 
 .cart .remove-btn{
-    color: orange;
+    color: white;
+    background-color: orange;
+    border:none;
     text-decoration: none;
     font-size: 14px;
 }
