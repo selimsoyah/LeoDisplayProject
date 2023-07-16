@@ -176,10 +176,10 @@ if (isset($_POST['delete_order_btn'])) {
                                     </td>
 
                                     <td><?php echo $order['order_status']; ?></td>
-                                    <td><?php echo $order['user_name']; ?></td>
+                                    <td data-name="name"><?php echo $order['user_name']; ?></td>
                                     <td><?php echo $order['user_phone']; ?></td>
                                     <td><?php echo $order['user_address']; ?></td>
-                                    <td><?php echo $order['option1']; ?> X <?php echo $order['quantity_2']; ?></td>
+                                    <td data-name="quantity"><?php echo $order['option1']; ?> X <?php echo $order['quantity_2']; ?></td>
                                     <td><?php echo $order['option2']; ?></td>
                                     <td><?php echo $order['option3']; ?> X <?php echo $order['quantity_3']; ?></td>
                                     <?php if ($order['option5'] !== 0) : ?>
