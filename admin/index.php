@@ -97,13 +97,13 @@ if (isset($_POST['delete_order_btn'])) {
 
 
 
-<div class="container-fluid">
-    <div class="row">
+<div class="container-fluid" style="width: 100%;">
+    <div class="row" style="width: 100%;">
 
 
         <?php include('sidemenu.php'); ?>
 
-        <main class="col-md-9 ms_sm_auto col_lg-10 px_md-4">
+        <main class="col-md-9 ms_sm_auto col_lg-10 px_md-4" style="width: 100%;">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                 <h1 class="h2">Dashboard</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
@@ -126,7 +126,7 @@ if (isset($_POST['delete_order_btn'])) {
             <?php } ?>
 
 
-            <div class="table-responsive">
+            <div class="table-responsive" style="overflow-x: hidden; width: 100%; white-space: nowrap;">
                 <?php foreach ($grouped_orders as $order_date => $orders) { ?>
                     <h3><?php echo $order_date; ?></h3>
                     <table class="table table-striped table-sm">
@@ -137,12 +137,11 @@ if (isset($_POST['delete_order_btn'])) {
                                 <th scope="col">Username</th>
                                 <th scope="col">User Phone</th>
                                 <th scope="col">User Address</th>
-                                <th scope="col">Taille</th>
                                 <th scope="col">Type</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <!-- <th scope="col">Quantite</th> -->
+                                <th scope="col">Taille</th>
+                                <th scope="col">Quantite</th>
+                                <th scope="col">Bare metalique</th>
+                                <th scope="col">Base</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">BAT</th>
@@ -180,23 +179,33 @@ if (isset($_POST['delete_order_btn'])) {
                                     <td data-name="name"><?php echo $order['user_name']; ?></td>
                                     <td><?php echo $order['user_phone']; ?></td>
                                     <td><?php echo $order['user_address']; ?></td>
-                                    <td data-name="quantity"><?php echo $order['option1']; ?> X <?php echo $order['quantity_2']; ?></td>
+                                    <!-- TYPE -->
+                                    <td data-name="quantity"><?php echo $order['option1']; ?></td> 
+                                    <!-- TAILLE -->
                                     <td><?php echo $order['option2']; ?></td>
-                                    <td><?php echo $order['option3']; ?> X <?php echo $order['quantity_3']; ?></td>
-                                    <?php if ($order['option5'] !== 0) : ?>
-                                        <?php if ($order['option5'] == "1") : ?>
-                                            <td><span class="product-price">Avec Bare Metalique</span><span> X <span class="product-price"><?php echo $order['quantity_5'] ?></span></td>
+                                    <!-- QUANTITE -->
+                                    <td>X <?php echo $order['quantity_2']; ?> </td>
+                                    <!-- BARE METALIQUE -->
+                                    <td><?php if ($order['option5'] > 0) : ?>
+                                        <?php if ($order['quantity_5'] >= "1") : ?>
+                                            <span>X <span class="product-price"><?php echo $order['quantity_5'] ?></span></span>
                                         <?php endif; ?>
                                         <?php else : ?>
-                                           <td> <span class="product-price">Sans Bare Metalique</span></td>
-                                       
-                                    <?php endif; ?>
-                                    <!-- <td>quantity</td> -->
+                                           <span><span class="product-price">Sans</span></span>
+                                    <?php endif; ?></td>
+                                    <!--BASE-->
+                                    <td><?php if ($order['option3'] != NULL) : ?>
+                                        <?php if ($order['quantity_3'] >= "1") : ?>
+                                            <span>X <span class="product-price"><?php echo $order['quantity_3'] ?></span></span>
+                                        <?php endif; ?>
+                                        <?php else : ?>
+                                           <span><span class="product-price">Sans</span></span>
+                                    <?php endif; ?></td>
+
                                     <td> <img src="data:image/jpeg;base64,<?php echo base64_encode($order['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px;"></td>
+                                    
 
-
-                                    <!-- <td><a class="btn btn-primary" href="edit_order.php?order_id=<?php echo $order['order_id']; ?>">Edit</a></td> -->
-
+                                     <!--STATUS-->
                                     <td>
                                         <form action="index.php" method="POST">
                                             <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
