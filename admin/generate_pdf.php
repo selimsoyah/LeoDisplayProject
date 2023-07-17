@@ -7,11 +7,13 @@
     use Dompdf\Options;
 
     
-
+if(isset($_POST['generate'])){
+    $option= $_POST['option1'];
     $html = '<h1 style="color:green">Example</h1>';
-    $html .= "Hello <em> $dataNameValue </em>";
+    $html .= "Hello <em> hello  </em>";
     $html .='<img src="" alt="logo">';
-    $html .= "Quantity: $";
+    $html .= "Quantity: ";
+    $html .= $option;
 
     $options = new Options;
     // $options = setChroot(__DIR__);
@@ -31,5 +33,6 @@
 
 
 
+}
 
 ?>

@@ -145,6 +145,7 @@ if (isset($_POST['delete_order_btn'])) {
                                 <!-- <th scope="col">Quantite</th> -->
                                 <th scope="col">Image</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">BAT</th>
                                 <th scope="col">Delete</th>
                             </tr>
                         </thead>
@@ -205,6 +206,15 @@ if (isset($_POST['delete_order_btn'])) {
                                             </button>
                                         </form>
 
+                                    </td>
+                                    
+                                    <td>
+                                        <form action="generate_pdf.php" method = 'POST'>
+                                            <input type="hidden" name="option1" value="<?php echo $order['option1']; ?>">
+                                            <input type="submit" name="generate">
+                                            
+                                        </form>
+                                        <input type="file">
                                     </td>
 
                                     <?php if (isset($_GET['order_deleted'])) { ?>
