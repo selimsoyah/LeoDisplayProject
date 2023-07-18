@@ -91,31 +91,50 @@ if (isset($_POST['delete_order_btn'])) {
     }
 }
 
-
 ?>
 
-
-
+<style>
+    .line-between-td {
+        border-right: 1px solid black;
+        padding-right: 10px;
+    }
+    
+    .btn-delivered {
+        background-color: green;
+        color: white;
+    }
+    .btn-delivered:hover{
+        background-color:#3F704D;
+        color: white;
+    }
+    .input-b{
+        padding-top:3px;
+    }
+    .in{
+        border: none;
+  outline: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;    
+}
+</style>
 
 <div class="container-fluid" style="width: 100%;">
     <div class="row" style="width: 100%;">
-
-
         <?php include('sidemenu.php'); ?>
-
         <main class="col-md-9 ms_sm_auto col_lg-10 px_md-4" style="width: 100%;">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                 <h1 class="h2">Dashboard</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-
                     </div>
                 </div>
             </div>
 
             <h2>Orders</h2>
-
-
 
             <?php if (isset($_GET['order_updated'])) { ?>
                 <p class="text-center" style="color:green;"> <?php echo $_GET['order_updated'] ?> </p>
@@ -125,33 +144,28 @@ if (isset($_POST['delete_order_btn'])) {
                 <p class="text-center" style="color:red;"> <?php echo $_GET['order_failed'] ?> </p>
             <?php } ?>
 
-
-            <div class="table-responsive" style="overflow-x: hidden; width: 100%; white-space: nowrap;">
+            <div class="table-responsive" style="overflow-x: visible; width: 100%; white-space: nowrap;">
                 <?php foreach ($grouped_orders as $order_date => $orders) { ?>
                     <h3><?php echo $order_date; ?></h3>
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr>
-                                <th scope="col">Produit</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">User Phone</th>
-                                <th scope="col">User Address</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Taille</th>
-                                <th scope="col">Quantite</th>
-                                <th scope="col">Bare metalique</th>
-                                <th scope="col">Base</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">BAT</th>
-                                <th scope="col">Delete</th>
+                                <th class="line-between-td" style="border-top:1px solid black; border-left:1px solid black;" scope="col">Produit</th>
+                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Username</th>
+                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Type</th>
+                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Taille</th>
+                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Quantite</th>
+                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Bare metalique</th>
+                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Base</th>
+                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Image</th>
+                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Status</th>
+                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">BAT</th>
+                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($orders as $order) { ?>
                                 <tr>
-
                                     <?php
                                     // Retrieve product_id from order_items
                                     $stmt = $conn->prepare("SELECT product_id FROM order_items WHERE order_id = ?");
@@ -171,59 +185,62 @@ if (isset($_POST['delete_order_btn'])) {
 
                                     // Display the product image
                                     ?>
-                                    <td>
+                                    <td class="line-between-td" style="border-left:1px solid black;">
                                         <img src="../<?php echo $order['product_image']; ?>" alt="Product Image" width="100">
                                     </td>
-
-                                    <td><?php echo $order['order_status']; ?></td>
-                                    <td data-name="name"><?php echo $order['user_name']; ?></td>
-                                    <td><?php echo $order['user_phone']; ?></td>
-                                    <td><?php echo $order['user_address']; ?></td>
-                                    <!-- TYPE -->
-                                    <td data-name="quantity"><?php echo $order['option1']; ?></td> 
-                                    <!-- TAILLE -->
-                                    <td><?php echo $order['option2']; ?></td>
-                                    <!-- QUANTITE -->
-                                    <td>X <?php echo $order['quantity_2']; ?> </td>
-                                    <!-- BARE METALIQUE -->
-                                    <td><?php if ($order['option5'] > 0) : ?>
-                                        <?php if ($order['quantity_5'] >= "1") : ?>
-                                            <span>X <span class="product-price"><?php echo $order['quantity_5'] ?></span></span>
-                                        <?php endif; ?>
-                                        <?php else : ?>
-                                           <span><span class="product-price">Sans</span></span>
-                                    <?php endif; ?></td>
-                                    <!--BASE-->
-                                    <td><?php if ($order['option3'] != NULL) : ?>
-                                        <?php if ($order['quantity_3'] >= "1") : ?>
-                                            <span>X <span class="product-price"><?php echo $order['quantity_3'] ?></span></span>
-                                        <?php endif; ?>
-                                        <?php else : ?>
-                                           <span><span class="product-price">Sans</span></span>
-                                    <?php endif; ?></td>
-
-                                    <td> <img src="data:image/jpeg;base64,<?php echo base64_encode($order['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px;"></td>
                                     
+                                    <td class="line-between-td" data-name="name"><?php echo $order['user_name']; ?></td>
+                                    
+                                    <!-- TYPE -->
+                                    <td class="line-between-td" data-name="quantity"><?php echo $order['option1']; ?></td> 
+                                    <!-- TAILLE -->
+                                    <td class="line-between-td"><?php echo $order['option2']; ?></td>
+                                    <!-- QUANTITE -->
+                                    <td class="line-between-td">X <?php echo $order['quantity_2']; ?> </td>
+                                    <!-- BARE METALIQUE -->
+                                    <td class="line-between-td"><?php if ($order['option5'] > 0) : ?>
+                                            <?php if ($order['quantity_5'] >= "1") : ?>
+                                                <span>X <span class="product-price"><?php echo $order['quantity_5'] ?></span></span>
+                                            <?php endif; ?>
+                                        <?php else : ?>
+                                            <span><span class="product-price">Sans</span></span>
+                                        <?php endif; ?></td>
+                                    <!--BASE-->
+                                    <td class="line-between-td"><?php if ($order['option3'] != NULL) : ?>
+                                            <?php if ($order['quantity_3'] >= "1") : ?>
+                                                <span>X <span class="product-price"><?php echo $order['quantity_3'] ?></span></span>
+                                            <?php endif; ?>
+                                        <?php else : ?>
+                                            <span><span class="product-price">Sans</span></span>
+                                        <?php endif; ?></td>
 
-                                     <!--STATUS-->
-                                    <td>
+                                    <!-- IMAGE-->
+                                    <td class="line-between-td">
+                                        <a href="data:image/jpeg;base64,<?php echo base64_encode($order['option4']) ?>" download>
+                                            <img src="data:image/jpeg;base64,<?php echo base64_encode($order['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px;">
+                                        </a>
+                                    </td>
+
+                                    <!-- STATUS -->
+                                    <td class="line-between-td">
                                         <form action="index.php" method="POST">
                                             <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
                                             <input type="hidden" name="order_status" value="<?php echo $order['order_status']; ?>">
-                                            <button class="btn btn-primary" type="submit" name="edit_order_status_btn">
+                                            <button class="btn <?php echo ($order['order_status'] == 'delivered') ? 'btn-delivered' : 'btn-primary'; ?>" type="submit" name="edit_order_status_btn">
                                                 <?php echo ($order['order_status'] == 'on_hold') ? 'On Hold' : 'Delivered'; ?>
                                             </button>
                                         </form>
-
                                     </td>
-                                    
-                                    <td>
-                                        <form action="generate_pdf.php" method = 'POST'>
+
+                                    <!-- BAT -->
+                                    <td class="line-between-td">
+                                        <form action="generate_pdf.php" method="POST">
                                             <input type="hidden" name="option1" value="<?php echo $order['option1']; ?>">
-                                            <input type="submit" name="generate">
-                                            
+                                            <button class="btn btn-primary" type="submit" name="download-bat">BAT</button>
                                         </form>
-                                        <input type="file">
+                                        <div class="input-b">
+                                        <input type="file" name="upload-bat" value="Upload BAT" class="in">
+                                        </div>
                                     </td>
 
                                     <?php if (isset($_GET['order_deleted'])) { ?>
@@ -234,43 +251,23 @@ if (isset($_POST['delete_order_btn'])) {
                                         <p class="text-center" style="color: red;"><?php echo $_GET['delete_failed']; ?></p>
                                     <?php } ?>
 
-
-                                    <td>
+                                    <td class="line-between-td">
                                         <form action="index.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?');">
                                             <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
                                             <button class="btn btn-danger" type="submit" name="delete_order_btn">Delete</button>
                                         </form>
                                     </td>
-
-
                                 </tr>
                             <?php } ?>
                         </tbody>
                     </table>
                 <?php } ?>
-
-
-
-
-
-
-
-
-
-
-
+                
                 <!-- pagination -->
                 <nav aria-label="Page navigation example" class="mx-auto">
                     <ul class="pagination mt-5 mx-auto">
-
-                        <li class="page-item <?php if ($page_no <= 1) {
-                                                    echo 'disabled';
-                                                } ?> ">
-                            <a href="<?php if ($page_no <= 1) {
-                                            echo '#';
-                                        } else {
-                                            echo "?page_no=" . ($page_no - 1);
-                                        } ?>" class="page-link">Previous</a>
+                        <li class="page-item <?php if ($page_no <= 1) { echo 'disabled'; } ?>">
+                            <a href="<?php if ($page_no <= 1) { echo '#'; } else { echo "?page_no=" . ($page_no - 1); } ?>" class="page-link">Previous</a>
                         </li>
 
                         <li class="page-item"><a class="page-link" href="?page_no=1">1</a></li>
@@ -279,32 +276,14 @@ if (isset($_POST['delete_order_btn'])) {
                         <?php if ($page_no >= 3) { ?>
                             <li class="page-item"><a class="page-link" href="">...</a></li>
                             <li class="page-item"><a class="page-link" href="<?php echo "?page_no=" . $page_no; ?>"><?php echo $page_no; ?></a></li>
-
                         <?php } ?>
 
-                        <li class="page-item <?php if ($page_no >= $total_no_of_pages) {
-                                                    echo 'disabled';
-                                                } ?>">
-                            <a class="page-link" href=" <?php if ($page_no >= $total_no_of_pages) {
-                                                            echo '#';
-                                                        } else {
-                                                            echo "?page_no=" . ($page_no + 1);
-                                                        } ?>">Next</a>
+                        <li class="page-item <?php if ($page_no >= $total_no_of_pages) { echo 'disabled'; } ?>">
+                            <a class="page-link" href="<?php if ($page_no >= $total_no_of_pages) { echo '#'; } else { echo "?page_no=" . ($page_no + 1); } ?>">Next</a>
                         </li>
                     </ul>
                 </nav>
-
-
-
-
-
-
-
-
-
-
             </div>
-
         </main>
     </div>
 </div>
