@@ -211,7 +211,7 @@ function calculateTotal()
                   <?php endif; ?>
                   <?php if ($value['option4'] !== null) : ?>
                     <img src="data:image/jpeg;base64,<?php echo base64_encode($value['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px; position:absolute; right:120px;">
-                    <?php endif; ?>
+                gj    <?php endif; ?>
                 </div>
 
                 <!-- <input type="submit" class="edit-btn" name="edit-btn" value="Edit" > -->
