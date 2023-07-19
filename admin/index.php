@@ -236,6 +236,11 @@ if (isset($_POST['delete_order_btn'])) {
                                     <td class="line-between-td">
                                         <form action="generate_pdf.php" method="POST">
                                             <input type="hidden" name="option1" value="<?php echo $order['option1']; ?>">
+                                            <input type="hidden" name="option2" value="<?php echo $order['option2']; ?>">
+                                            <input type="hidden" name="quantity2" value="<?php echo $order['quantity_2']; ?>">
+
+
+                                 
                                             <button class="btn btn-primary" type="submit" name="download-bat">BAT</button>
                                         </form>
                                         <div class="input-b">

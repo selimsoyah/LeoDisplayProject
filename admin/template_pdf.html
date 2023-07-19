@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://unpkg.com/gutenberg-css@0.7">
+        <style>
+            table {
+                width: 100%;
+            }
+            footer {
+                text-align: center;
+                font-style: italic;
+            }
+        </style>
+    </head>
+    <body>
+        
+
+        <h1>Invoice</h1>
+
+        <p>Bonjour</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ type }} {{ taille }}</td>
+                    <td style="text-align: right">{{ quantity }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <footer>
+            <p>this is an example</p>
+        </footer>
+
+    </body>
+</html>
