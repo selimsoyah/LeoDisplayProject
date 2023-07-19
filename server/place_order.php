@@ -121,46 +121,46 @@ if (isset($_POST['place_order'])) {
     $mail->Subject = "Enquiry";
     $mail->isHTML(TRUE);
     
-    // // Construct the email body
-    // $body = "<h1>Commande accepté</h1>";
-    // $body .= "<p> Votre commande de : </p>";
-    // foreach ($_SESSION['cart'] as $key => $product) {
-    //     $product_id = $product['product_id'];
-    //     $product_name = $product['product_name'];
-    //     $product_image = $product['product_image'];
-    //     $product_price = $product['product_price'];
-    //     $product_quantity = $product['product_quantity'];
-    //     $option1 = $product['option1'];
-    //     $option2 = $product['option2'];
-    //     $option3 = $product['option3'];
-    //     $option4 = $product['option4'];
-    //     $option5 = $product['option5'];
-    //     $quantity_1 = $product['quantity_1'];
-    //     $quantity_2 = $product['quantity_2'];
-    //     $quantity_3 = $product['quantity_3'];
-    //     $quantity_5 = $product['quantity_5'];
-    //     $order_date = date('Y-m-d H:i:s');
+    // Construct the email body
+    $body = "<h1>Commande accepté</h1>";
+    $body .= "<p> Votre commande de : </p>";
+    foreach ($_SESSION['cart'] as $key => $product) {
+        $product_id = $product['product_id'];
+        $product_name = $product['product_name'];
+        $product_image = $product['product_image'];
+        $product_price = $product['product_price'];
+        $product_quantity = $product['product_quantity'];
+        $option1 = $product['option1'];
+        $option2 = $product['option2'];
+        $option3 = $product['option3'];
+        $option4 = $product['option4'];
+        $option5 = $product['option5'];
+        $quantity_1 = $product['quantity_1'];
+        $quantity_2 = $product['quantity_2'];
+        $quantity_3 = $product['quantity_3'];
+        $quantity_5 = $product['quantity_5'];
+        $order_date = date('Y-m-d H:i:s');
     
-    //     // Check if any options or quantities are not null
-    //     if (!empty($option2) && !empty($quantity_2)) {
-    //         $body .= "<p> <b>$option1 $option2 </b> x <b>$quantity_2</b></p>";
-    //     }
-    //     if (!empty($option3) && !empty($quantity_3)) {
-    //         $body .= "<p> <b>$option3 </b> x <b>$quantity_3</b></p>";
-    //     }
-    //     if (!empty($option5) && !empty($quantity_5)) {
-    //         $body .= "<p> <b>$option5 </b> x <b>$quantity_5</b></p>";
+        // Check if any options or quantities are not null
+        if (!empty($option2) && !empty($quantity_2)) {
+            $body .= "<p> <b>$option1 $option2 </b> x <b>$quantity_2</b></p>";
+        }
+        if (!empty($option3) && !empty($quantity_3)) {
+            $body .= "<p> <b>$option3 </b> x <b>$quantity_3</b></p>";
+        }
+        if (!empty($option5) && !empty($quantity_5)) {
+            $body .= "<p> <b>$option5 </b> x <b>$quantity_5</b></p>";
            
-    //     }
-    // }
-    // $body .= "<p> A été accepté avec succés . Un email vous sera envoyé dés que la commande sera completé</p>";
-    // $mail->Body = $body;
+        }
+    }
+    $body .= "<p> A été accepté avec succés . Un email vous sera envoyé dés que la commande sera completé</p>";
+    $mail->Body = $body;
     
-    // if ($mail->send()) {
-    //     $success = "Feedback submitted successfully";
-    // } else {
-    //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    // }
+    if ($mail->send()) {
+        $success = "Feedback submitted successfully";
+    } else {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
     
 
 

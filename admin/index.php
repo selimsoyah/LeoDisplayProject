@@ -98,28 +98,31 @@ if (isset($_POST['delete_order_btn'])) {
         border-right: 1px solid black;
         padding-right: 10px;
     }
-    
+
     .btn-delivered {
         background-color: green;
         color: white;
     }
-    .btn-delivered:hover{
-        background-color:#3F704D;
+
+    .btn-delivered:hover {
+        background-color: #3F704D;
         color: white;
     }
-    .input-b{
-        padding-top:3px;
+
+    .input-b {
+        padding-top: 3px;
     }
-    .in{
+
+    .in {
         border: none;
-  outline: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-  font: inherit;
-  color: inherit;
-  text-align: inherit;    
-}
+        outline: none;
+        background: none;
+        padding: 0;
+        margin: 0;
+        font: inherit;
+        color: inherit;
+        text-align: inherit;
+    }
 </style>
 
 <div class="container-fluid" style="width: 100%;">
@@ -188,11 +191,11 @@ if (isset($_POST['delete_order_btn'])) {
                                     <td class="line-between-td" style="border-left:1px solid black;">
                                         <img src="../<?php echo $order['product_image']; ?>" alt="Product Image" width="100">
                                     </td>
-                                    
+
                                     <td class="line-between-td" data-name="name"><?php echo $order['user_name']; ?></td>
-                                    
+
                                     <!-- TYPE -->
-                                    <td class="line-between-td" data-name="quantity"><?php echo $order['option1']; ?></td> 
+                                    <td class="line-between-td" data-name="quantity"><?php echo $order['option1']; ?></td>
                                     <!-- TAILLE -->
                                     <td class="line-between-td"><?php echo $order['option2']; ?></td>
                                     <!-- QUANTITE -->
@@ -204,7 +207,8 @@ if (isset($_POST['delete_order_btn'])) {
                                             <?php endif; ?>
                                         <?php else : ?>
                                             <span><span class="product-price">Sans</span></span>
-                                        <?php endif; ?></td>
+                                        <?php endif; ?>
+                                    </td>
                                     <!--BASE-->
                                     <td class="line-between-td"><?php if ($order['option3'] != NULL) : ?>
                                             <?php if ($order['quantity_3'] >= "1") : ?>
@@ -212,7 +216,8 @@ if (isset($_POST['delete_order_btn'])) {
                                             <?php endif; ?>
                                         <?php else : ?>
                                             <span><span class="product-price">Sans</span></span>
-                                        <?php endif; ?></td>
+                                        <?php endif; ?>
+                                    </td>
 
                                     <!-- IMAGE-->
                                     <td class="line-between-td">
@@ -240,12 +245,16 @@ if (isset($_POST['delete_order_btn'])) {
                                             <input type="hidden" name="quantity2" value="<?php echo $order['quantity_2']; ?>">
 
 
-                                 
+
                                             <button class="btn btn-primary" type="submit" name="download-bat">BAT</button>
                                         </form>
                                         <div class="input-b">
-                                        <input type="file" name="upload-bat" value="Upload BAT" class="in">
+                                            <form action="send_email.php" method="post" enctype="multipart/form-data">
+                                                <input type="file" name="upload-bat" class="in">
+                                                <input type="submit" name="send_email">
+                                            </form>
                                         </div>
+
                                     </td>
 
                                     <?php if (isset($_GET['order_deleted'])) { ?>
@@ -267,12 +276,18 @@ if (isset($_POST['delete_order_btn'])) {
                         </tbody>
                     </table>
                 <?php } ?>
-                
+
                 <!-- pagination -->
                 <nav aria-label="Page navigation example" class="mx-auto">
                     <ul class="pagination mt-5 mx-auto">
-                        <li class="page-item <?php if ($page_no <= 1) { echo 'disabled'; } ?>">
-                            <a href="<?php if ($page_no <= 1) { echo '#'; } else { echo "?page_no=" . ($page_no - 1); } ?>" class="page-link">Previous</a>
+                        <li class="page-item <?php if ($page_no <= 1) {
+                                                    echo 'disabled';
+                                                } ?>">
+                            <a href="<?php if ($page_no <= 1) {
+                                            echo '#';
+                                        } else {
+                                            echo "?page_no=" . ($page_no - 1);
+                                        } ?>" class="page-link">Previous</a>
                         </li>
 
                         <li class="page-item"><a class="page-link" href="?page_no=1">1</a></li>
@@ -283,8 +298,14 @@ if (isset($_POST['delete_order_btn'])) {
                             <li class="page-item"><a class="page-link" href="<?php echo "?page_no=" . $page_no; ?>"><?php echo $page_no; ?></a></li>
                         <?php } ?>
 
-                        <li class="page-item <?php if ($page_no >= $total_no_of_pages) { echo 'disabled'; } ?>">
-                            <a class="page-link" href="<?php if ($page_no >= $total_no_of_pages) { echo '#'; } else { echo "?page_no=" . ($page_no + 1); } ?>">Next</a>
+                        <li class="page-item <?php if ($page_no >= $total_no_of_pages) {
+                                                    echo 'disabled';
+                                                } ?>">
+                            <a class="page-link" href="<?php if ($page_no >= $total_no_of_pages) {
+                                                            echo '#';
+                                                        } else {
+                                                            echo "?page_no=" . ($page_no + 1);
+                                                        } ?>">Next</a>
                         </li>
                     </ul>
                 </nav>
