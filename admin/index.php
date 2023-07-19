@@ -248,10 +248,10 @@ if (isset($_POST['delete_order_btn'])) {
 
                                             <button class="btn btn-primary" type="submit" name="download-bat">BAT</button>
                                         </form>
-                                        <div class="input-b">
-                                            <form action="send_email.php" method="post" enctype="multipart/form-data">
+                                        <div class="input-b" >
+                                            <form action="send_email.php" method="post" enctype="multipart/form-data" style="display: flex; flex-direction:column;">
                                                 <input type="file" name="upload-bat" class="in">
-                                                <input type="submit" name="send_email">
+                                                <input type="submit" name="send_email" style="width: 97px; margin-top:5px;">
                                             </form>
                                         </div>
 
