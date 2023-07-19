@@ -115,19 +115,22 @@ function calculateTotal()
                   <a class="nav-link nav-links" href="#mainBox">About</a>
                 </li>
                 <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" href="#new">Shop</a>
+                <a class="nav-link nav-links" href="accueil.php#new">Shop</a>
                 </li>
                 <li class="nav-item nav-items">
                   <a class="nav-link nav-links" href="contact.php">Contact</a>
                 </li>
               </ul>
               <div class="position-relative">
-                <a href="cart.php" class="text-decoration-none text-dark ">
-                  <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
-                </a>
+                  <form action="cart.php" method="POST">
+                  <!-- <i class="fa-solid fa-cart-arrow-down nav-icon"></i> -->
+                  <button type="submit" class="submit-btn" name="cart_btn" style="  border:none;  background-color: transparent;">
+                <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+                  </button>
                 <a href="login.php" class="text-decoration-none text-dark">
                   <i class="fa-solid fa-user nav-icon"></i>
                 </a>
+                  </form>
               </div>
               <div class="position-absolute rounded-circle cart"><?php if (isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0) { ?>
                   <span><?php echo $_SESSION['quantity']; ?></span>
@@ -211,7 +214,7 @@ function calculateTotal()
                   <?php endif; ?>
                   <?php if ($value['option4'] !== null) : ?>
                     <img src="data:image/jpeg;base64,<?php echo base64_encode($value['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px; position:absolute; right:120px;">
-                gj    <?php endif; ?>
+                 <?php endif; ?>
                 </div>
 
                 <!-- <input type="submit" class="edit-btn" name="edit-btn" value="Edit" > -->

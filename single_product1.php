@@ -119,7 +119,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                   <a class="nav-link nav-links" href="#mainBox">About</a>
                 </li>
                 <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" href="#new">Shop</a>
+                <a class="nav-link nav-links" href="accueil.php#new">Shop</a>
                 </li>
                 <li class="nav-item nav-items">
                   <a class="nav-link nav-links" href="contact.php">Contact</a>
@@ -128,7 +128,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
               <div class="position-relative">
                   <form action="cart.php" method="POST">
                   <!-- <i class="fa-solid fa-cart-arrow-down nav-icon"></i> -->
-                  <button type="submit" class="submit-btn" name="cart_btn">
+                  <button type="submit" class="submit-btn" name="cart_btn" style="  border:none;  background-color: transparent;">
                 <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
                   </button>
                 <a href="login.php" class="text-decoration-none text-dark">

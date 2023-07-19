@@ -82,12 +82,15 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
                 </li>
               </ul>
               <div class="position-relative">
-                <a href="cart.php" class="text-decoration-none text-dark ">
-                  <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
-                </a>
+                  <form action="cart.php" method="POST">
+                  <!-- <i class="fa-solid fa-cart-arrow-down nav-icon"></i> -->
+                  <button type="submit" class="submit-btn" name="cart_btn" style="  border:none;  background-color: transparent;">
+                <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+                  </button>
                 <a href="login.php" class="text-decoration-none text-dark">
                   <i class="fa-solid fa-user nav-icon"></i>
                 </a>
+                  </form>
               </div>
               <div class="position-absolute rounded-circle cart"><?php if(isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0){?>
                     <span><?php echo $_SESSION['quantity']; ?></span>

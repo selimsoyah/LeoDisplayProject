@@ -82,8 +82,8 @@ function calculateTotal (){
               <div class="position-relative">
                   <form action="cart.php" method="POST">
                   <!-- <i class="fa-solid fa-cart-arrow-down nav-icon"></i> -->
-                  <button type="submit" class="submit-btn" name="cart_btn">
-                <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+                  <button type="submit" class="submit-btn" name="cart_btn" style="  border:none;  background-color: transparent;">
+                     <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
                   </button>
                 <a href="login.php" class="text-decoration-none text-dark">
                   <i class="fa-solid fa-user nav-icon"></i>
@@ -139,24 +139,34 @@ function calculateTotal (){
   <!-- display small text dexcribing the products  -->
   <section id='new' class="w-100">
 
-    <div class="row p-0 m-0">
-      <?php include('server/get_products.php'); ?>
-      <?php while ($row = $products->fetch_assoc()) { ?>
-        <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
-          <img class="img-fluid" src="<?php echo $row['product_image'] ?>" alt="Flag">
-          <div class="details">
-            <h2><?php echo $row['product_name'] ?> <?php echo $row['product_id'] ?> </h2>
-            <p> <?php echo $row['product_description'] ?>
-              <p />
-            <form action="single_product<?php echo $row['product_id'] ?>.php" method="GET">
-              <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>">
-              <button type="submit" class="text-uppercase">Commander Maintenant</button>
-            </form>
+  <style>
+  .product-box {
+    cursor: pointer;
+  }
+</style>
 
-          </div>
-        </div>
-      <?php } ?>
+<div class="row p-0 m-0">
+  <?php include('server/get_products.php'); ?>
+  <?php while ($row = $products->fetch_assoc()) { ?>
+    <div class="one col-lg-4 col-md-12 col-sm-12 p-0 product-box" onclick="submitForm('<?php echo $row['product_id']; ?>')">
+      <img class="img-fluid" src="<?php echo $row['product_image'] ?>" alt="Flag">
+      <div class="details">
+        <h2><?php echo $row['product_name'] ?> <?php echo $row['product_id'] ?> </h2>
+        <p> <?php echo $row['product_description'] ?></p>
+        <form id="productForm<?php echo $row['product_id']; ?>" action="single_product<?php echo $row['product_id'] ?>.php" method="GET">
+          <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>">
+        </form>
+      </div>
     </div>
+  <?php } ?>
+</div>
+
+<script>
+  function submitForm(productID) {
+    var formID = "productForm" + productID;
+    document.getElementById(formID).submit();
+  }
+</script>
   </section>
   <!-- footer  -->
 
