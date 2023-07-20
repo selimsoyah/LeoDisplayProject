@@ -212,7 +212,7 @@ if (isset($_POST['delete_order_btn'])) {
                                     <!--BASE-->
                                     <td class="line-between-td"><?php if ($order['option3'] != NULL) : ?>
                                             <?php if ($order['quantity_3'] >= "1") : ?>
-                                                <span>X <span class="product-price"><?php echo $order['quantity_3'] ?></span></span>
+                                                <span class="product-price"><?php echo $order['option3'] ,'X', $order['quantity_3'] ?></span>
                                             <?php endif; ?>
                                         <?php else : ?>
                                             <span><span class="product-price">Sans</span></span>
@@ -244,9 +244,8 @@ if (isset($_POST['delete_order_btn'])) {
                                             <input type="hidden" name="option2" value="<?php echo $order['option2']; ?>">
                                             <input type="hidden" name="quantity2" value="<?php echo $order['quantity_2']; ?>">
                                             <input type="hidden" name="quantity5" value="<?php echo $order['quantity_5'] ?>">
+                                            <input type="hidden" name="option3" value="<?php echo $order['option3'] ?>">
                                             <input type="hidden" name="quantity3" value="<?php echo $order['quantity_3'] ?>">
-
-
 
                                             <button class="btn btn-primary" type="submit" name="download-bat">BAT</button>
                                         </form>

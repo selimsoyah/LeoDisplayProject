@@ -12,7 +12,8 @@ if(isset($_POST['download-bat'])){
     $taille= $_POST['option2'];
     $quantity= $_POST['quantity2'];
     $bare = $_POST['quantity5'];
-    $base = $_POST['quantity3'];
+    $type_base = $_POST['option3'];
+    $q_base = $_POST['quantity3'];
     // $html = '<h1 style="color:green">Example</h1>';
     // $html .= "Hello <em> hello  </em>";
     // $html .='<img src="" alt="logo">';
@@ -31,7 +32,7 @@ if(isset($_POST['download-bat'])){
 
     $html = file_get_contents("template_pdf.html");
 
-    $html = str_replace(["{{ type }}", "{{ taille }}", "{{ quantity }}", "{{ bare }}", "{{ base }}"], [$type, $taille, $quantity, $bare, $base], $html);
+    $html = str_replace(["{{ type }}", "{{ taille }}", "{{ quantity }}", "{{ bare }}", "{{ q_base }}", "{{ type_base }}"], [$type, $taille, $quantity, $bare, $q_base, $type_base], $html);
 
     $dompdf->loadHtml($html); 
 

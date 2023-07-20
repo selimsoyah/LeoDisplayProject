@@ -14,8 +14,8 @@
             class="fas fa-lock fa-fw me-3"></i><span>Products</span></a>
         <a href="../register.php" class="list-group-item list-group-item-action py-2 ripple"><i
             class="fas fa-chart-line fa-fw me-3"></i><span>Add Account</span></a>
-        <a href="add_new_product.php" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="fas fa-chart-pie fa-fw me-3"></i><span>Add New Product</span>
+        <a href="accounts.php" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-pie fa-fw me-3"></i><span>Accounts</span>
         </a>
       </div>
     </div>
