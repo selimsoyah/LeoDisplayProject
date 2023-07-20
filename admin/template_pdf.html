@@ -2,9 +2,10 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://unpkg.com/gutenberg-css@0.7">
+        
         <style>
             table {
-                width: 100%;
+                width: 50%;
             }
             footer {
                 text-align: center;
@@ -15,26 +16,30 @@
     <body>
         
 
-        <h1>Invoice</h1>
-
-        <p>Bonjour</p>
+        <h1>BAT</h1>
 
         <table>
             <thead>
                 <tr>
-                    <th>Product</th>
+                    <th>Produit</th>
+                    <th>Taille</th>
                     <th>Quantity</th>
+                    <th>Bare metalique</th>
+                    <th>Base</th>
+
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ type }} {{ taille }}</td>
-                    <td style="text-align: right">{{ quantity }}</td>
+                    <td style="text-align: center">{{ type }}</td>
+                    <td style="text-align: center">{{ taille }}</td>
+                    <td style="text-align: center">{{ quantity }}</td>
+                    <td style="text-align: center">{{ bare }}</td>
+                    <td style="text-align: center">{{ base }}</td>
                 </tr>
             </tbody>
         </table>
         <footer>
-            <p>this is an example</p>
         </footer>
 
     </body>

@@ -11,6 +11,8 @@ if(isset($_POST['download-bat'])){
     $type= $_POST['option1'];
     $taille= $_POST['option2'];
     $quantity= $_POST['quantity2'];
+    $bare = $_POST['quantity5'];
+    $base = $_POST['quantity3'];
     // $html = '<h1 style="color:green">Example</h1>';
     // $html .= "Hello <em> hello  </em>";
     // $html .='<img src="" alt="logo">';
@@ -19,8 +21,8 @@ if(isset($_POST['download-bat'])){
     
 
     $options = new Options;
-    $options -> setChroot(__DIR__);
-    $options -> setIsRemoteEnabled(true);
+    $options->setChroot(__DIR__);
+    $options->setIsRemoteEnabled(true);
 
 
     $dompdf = new Dompdf($options);
@@ -29,7 +31,7 @@ if(isset($_POST['download-bat'])){
 
     $html = file_get_contents("template_pdf.html");
 
-    $html = str_replace(["{{ type }}", "{{ taille }}", "{{ quantity }}"], [$type, $taille, $quantity], $html);
+    $html = str_replace(["{{ type }}", "{{ taille }}", "{{ quantity }}", "{{ bare }}", "{{ base }}"], [$type, $taille, $quantity, $bare, $base], $html);
 
     $dompdf->loadHtml($html); 
 
@@ -39,8 +41,8 @@ if(isset($_POST['download-bat'])){
 
     $dompdf->stream("BAT.pdf", ["Attachment" => 0]);
 
-    $output = $dompdf->output();
-    file_put_contents("file.pdf", $output);
+    // $output = $dompdf->output();
+    // file_put_contents("file.pdf", $output);
 
 
 
