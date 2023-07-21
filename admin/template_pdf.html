@@ -1,7 +1,6 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://unpkg.com/gutenberg-css@0.7">
         
         <style>
             table {
@@ -21,21 +20,21 @@
         <table>
             <thead>
                 <tr>
-                    <th>Produit</th>
-                    <th>Taille</th>
-                    <th>Quantity</th>
-                    <th>Bare metalique</th>
-                    <th>Base</th>
+                    <th style="border-left:1px solid black; border-right: 1px solid black; border-top:1px solid black;">Produit</th>
+                    <th style="border-left:1px solid black; border-right: 1px solid black; border-top:1px solid black;">Taille</th>
+                    <th style="border-left:1px solid black; border-right: 1px solid black; border-top:1px solid black;">Quantity</th>
+                    <th style="border-left:1px solid black; border-right: 1px solid black; border-top:1px solid black;">Bare metalique</th>
+                    <th style="border-left:1px solid black; border-right: 1px solid black; border-top:1px solid black;">Base</th>
 
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td style="text-align: center">{{ type }}</td>
-                    <td style="text-align: center">{{ taille }}</td>
-                    <td style="text-align: center">{{ quantity }}</td>
-                    <td style="text-align: center">{{ bare }}</td>
-                    <td style="text-align: center">{{ type_base }} <span>X</span> {{ q_base }} </td>
+                    <td style="text-align: center; border-top:1px solid black; border-left:1px solid black;">{{ type }}</td>
+                    <td style="text-align: center; border-top:1px solid black; border-left:1px solid black;">{{ taille }}</td>
+                    <td style="text-align: center; border-top:1px solid black; border-left:1px solid black;">{{ quantity }}</td>
+                    <td style="text-align: center; border-top:1px solid black; border-left:1px solid black;"><span>X</span> {{ bare }}</td>
+                    <td style="text-align: center; border-top:1px solid black; border-left:1px solid black; border-right: 1px solid black;">{{ type_base }} <span>X</span> {{ q_base }} </td>
                 </tr>
             </tbody>
         </table>

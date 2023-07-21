@@ -52,14 +52,17 @@ $conn->close();
 ?>
 
 <body>
-  <h1 style="margin:20px;">User Accounts</h1>
-  <table  style="width:100%; margin-left:0px;">
-  <?php include('sidemenu.php'); ?>
+    <div>
+    <?php include('sidemenu.php'); ?>
+    
+  <h1 style="margin-top:0px; margin-left:250px; margin-bottom:40px;">User Accounts</h1>
+  <table  style="margin-left:280px;">
+  
     <thead>
       <tr>
-        <th>User ID</th>
-        <th>Name</th>
-        <th>Email</th>
+        <th style="padding: 10px; margin-right: 10px;">User ID</th>
+        <th style="padding: 10px;">Name</th>
+        <th style="padding: 10px;">Email</th>
       </tr>
     </thead>
     <tbody>
@@ -67,9 +70,9 @@ $conn->close();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $row["user_id"] . "</td>";
-                echo "<td>" . $row["user_name"] . "</td>";
-                echo "<td>" . $row["user_email"] . "</td>";
+                echo "<td style='padding: 10px;'>" . $row["user_id"] . "</td>";
+                echo "<td style='padding: 10px;'>" . $row["user_name"] . "</td>";
+                echo "<td style='padding: 10px;'>" . $row["user_email"] . "</td>";
                 echo "</tr>";
             }
         } else {
@@ -78,6 +81,10 @@ $conn->close();
       ?>
     </tbody>
   </table>
+  
+  </div>
+
+
   <!-- pagination -->
                 <nav aria-label="Page navigation example" class="mx-auto" style="margin:20px;">
                     <ul class="pagination mt-5 mx-auto">
@@ -115,88 +122,3 @@ $conn->close();
 
 
 
-<div class="container-fluid">
-    <div class="row">
-
-
-        <?php include('sidemenu.php'); ?>
-        
-
-
-    
-        <main class="col-md-9 ms_sm_auto col_lg-10 px_md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-                <h1 class="h2">Accounts</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group me-2">
-
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Database config needed -->
-            <h2>Accounts</h2>
-                
-            <div class="table-responsive">
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row["user_id"] . "</td>";
-                echo "<td>" . $row["user_name"] . "</td>";
-                echo "<td>" . $row["user_email"] . "</td>";
-                echo "</tr>";
-            }
-        } else {
-            echo "<tr><td colspan='3'>No users found</td></tr>";
-        }
-      ?>
-                    </tbody>
-                </table>
-
-                <!-- pagination -->
-                <nav aria-label="Page navigation example" class="mx-auto">
-                    <ul class="pagination mt-5 mx-auto">
-
-                        <li class="page-item <?php if($page_no <= 1){echo 'disabled';}?> ">
-                            <a href="<?php if($page_no <= 1){echo '#';}else{echo "?page_no=".($page_no-1);} ?>" class="page-link">Previous</a>
-                        </li>
-
-                        <li class="page-item"><a class="page-link" href="?page_no=1">1</a></li>
-                        <li class="page-item"><a class="page-link" href="?page_no=2">2</a></li>
-
-                        <?php if($page_no >= 3){ ?>
-                        <li class="page-item"><a class="page-link" href="">...</a></li>
-                        <li class="page-item"><a class="page-link" href="<?php echo "?page_no=".$page_no; ?>"><?php echo $page_no; ?></a></li>
-
-                        <?php } ?>
-
-                        <li class="page-item <?php if($page_no >= $total_no_of_pages){echo'disabled';}?>">
-                            <a class="page-link" href=" <?php if($page_no >= $total_no_of_pages){echo '#';}else{echo "?page_no=".($page_no+1);} ?>">Next</a></li>
-                    </ul>
-                </nav>
-
-
-
-
-
-
-
-
-
-
-            </div>
-
-        </main>
-    </div>
-</div>

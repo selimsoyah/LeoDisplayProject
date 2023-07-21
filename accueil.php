@@ -43,9 +43,9 @@ function calculateTotal (){
         <div class="w-100 d-flex justify-content-between">
           <div>
             <i class="fa-solid fa-envelope text-light contact-info"></i>
-            <a href="" class="navbar-sm-brand text-light text-decoration-none contact-info">info@company.com</a>
+            <a href="mailto:info@leodisplay.com" class="navbar-sm-brand text-light text-decoration-none contact-info">info@leodisplay.com</a>
             <i class="fa-solid fa-phone contact-info text-light"></i>
-            <a href="" class="navbar-sm-brand text-white text-decoration-none contact-info">920-510-42</a>
+            <a href="" class="navbar-sm-brand text-white text-decoration-none contact-info">(+216) 73 277 997 /(+216) 98 319 329 /(+216) 93 099 393</a>
           </div>
           <div>
             <a href="" class="text-white"><i class="fa-brands fa-facebook me-2"></i></a>
@@ -59,7 +59,7 @@ function calculateTotal (){
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container d'flex justify-content-between">
         <div>
-          <h1 class="text-success brand-title">LeoDisplay</h1>
+        <a href="accueil.php" style="text-decoration:none;"><h1 class="text-success brand-title">LeoDisplay</h1></a>
         </div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
@@ -72,7 +72,7 @@ function calculateTotal (){
                   <a class="nav-link nav-links" href="#mainBox">About</a>
                 </li>
                 <li class="nav-item nav-items">
-                  <a class="nav-link nav-links" href="#new">Shop</a>
+                  <a class="nav-link nav-links" href="#shop">Shop</a>
                 </li>
                 <li class="nav-item nav-items">
                   <a class="nav-link nav-links" href="contact.php">Contact</a>
@@ -103,11 +103,13 @@ function calculateTotal (){
   </header>
 
   <section class="home">
+    <div class="background" style="background-image: url('../imgs/HP-Stitch-S500.jpg'); z-index:2; !important">
     <div class="">
       <!-- <h5> New Arrivals</h5> -->
-      <h1> <span>Best</span> Prices this season</h1>
-      <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam natus, vel, repudiandae facilis nemo quis optio suscipit blanditiis beatae similique eveniet porro iure molestias harum animi molestiae sapiente fugiat alias?</p>
-      <button>Shop now</button>
+      <h1>Sublimation sur supports textiles <br><span>HP Stitch S500</span></h1>
+      <p>LeoDisplay est specialisé dans l'impression numérique sur textile. <br>Nous avons recours a la sublimation depuis de nombreuses années déja. Les toiles sont imprimées en 4 couleurs sur notre imprimante HP Stitch S500 et ensuite fixées sur la calandre, ce qui rend la matière résistante aux UV et a l"eau. De plus, l'impression par sublimation offre une palette de couleurs intenses ainsi qu'un transfert parfait lors de l'impression sur des toiles de drapeaux.</p>
+      <a href="#shop"><button>Passez votre commande maintenant</button></a>
+    </div>
     </div>
   </section>
 
@@ -136,6 +138,7 @@ function calculateTotal (){
 
     </div>
   </section>
+  <h1 id="shop" style="margin-left:510px; margin-bottom:30px; color: orange">Choisissez vos produits <i class="fa-solid fa-arrow-down fa-bounce" style="color: orange;"></i></h1><span></span>
   <!-- display small text dexcribing the products  -->
   <section id='new' class="w-100">
 

@@ -87,12 +87,12 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
   <header>
     <nav class="navbar navbar-expand-lg bg-dark">
       <div class="container">
-        <div class="w-100 d-flex justify-content-between">
+      <div class="w-100 d-flex justify-content-between">
           <div>
             <i class="fa-solid fa-envelope text-light contact-info"></i>
-            <a href="" class="navbar-sm-brand text-light text-decoration-none contact-info">info@company.com</a>
+            <a href="mailto:info@leodisplay.com" class="navbar-sm-brand text-light text-decoration-none contact-info">info@leodisplay.com</a>
             <i class="fa-solid fa-phone contact-info text-light"></i>
-            <a href="" class="navbar-sm-brand text-white text-decoration-none contact-info">920-510-42</a>
+            <a href="" class="navbar-sm-brand text-white text-decoration-none contact-info">(+216) 73 277 997 /(+216) 98 319 329 /(+216) 93 099 393</a>
           </div>
           <div>
             <a href="" class="text-white"><i class="fa-brands fa-facebook me-2"></i></a>
@@ -106,7 +106,8 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container d'flex justify-content-between">
         <div>
-          <h1 class="text-success brand-title">LeoDisplay</h1>
+        <a href="accueil.php" style="text-decoration:none;"><h1 class="text-success brand-title">LeoDisplay</h1></a>
+
         </div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
@@ -119,7 +120,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                   <a class="nav-link nav-links" href="#mainBox">About</a>
                 </li>
                 <li class="nav-item nav-items">
-                <a class="nav-link nav-links" href="accueil.php#new">Shop</a>
+                <a class="nav-link nav-links" href="accueil.php#shop">Shop</a>
                 </li>
                 <li class="nav-item nav-items">
                   <a class="nav-link nav-links" href="contact.php">Contact</a>
@@ -214,14 +215,14 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
           </div>
 
           <div class="boxx col-lg-6 col-md-12 col-sm-12">
-            <h6>
+            <h6 style="color:coral; font-size:20px; margin-bottom:30px;">
               <?php echo $row['product_name'] ?>
             </h6>
 
 
             <!-- <form class="radioForm"> -->
             <div class="radioForm">
-              <h3 class="py-4">Etape 1</h3>
+            
               <div class="option-container">
                 <h4>Choisissez le type de drapeau : </h4>
                 <label>
@@ -251,7 +252,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 </div>
               </div>
 
-              <h3 class="py-4">Etape 2</h3>
+              <h3 class="py-4"><hr></h3>
               <div class="option-container">
                 <h4>Choissisez La Taille : </h4>
                 <label>
@@ -282,7 +283,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 </div>
               </div>
 
-              <h3 class="py-4">Etape 3</h3>
+              <h3 class="py-4"><hr></h3>
               <div class="option-container">
                 <h4>Choissisez La Base (Optionnelle) :</h4>
                 <div class="base">
@@ -320,7 +321,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
               </div>
 
-              <h3 class="py-4">Etape 4</h3>
+              <h3 class="py-4"><hr></h3>
               <div class="option-container">
                 <h4>Insérez Votre Image :</h4>
                 <div class="mainUpContainer">

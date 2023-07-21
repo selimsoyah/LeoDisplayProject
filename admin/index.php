@@ -147,10 +147,10 @@ if (isset($_POST['delete_order_btn'])) {
                 <p class="text-center" style="color:red;"> <?php echo $_GET['order_failed'] ?> </p>
             <?php } ?>
 
-            <div class="table-responsive" style="overflow-x: visible; width: 100%; white-space: nowrap;">
+            <div class="table-responsive" style="overflow-x: visible; width: 100%;">
                 <?php foreach ($grouped_orders as $order_date => $orders) { ?>
                     <h3><?php echo $order_date; ?></h3>
-                    <table class="table table-striped table-sm">
+                    <table class="table table-sm">
                         <thead>
                             <tr>
                                 <th class="line-between-td" style="border-top:1px solid black; border-left:1px solid black;" scope="col">Produit</th>
@@ -201,7 +201,7 @@ if (isset($_POST['delete_order_btn'])) {
                                     <!-- QUANTITE -->
                                     <td class="line-between-td">X <?php echo $order['quantity_2']; ?> </td>
                                     <!-- BARE METALIQUE -->
-                                    <td class="line-between-td"><?php if ($order['option5'] > 0) : ?>
+                                    <td class="line-between-td" ><?php if ($order['option5'] > 0) : ?>
                                             <?php if ($order['quantity_5'] >= "1") : ?>
                                                 <span>X <span class="product-price"><?php echo $order['quantity_5'] ?></span></span>
                                             <?php endif; ?>
