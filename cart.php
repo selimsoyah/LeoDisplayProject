@@ -83,7 +83,7 @@ function calculateTotal()
   <header>
     <nav class="navbar navbar-expand-lg bg-dark">
       <div class="container">
-      <div class="w-100 d-flex justify-content-between">
+        <div class="w-100 d-flex justify-content-between">
           <div>
             <i class="fa-solid fa-envelope text-light contact-info"></i>
             <a href="mailto:info@leodisplay.com" class="navbar-sm-brand text-light text-decoration-none contact-info">info@leodisplay.com</a>
@@ -102,7 +102,9 @@ function calculateTotal()
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container d'flex justify-content-between">
         <div>
-        <a href="accueil.php" style="text-decoration:none;"><h1 class="text-success brand-title">LeoDisplay</h1></a>
+          <a href="accueil.php" style="text-decoration:none;">
+            <h1 class="text-success brand-title">LeoDisplay</h1>
+          </a>
         </div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
@@ -115,22 +117,22 @@ function calculateTotal()
                   <a class="nav-link nav-links" href="#mainBox">About</a>
                 </li>
                 <li class="nav-item nav-items">
-                <a class="nav-link nav-links" href="accueil.php#shop">Shop</a>
+                  <a class="nav-link nav-links" href="accueil.php#shop">Shop</a>
                 </li>
                 <li class="nav-item nav-items">
                   <a class="nav-link nav-links" href="contact.php">Contact</a>
                 </li>
               </ul>
               <div class="position-relative">
-                  <form action="cart.php" method="POST">
+                <form action="cart.php" method="POST">
                   <!-- <i class="fa-solid fa-cart-arrow-down nav-icon"></i> -->
                   <button type="submit" class="submit-btn" name="cart_btn" style="  border:none;  background-color: transparent;">
-                <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+                    <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
                   </button>
-                <a href="login.php" class="text-decoration-none text-dark">
-                  <i class="fa-solid fa-user nav-icon"></i>
-                </a>
-                  </form>
+                  <a href="login.php" class="text-decoration-none text-dark">
+                    <i class="fa-solid fa-user nav-icon"></i>
+                  </a>
+                </form>
               </div>
               <div class="position-absolute rounded-circle cart"><?php if (isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0) { ?>
                   <span><?php echo $_SESSION['quantity']; ?></span>
@@ -214,7 +216,7 @@ function calculateTotal()
                   <?php endif; ?>
                   <?php if ($value['option4'] !== null) : ?>
                     <img src="data:image/jpeg;base64,<?php echo base64_encode($value['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px; position:absolute; right:120px;">
-                 <?php endif; ?>
+                  <?php endif; ?>
                 </div>
 
                 <!-- <input type="submit" class="edit-btn" name="edit-btn" value="Edit" > -->

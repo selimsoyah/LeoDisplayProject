@@ -31,7 +31,7 @@ while ($row = $checkout_details->fetch_assoc()) {
     // Access the columns using the column names
     $user_id = $row['user_id'];
     $username = $row['user_name'];
-    $email = $row['user_email'];
+    $user_email = $row['user_email'];
 
     // Display the retrieved data
 
@@ -48,8 +48,8 @@ if (isset($_POST['place_order'])) {
     // $name = $_POST['name'];
     // $email = $_POST['email'];
     $phone = 654654654;
-    $city = $email;
-    $address = $email;
+    $city = $user_email;
+    $address = $user_email;
     $order_cost = 8777;
     $order_status = "on_hold";
 
@@ -115,7 +115,7 @@ if (isset($_POST['place_order'])) {
     $mail->Password = $_ENV['key'];         // your 16 digits app password
     $mail->FromName = "Tech Area";
     $mail->setFrom($_ENV['email']);
-    $mail->AddAddress('soyahselim@gmail.com');
+    $mail->AddAddress($user_email);
     $mail->AddAddress('amineboussetta006@gmail.com');
     $mail->AddAddress('lachkar.ali.100@gmail.com');
     $mail->Subject = "Enquiry";
@@ -157,6 +157,9 @@ if (isset($_POST['place_order'])) {
     $mail->Body = $body;
     
     if ($mail->send()) {
+        array_splice($_SESSION['cart'], 0);
+            $_SESSION['total'] = 0;
+            $_SESSION['quantity'] = 0;
         $success = "Feedback submitted successfully";
     } else {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -164,7 +167,6 @@ if (isset($_POST['place_order'])) {
     
 
 
-    array_splice($_SESSION['cart'], 0);
-    $_SESSION['total'] = 0;
-    $_SESSION['quantity'] = 0;
 }
+
+
