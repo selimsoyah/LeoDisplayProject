@@ -85,8 +85,6 @@ header{
 
 
 .home {
-    background-image: url('../imgs/HP-Stitch-S500.jpg');
-    z-index: 5; 
     background-size: cover;
     background-color: coral;
     width: 100%;

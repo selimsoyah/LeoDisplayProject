@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include('server/connection.php');
+include('../server/connection.php');
 
 //if user already registred then take user to account page
 //   if(isset($_SESSION['logged_in'])){
@@ -91,7 +91,7 @@ if (isset($_POST['register'])) {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/bf14b68fbc.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/register.css">
+    <link rel="stylesheet" href="../assets/css/register.css">
     <style>
       /* Additional CSS styles for the phone number and address */
       .contact-info {
@@ -121,9 +121,10 @@ if (isset($_POST['register'])) {
         </div>
       </div>
     </header>
-
-    <section class="my-5 py-5">
-      <div class="container text-center mt-3 pt-3">
+<div>
+<?php include('sidemenu.php'); ?>
+    <section class=" " style="padding-bottom:0px;">
+      <div class="container text-center" >
         <h2 class="form-weight-bold">Registration</h2>
         <hr class="mx-auto line">
         <div class="mx-auto container">
@@ -168,6 +169,7 @@ if (isset($_POST['register'])) {
         </div>
       </div>
     </section>
+  </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>

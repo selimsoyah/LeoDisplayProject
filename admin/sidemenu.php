@@ -5,32 +5,20 @@
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
         <a href="index.php" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
+          <span>Main dashboard</span>
         </a>
         <a href="index.php" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="fas fa-chart-area fa-fw me-3"></i><span>Orders</span>
+          <span>Orders</span>
         </a>
-        <a href="products.php" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-lock fa-fw me-3"></i><span>Products</span></a>
-        <a href="../register.php" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-chart-line fa-fw me-3"></i><span>Add Account</span></a>
+        <a href="products.php" class="list-group-item list-group-item-action py-2 ripple"><span>Products</span></a>
+        <a href="register.php" class="list-group-item list-group-item-action py-2 ripple"><span>Add Account</span></a>
         <a href="accounts.php" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="fas fa-chart-pie fa-fw me-3"></i><span>Accounts</span>
+          <span>Accounts</span>
         </a>
       </div>
     </div>
   </nav>
 
-  
-
-     
-      
-
-      
-
-        
-    
-    
 <!--Main layout-->
 <main style="margin-top: 58px;">
   <div class="container pt-4"></div>
