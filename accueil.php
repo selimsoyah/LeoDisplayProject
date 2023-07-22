@@ -102,17 +102,14 @@ function calculateTotal (){
 
   </header>
 
-  <section class="home">
-    <div class="background" style="background-image: url('../imgs/HP-Stitch-S500.jpg'); z-index:2; !important">
-    <div class="">
+  <section class="home" style="background-image:url('assets/imgs/HP-Stitch-S500.jpg'); background-size:cover; background-color: orange;   ">
+    <div class="" >
       <!-- <h5> New Arrivals</h5> -->
       <h1>Sublimation sur supports textiles <br><span>HP Stitch S500</span></h1>
       <p>LeoDisplay est specialisé dans l'impression numérique sur textile. <br>Nous avons recours a la sublimation depuis de nombreuses années déja. Les toiles sont imprimées en 4 couleurs sur notre imprimante HP Stitch S500 et ensuite fixées sur la calandre, ce qui rend la matière résistante aux UV et a l"eau. De plus, l'impression par sublimation offre une palette de couleurs intenses ainsi qu'un transfert parfait lors de l'impression sur des toiles de drapeaux.</p>
       <a href="#shop"><button>Passez votre commande maintenant</button></a>
     </div>
-    </div>
   </section>
-
 
   <!-- display small text dexcribing the products  -->
   <section id="mainBox">
