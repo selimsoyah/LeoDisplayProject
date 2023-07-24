@@ -33,6 +33,8 @@ function calculateTotal (){
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/bf14b68fbc.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="assets/css/accueil.css">
+
+  
 </head>
 
 <body>
@@ -101,8 +103,8 @@ function calculateTotal (){
     </nav>
 
   </header>
-
-  <section class="home" style="background-image:url('assets/imgs/HP-Stitch-S500.jpg'); background-size:cover; background-color: orange;   ">
+  <!-- style="background-image:url('assets/imgs/HP-Stitch-S500.jpg'); background-size:cover; background-color: orange;   " -->
+  <section class="home" >
     <div class="" >
       <!-- <h5> New Arrivals</h5> -->
       <h1>Sublimation sur supports textiles <br><span>HP Stitch S500</span></h1>
@@ -110,6 +112,15 @@ function calculateTotal (){
       <a href="#shop"><button>Passez votre commande maintenant</button></a>
     </div>
   </section>
+
+
+  
+
+
+
+
+
+
 
   <!-- display small text dexcribing the products  -->
   <section id="mainBox">
@@ -244,7 +255,8 @@ function calculateTotal (){
   </div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 
 </html>
