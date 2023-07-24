@@ -165,9 +165,10 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
     </td>
 
     <td>
-      <?php if ($row['option4'] !== null): ?>
+      <?php if ($row['option4'] != null): ?>
         <img src="data:image/jpeg;base64,<?php echo base64_encode($row['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px;">
       <?php endif; ?>
+   
     </td>
   </tr>
 <?php } ?>

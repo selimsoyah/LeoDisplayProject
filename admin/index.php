@@ -201,7 +201,7 @@ if (isset($_POST['delete_order_btn'])) {
                                     <!-- QUANTITE -->
                                     <td class="line-between-td">X <?php echo $order['quantity_2']; ?> </td>
                                     <!-- BARE METALIQUE -->
-                                    <td class="line-between-td" ><?php if ($order['option5'] > 0) : ?>
+                                    <td class="line-between-td"><?php if ($order['option5'] > 0) : ?>
                                             <?php if ($order['quantity_5'] >= "1") : ?>
                                                 <span>X <span class="product-price"><?php echo $order['quantity_5'] ?></span></span>
                                             <?php endif; ?>
@@ -212,7 +212,7 @@ if (isset($_POST['delete_order_btn'])) {
                                     <!--BASE-->
                                     <td class="line-between-td"><?php if ($order['option3'] != NULL) : ?>
                                             <?php if ($order['quantity_3'] >= "1") : ?>
-                                                <span class="product-price"><?php echo $order['option3'] ,'X', $order['quantity_3'] ?></span>
+                                                <span class="product-price"><?php echo $order['option3'], 'X', $order['quantity_3'] ?></span>
                                             <?php endif; ?>
                                         <?php else : ?>
                                             <span><span class="product-price">Sans</span></span>
@@ -221,9 +221,13 @@ if (isset($_POST['delete_order_btn'])) {
 
                                     <!-- IMAGE-->
                                     <td class="line-between-td">
-                                        <a href="data:image/jpeg;base64,<?php echo base64_encode($order['option4']) ?>" download>
+                                        <?php if ($order['option4'] != null) : ?>
+                                            
+                                            <a href="data:image/jpeg;base64,<?php echo base64_encode($order['option4']) ?>" download>
                                             <img src="data:image/jpeg;base64,<?php echo base64_encode($order['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px;">
                                         </a>
+                                            <?php endif; ?>
+                                        
                                     </td>
 
                                     <!-- STATUS -->
@@ -249,7 +253,7 @@ if (isset($_POST['delete_order_btn'])) {
 
                                             <button class="btn btn-primary" type="submit" name="download-bat">BAT</button>
                                         </form>
-                                        <div class="input-b" >
+                                        <div class="input-b">
                                             <form action="send_email.php" method="post" enctype="multipart/form-data" style="display: flex; flex-direction:column;">
                                                 <input type="file" name="upload-bat" class="in">
                                                 <input type="submit" name="send_email" style="width: 97px; margin-top:5px;">

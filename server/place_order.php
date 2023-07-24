@@ -149,7 +149,9 @@ if (isset($_POST['place_order'])) {
             $body .= "<p> <b>$option3 </b> x <b>$quantity_3</b></p>";
         }
         if (!empty($option5) && !empty($quantity_5)) {
-            $body .= "<p> <b>$option5 </b> x <b>$quantity_5</b></p>";
+            if($option5 == 1){
+                $body .= "<p> <b> Avec Bare Metalique </b> x <b>$quantity_5</b></p>";
+            }
            
         }
     }

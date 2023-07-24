@@ -473,28 +473,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
   <?php } ?>
 
-  <?php
-  // Assuming the $_SESSION['cart'] array contains the products
 
-  if (isset($_SESSION['cart'])) {
-    foreach ($_SESSION['cart'] as $product) {
-      echo "Product ID: " . $product['product_id'] . "<br>";
-      echo "Product Image: " . $product['product_image'] . "<br>";
-      echo "Product Name: " . $product['product_name'] . "<br>";
-      echo "Product Price: " . $product['product_price'] . "<br>";
-      echo "Option 1: " . $product['option1'] . "<br>";
-      echo "Option 2: " . $product['option2'] . "<br>";
-      echo "Option 3: " . $product['option3'] . "<br>";
-      echo "Option 4: " . $product['option4'] . "<br>";
-      echo "Option 5: " . $product['option5'] . "<br>";
-      echo "Quantity 1: " . $product['quantity_1'] . "<br>";
-      echo "Quantity 2: " . $product['quantity_2'] . "<br>";
-      echo "Quantity 3: " . $product['quantity_3'] . "<br>";
-      echo "<br>";
-      echo "**********************************************************";
-    }
-  }
-  ?>
 
 
   <footer class="footer">
