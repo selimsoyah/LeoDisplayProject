@@ -154,48 +154,65 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
   <form  action="single_product1.php" method="GET">
     <input type="hidden" name="product_id" value="1">
+    <span class="arrow-label-left">StandModulaire</span> <!-- Added label -->
     <button type='submit' class="arrow-button left-arrow">
       <i class="fas fa-chevron-left"></i>
     </button>
   </form>
   <!-- Right Arrow Button -->
 
-  <form  action="single_product3.php" method="GET">
-    <input type="hidden" name="product_id" value="3">
-    <button type='submit' class="arrow-button right-arrow">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-  </form>
+  <form action="single_product3.php" method="GET">
+  <input type="hidden" name="product_id" value="3">
+  <span class="arrow-label-right">Flag</span> <!-- Added label -->
+  <button type='submit' class="arrow-button right-arrow">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+</form>
 
+<script src="https://kit.fontawesome.com/bf14b68fbc.js" crossorigin="anonymous"></script>
+<script src="assets/js/main.js"></script>
+<style>
+  .arrow-button {
+    position: absolute;
+    top: 70%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: #FFA500;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 18px;
+    border: none;
+  }
 
+  .left-arrow {
+    left: 10px;
+  }
 
-  <script src="https://kit.fontawesome.com/bf14b68fbc.js" crossorigin="anonymous"></script>
-  <script src="assets/js/main.js"></script>
-  <style>
-    .arrow-button {
-      position: absolute;
-      top: 70%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      background-color: #FFA500;
-      color: #fff;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 40px;
-      font-size: 18px;
-      border:none;
-      /* z-index: 999; */
-    }
+  .right-arrow {
+    right: 10px;
+  }
 
-    .left-arrow {
-      left: 10px;
-    }
+  .arrow-label-left {
+    position: relative;
+    top:330px; /* Adjust this value as per your desired position */
+    transform: translateY(-100%); /* Position above the button */
+    left: 5px; /* Adjust this value to center the label */
+    font-size: 14px;
+    color: orange; /* Customize the label color */
+  }
+  .arrow-label-right {
+    position: relative;
+    top:308px; /* Adjust this value as per your desired position */
+    transform: translateY(-100%); /* Position above the button */
+    left: 1475px; /* Adjust this value to center the label */
+    font-size: 14px;
+    color: orange; /* Customize the label color */
+  }
+</style>
 
-    .right-arrow {
-      right: 10px;
-    }
-  </style>
   <?php while ($row = $products->fetch_assoc()) { ?>
 
     <form method="POST" action='single_product2.php' enctype="multipart/form-data">
@@ -231,7 +248,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
 
             <!-- <form class="radioForm"> -->
-            <div class="radioForm" id="radioFormm">
+              <div class="radioForm" id="radioFormm">
               <!-- <h2>240 DT</h2> -->
               <!-- <input type="number" value="1" > -->
               <h4>Choisissez Le Type De Stand: </h4>

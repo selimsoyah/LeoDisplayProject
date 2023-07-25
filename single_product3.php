@@ -155,6 +155,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
   <form  action="single_product2.php" method="GET">
     <input type="hidden" name="product_id" value="2">
+    <span class="arrow-label-left">StandParapluie</span> <!-- Added label -->
     <button type='submit' class="arrow-button left-arrow">
       <i class="fas fa-chevron-left"></i>
     </button>
@@ -186,6 +187,14 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
     .left-arrow {
       left: 10px;
     }
+    .arrow-label-left {
+    position: relative;
+    top:330px; /* Adjust this value as per your desired position */
+    transform: translateY(-100%); /* Position above the button */
+    left: 5px; /* Adjust this value to center the label */
+    font-size: 14px;
+    color: orange; /* Customize the label color */
+  }
 
    
   </style>

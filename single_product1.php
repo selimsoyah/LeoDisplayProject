@@ -154,11 +154,12 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
  
   <!-- Right Arrow Button -->
 
-  <form  action="single_product2.php" method="GET">
-    <input type="hidden" name="product_id" value="2">
-    <button type='submit' class="arrow-button right-arrow">
-      <i class="fas fa-chevron-right"></i>
-    </button>
+  <form action="single_product2.php" method="GET">
+  <input type="hidden" name="product_id" value="2">
+  <span class="arrow-label-right">StandParapluie</span> <!-- Added label -->
+  <button type='submit' class="arrow-button right-arrow">
+    <i class="fas fa-chevron-right"></i>
+  </button>
   </form>
 
 
@@ -184,6 +185,14 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
   .right-arrow {
       right: 10px;
     }
+    .arrow-label-right {
+    position: relative;
+    top:330px; /* Adjust this value as per your desired position */
+    transform: translateY(-100%); /* Position above the button */
+    left: 1405px; /* Adjust this value to center the label */
+    font-size: 14px;
+    color: orange; /* Customize the label color */
+  }
   </style>
 
   <?php while ($row = $products->fetch_assoc()) { ?>
