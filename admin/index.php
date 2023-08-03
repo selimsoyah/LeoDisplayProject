@@ -153,11 +153,11 @@ if (isset($_POST['delete_order_btn'])) {
                     <table class="table table-sm">
                         <thead>
                             <tr>
-                                <th class="line-between-td" style="border-top:1px solid black; border-left:1px solid black;" scope="col">Produit</th>
-                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Username</th>
+                                <th class="line-between-td" style="border-top:1px solid black; border-left:1px solid black; border-radius:5px;" scope="col">Nom</th>
+                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Produit</th>
                                 <th class="line-between-td" style="border-top:1px solid black;" scope="col">Type</th>
                                 <th class="line-between-td" style="border-top:1px solid black;" scope="col">Taille</th>
-                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Quantite</th>
+                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Quantité</th>
                                 <th class="line-between-td" style="border-top:1px solid black;" scope="col">Bare metalique</th>
                                 <th class="line-between-td" style="border-top:1px solid black;" scope="col">Base</th>
                                 <th class="line-between-td" style="border-top:1px solid black;" scope="col">Image</th>
@@ -185,15 +185,15 @@ if (isset($_POST['delete_order_btn'])) {
                                     $stmt2->bind_result($product_image);
                                     $stmt2->fetch();
                                     $stmt2->close();
-
                                     // Display the product image
                                     ?>
+                                    
+
+                                    <td class="line-between-td" data-name="name" style="border-left:1px solid black; border-radius:5%;"><?php echo $order['user_name']; ?></td>
+
                                     <td class="line-between-td" style="border-left:1px solid black;">
                                         <img src="../<?php echo $order['product_image']; ?>" alt="Product Image" width="100">
                                     </td>
-
-                                    <td class="line-between-td" data-name="name"><?php echo $order['user_name']; ?></td>
-
                                     <!-- TYPE -->
                                     <td class="line-between-td" data-name="quantity"><?php echo $order['option1']; ?></td>
                                     <!-- TAILLE -->

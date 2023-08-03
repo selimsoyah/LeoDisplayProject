@@ -28,7 +28,7 @@ if(isset($_POST['download-bat'])){
 
     $dompdf = new Dompdf($options);
 
-    $dompdf -> setPaper("A4", "landscape");
+    $dompdf->setPaper(array(0, 0, 283.4644, 283.4644), 'custom');
 
     $html = file_get_contents("template_pdf.html");
 

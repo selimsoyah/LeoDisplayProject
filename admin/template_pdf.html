@@ -3,8 +3,8 @@
         <meta charset="UTF-8">
         
         <style>
-            table {
-                width: 50%;
+            body{
+                font-family:sans-serif;
             }
             footer {
                 text-align: center;
@@ -14,10 +14,10 @@
     </head>
     <body>
         
+        <h5>{{ type }} x {{ quantity }}</h5>
 
-        <h1>BAT</h1>
 
-        <table>
+        <!-- <table>
             <thead>
                 <tr>
                     <th style="border-left:1px solid black; border-right: 1px solid black; border-top:1px solid black;">Produit</th>
@@ -37,7 +37,23 @@
                     <td style="text-align: center; border-top:1px solid black; border-left:1px solid black; border-right: 1px solid black;">{{ type_base }} <span>X</span> {{ q_base }} </td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
+
+        <div style="width: 50%; float: left; margin-top:50px;">
+        <p>Taille: {{ taille }}</p>
+        <p>Bare: x{{ bare }}</p>
+        <p>Base: {{ type_base }} <span>X</span> {{ q_base }}</p>
+        </div>
+
+        <style>
+            p{
+                
+                font-size: 14px;
+                line-height: 1.3; 
+                margin: 0;
+            }
+        </style>
+
         <footer>
         </footer>
 
