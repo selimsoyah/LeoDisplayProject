@@ -198,6 +198,62 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
    
   </style>
+  
+
+  <style>
+  /* Remove default arrow styles */
+  input[type="number"] {
+    -webkit-appearance: none; /* Safari and Chrome */
+    -moz-appearance: textfield; /* Firefox */
+    width: 50px; /* Adjust the width as needed */
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    background-color: white; /* Set the background color */
+  }
+
+  /* Custom "+" and "-" symbols */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  input[type="number"]::before {
+    content: "+"; /* Unicode for the plus symbol */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 100%;
+    text-align: center;
+    line-height: 30px;
+    background-color: black;
+    border: 1px solid #ccc;
+    border-right: none;
+    cursor: pointer;
+  }
+
+  input[type="number"]::after {
+    content: "-"; /* Unicode for the minus symbol */
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    text-align: center;
+    line-height: 30px;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    border-left: none;
+    cursor: pointer;
+  }
+
+  /* Remove arrows for Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+</style>
+
 
   <?php while ($row = $products->fetch_assoc()) { ?>
 
@@ -272,7 +328,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
   <div class="option-container">
     <h4>Choissisez La Taille : </h4>
     <label>
-      <input type="radio" name="option2" value="2m50" onclick="toggleInputGroup('input-group2')">
+      <input type="radio" name="option2" value="2m50" min="1" onclick="toggleInputGroup('input-group2')">
       <!-- <img src="assets/imgs//2m50.png" alt="2m50"> -->
       2m50
     </label>
@@ -296,7 +352,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
     </label>
 
     <div class="input-group" id="input-group2" style="display: none;">
-      <input type="number" name="quantity_2" value="0">
+      <input type="number" name="quantity_2" value="1" min="1" >
       <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
       <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option2','input-group2')">Remove from Cart</button>
       <a href="" id="pdf-download-link" download>
@@ -339,7 +395,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
         Metal Base 10Kg
       </label>
       <div class="input-group" id="input-group3" style="display: none;">
-        <input type="number" name="quantity_3" value="0">
+        <input type="number" name="quantity_3" value="1" min="1">
         <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
         <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option3','input-group3')">Remove from Cart</button>
       </div>
@@ -356,7 +412,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
         OUI
       </label>
       <div class="input-group" id="input-group5" style="display: none;">
-        <input type="number" name="quantity_5" value="0">
+        <input type="number" name="quantity_5" value="1" min="1">
         <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
         <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option5','input-group5')">Remove from Cart</button>
       </div>

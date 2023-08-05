@@ -274,7 +274,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
               <label>
 
-                <input type="radio" name="option2" value="Dimension 1/3" onclick="toggleInputGroup('input-group2')">
+                <input type="radio" name="option2" value="Dimension 1/3" min="1" onclick="toggleInputGroup('input-group2')">
 
                 <!-- <img src="assets/imgs/standParapluiePlat13.png" alt="standParapluiePlat1/3"> -->
                 Dimension :1/3
