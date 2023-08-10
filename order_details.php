@@ -114,6 +114,7 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
 
           <tr>
             <th>Product Name :</th>
+            <th>Status</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Type</th>
@@ -133,7 +134,11 @@ if (isset($_GET['order_details_btn']) && isset($_GET['order_id'])){
         </div>
       </div>
     </td>
-
+    <td>
+    
+        <span><?php echo $row['order_status'] ?></span>
+    
+    </td>
     <td>
       <?php if ($row['product_price'] !== null): ?>
         <span><?php echo $row['product_price'] ?></span>
