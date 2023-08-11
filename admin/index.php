@@ -19,6 +19,7 @@ if (isset($_GET['page_no']) && $_GET['page_no'] != "") {
     $page_no = 1;
 }
 
+
 //2 return number of products
 $stmt1 = $conn->prepare("SELECT COUNT(*) AS total_records FROM orders");
 $stmt1->execute();
@@ -43,6 +44,7 @@ $total_no_of_pages = ceil($total_records / $total_records_per_page);
 $stmt2 = $conn->prepare("SELECT orders.*, users.user_name, order_items.option1, order_items.option2, order_items.option3, order_items.option4, order_items.option5, order_items.product_image, order_items.quantity_2, order_items.quantity_3, order_items.quantity_5 FROM orders JOIN users ON orders.user_id = users.user_id JOIN order_items ON orders.order_id = order_items.order_id ORDER BY order_date DESC LIMIT $offset, $total_records_per_page");
 $stmt2->execute();
 $orders = $stmt2->get_result();
+
 
 
 // Group orders by order date
@@ -147,6 +149,10 @@ if (isset($_POST['delete_order_btn'])) {
                 <p class="text-center" style="color:red;"> <?php echo $_GET['order_failed'] ?> </p>
             <?php } ?>
 
+
+            
+
+
             <div class="table-responsive" style="overflow-x: visible; width: 100%;">
                 <?php foreach ($grouped_orders as $order_date => $orders) { ?>
                     <h3><?php echo $order_date; ?></h3>
@@ -232,6 +238,14 @@ if (isset($_POST['delete_order_btn'])) {
 
                                     <!-- STATUS -->
                                     <td class="line-between-td">
+                                    <?php
+                                            // // Replace with your actual code to fetch order_item details from the database
+                                            // $order_id = ...; // You need to have the correct order_item_id here
+                                            // $order_status = ...; // Fetch the order_status from the order_item table
+                                            
+                                            // $status_text = ($order_item_status == 'on_hold') ? 'On Hold' : 'Delivered';
+                                            // $btn_class = ($order_item_status == 'delivered') ? 'btn-delivered' : 'btn-primary';
+                                            // ?>
                                         <form action="index.php" method="POST">
                                             <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
                                             <input type="hidden" name="order_status" value="<?php echo $order['order_status']; ?>">

@@ -37,7 +37,6 @@ while ($row = $checkout_details->fetch_assoc()) {
 
 }
 
-
 echo "<pre>";
 print_r($username); // or var_dump($checkout_details);
 echo "</pre>";
@@ -52,8 +51,6 @@ if (isset($_POST['place_order'])) {
     $address = $user_email;
     $order_cost = 8777;
     $order_status = "on_hold";
-
-
 
     $stmt = $conn->prepare("INSERT INTO orders (order_cost,order_status,user_id,user_phone,user_city,user_address,order_date)
                             VALUES (?,?,?,?,?,?,?) ");
@@ -95,10 +92,12 @@ if (isset($_POST['place_order'])) {
         $stmt1->send_long_data(10, $option4);
         $stmt1->execute();
         // array_splice($_SESSION['cart'], 0);
+        array_splice($_SESSION['cart'], 0);
+        $_SESSION['total'] = 0;
+        $_SESSION['quantity'] = 0;
+        $success = "Feedback submitted successfully";
         header('location:../account.php');
     }
-
-
 
     //5. remove everything from cart
 
@@ -159,15 +158,10 @@ if (isset($_POST['place_order'])) {
     $mail->Body = $body;
     
     if ($mail->send()) {
-        array_splice($_SESSION['cart'], 0);
-            $_SESSION['total'] = 0;
-            $_SESSION['quantity'] = 0;
-        $success = "Feedback submitted successfully";
+      
     } else {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
-    
-
 
 }
 

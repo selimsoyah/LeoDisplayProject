@@ -33,7 +33,9 @@ if (isset($_POST['remove_product'])) {
     // Display each product in the cart
     // ...
   }
-} else {
+} 
+
+else {
   header('location: accueil.php');
 }
 
