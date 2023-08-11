@@ -67,6 +67,17 @@ if(isset($_SESSION['logged_in'])){
   $stmt->execute();
 
   $orders = $stmt->get_result();
+
+
+  $user_id = $_SESSION['user_id'];
+  $stmt1 = $conn->prepare("SELECT * FROM order_items WHERE user_id=?");
+
+  $stmt1->bind_param('i', $user_id);
+  $stmt1->execute();
+
+  $orders_status = $stmt1->get_result();
+ 
+
 }
 
 
@@ -218,7 +229,7 @@ if(isset($_SESSION['logged_in'])){
 
 
           <?php  while($row = $orders->fetch_assoc()){   ?>
-
+            
           <tr>
             <td>
               <!--<div class="product-info">
@@ -235,7 +246,9 @@ if(isset($_SESSION['logged_in'])){
             </td>
 
             <td>
-              <span> <?php echo $row['order_status'];  ?> </span>
+     
+              <!-- <span> <?php echo $row1['order_status'];  ?> </span> -->
+         
             </td>
 
             <td>
@@ -250,7 +263,7 @@ if(isset($_SESSION['logged_in'])){
             </td>
 
           </tr>
-
+        
           <?php } ?>
 
 

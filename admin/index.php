@@ -41,7 +41,7 @@ $total_no_of_pages = ceil($total_records / $total_records_per_page);
 
 //4 get all products
 
-$stmt2 = $conn->prepare("SELECT orders.*, users.user_name, order_items.option1, order_items.option2, order_items.option3, order_items.option4, order_items.option5, order_items.product_image, order_items.quantity_2, order_items.quantity_3, order_items.quantity_5 FROM orders JOIN users ON orders.user_id = users.user_id JOIN order_items ON orders.order_id = order_items.order_id ORDER BY order_date DESC LIMIT $offset, $total_records_per_page");
+$stmt2 = $conn->prepare("SELECT orders.*, users.user_name,order_items.item_id ,order_items.option1, order_items.option2, order_items.option3, order_items.option4, order_items.option5, order_items.product_image, order_items.quantity_2, order_items.quantity_3, order_items.quantity_5,order_items.order_status FROM orders JOIN users ON orders.user_id = users.user_id JOIN order_items ON orders.order_id = order_items.order_id ORDER BY order_date DESC LIMIT $offset, $total_records_per_page");
 $stmt2->execute();
 $orders = $stmt2->get_result();
 
@@ -56,7 +56,7 @@ while ($order = $orders->fetch_assoc()) {
 
 
 if (isset($_POST['edit_order_status_btn'])) {
-    $order_id = $_POST['order_id'];
+    $item_id = $_POST['item_id'];
     $order_status = $_POST['order_status'];
 
     // Modify the order status based on the current status
@@ -66,8 +66,8 @@ if (isset($_POST['edit_order_status_btn'])) {
         $new_status = 'on_hold';
     }
 
-    $stmt = $conn->prepare("UPDATE orders SET order_status = ? WHERE order_id = ?");
-    $stmt->bind_param('si', $new_status, $order_id);
+    $stmt = $conn->prepare("UPDATE order_items SET order_status = ? WHERE item_id = ?");
+    $stmt->bind_param('si', $new_status, $item_id);
 
     if ($stmt->execute()) {
         header('Location: index.php?order_updated=Order status has been updated successfully');
@@ -247,11 +247,13 @@ if (isset($_POST['delete_order_btn'])) {
                                             // $btn_class = ($order_item_status == 'delivered') ? 'btn-delivered' : 'btn-primary';
                                             // ?>
                                         <form action="index.php" method="POST">
-                                            <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
+                                            <input type="hidden" name="item_id" value="<?php echo $order['item_id']; ?>">
                                             <input type="hidden" name="order_status" value="<?php echo $order['order_status']; ?>">
                                             <button class="btn <?php echo ($order['order_status'] == 'delivered') ? 'btn-delivered' : 'btn-primary'; ?>" type="submit" name="edit_order_status_btn">
                                                 <?php echo ($order['order_status'] == 'on_hold') ? 'On Hold' : 'Delivered'; ?>
                                             </button>
+                              
+
                                         </form>
                                     </td>
 

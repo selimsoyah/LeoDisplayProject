@@ -50,12 +50,14 @@ if (isset($_POST['place_order'])) {
     $city = $user_email;
     $address = $user_email;
     $order_cost = 8777;
-    $order_status = "on_hold";
+  
 
-    $stmt = $conn->prepare("INSERT INTO orders (order_cost,order_status,user_id,user_phone,user_city,user_address,order_date)
-                            VALUES (?,?,?,?,?,?,?) ");
 
-    $stmt->bind_param('isiisss', $order_cost, $order_status, $user_id, $phone, $city, $address, $order_date);
+
+    $stmt = $conn->prepare("INSERT INTO orders (order_cost,user_id,user_phone,user_city,user_address,order_date)
+                            VALUES (?,?,?,?,?,?) ");
+
+    $stmt->bind_param('iiisss', $order_cost, $user_id, $phone, $city, $address, $order_date);
 
     $stmt->execute();
 
@@ -84,12 +86,12 @@ if (isset($_POST['place_order'])) {
         $quantity_3 = $product['quantity_3'];
         $quantity_5 = $product['quantity_5'];
         $order_date = date('Y-m-d H:i:s');
+        $order_status = "on_hold";
+        $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id,order_status,product_name, product_image,order_date,product_price,option1,option2,option3,option4,option5,quantity_1,quantity_2,quantity_3,quantity_5)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-        $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id, product_name, product_image,order_date,product_price,option1,option2,option3,option4,option5,quantity_1,quantity_2,quantity_3,quantity_5)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-        $stmt1->bind_param('iiisssssssbiiiii', $order_id, $product_id,  $user_id, $product_name, $product_image, $order_date, $product_price, $option1, $option2, $option3, $option4, $option5, $quantity_1, $quantity_2, $quantity_3, $quantity_5);
-        $stmt1->send_long_data(10, $option4);
+        $stmt1->bind_param('iiissssssssbiiiii', $order_id, $product_id,  $user_id,$order_status ,$product_name, $product_image, $order_date, $product_price, $option1, $option2, $option3, $option4, $option5, $quantity_1, $quantity_2, $quantity_3, $quantity_5);
+        $stmt1->send_long_data(11, $option4);
         $stmt1->execute();
         // array_splice($_SESSION['cart'], 0);
         array_splice($_SESSION['cart'], 0);
