@@ -5,15 +5,15 @@ session_start();
 
 
 if (isset($_POST['remove_product'])) {
-  $product_id = $_POST['product_id'];
-  foreach ($_SESSION['cart'] as $key => $product) {
-    if ($product['product_id'] === $product_id) {
-      unset($_SESSION['cart'][$key]);
-      break;
-    }
+  $productIndex = $_POST['product_index'];
+  
+  if (isset($_SESSION['cart'][$productIndex])) {
+      unset($_SESSION['cart'][$productIndex]);
   }
-  calculateTotal();
-} elseif (isset($_POST['edit_btn'])) {
+  
+  // Redirect back to the cart page or perform any other actions as needed
+}
+elseif (isset($_POST['edit_btn'])) {
   $product_id = $_POST['product_id'];
   $product_quantity = $_POST['product_quantity'];
 
@@ -172,15 +172,15 @@ function calculateTotal()
                 <div>
                   <br>
                   <form method="POST" action='cart.php'>
-                    <input type='hidden' name="product_id" value="<?php echo $value['product_id'] ?>" />
-                    <input type='submit' name="remove_product" class="remove-btn" value='remove' style="    color: white;
+              <input type='hidden' name="product_index" value="<?php echo $key ?>" />
+              <input type='submit' name="remove_product" class="remove-btn" value='remove' style="color: white;
     background-color: orange;
     border:none;
     text-decoration: none;
     font-size: 14px;
     padding:5px;
     border-radius:5px;" />
-                  </form>
+            </form
                 </div>
               </div>
             </td>

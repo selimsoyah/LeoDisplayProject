@@ -90,7 +90,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
   <header>
     <nav class="navbar navbar-expand-lg bg-dark">
       <div class="container">
-      <div class="w-100 d-flex justify-content-between">
+        <div class="w-100 d-flex justify-content-between">
           <div>
             <i class="fa-solid fa-envelope text-light contact-info"></i>
             <a href="mailto:info@leodisplay.com" class="navbar-sm-brand text-light text-decoration-none contact-info">info@leodisplay.com</a>
@@ -109,7 +109,9 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container d'flex justify-content-between">
         <div>
-        <a href="accueil.php" style="text-decoration:none;"><h1 class="text-success brand-title">LeoDisplay</h1></a>
+          <a href="accueil.php" style="text-decoration:none;">
+            <h1 class="text-success brand-title">LeoDisplay</h1>
+          </a>
         </div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
@@ -122,22 +124,22 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                   <a class="nav-link nav-links" href="#mainBox">About</a>
                 </li>
                 <li class="nav-item nav-items">
-                <a class="nav-link nav-links" href="accueil.php#shop">Shop</a>
+                  <a class="nav-link nav-links" href="accueil.php#shop">Shop</a>
                 </li>
                 <li class="nav-item nav-items">
                   <a class="nav-link nav-links" href="contact.php">Contact</a>
                 </li>
               </ul>
               <div class="position-relative">
-                  <form action="cart.php" method="POST">
+                <form action="cart.php" method="POST">
                   <!-- <i class="fa-solid fa-cart-arrow-down nav-icon"></i> -->
                   <button type="submit" class="submit-btn" name="cart_btn" style="  border:none;  background-color: transparent;">
-                <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
+                    <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
                   </button>
-                <a href="login.php" class="text-decoration-none text-dark">
-                  <i class="fa-solid fa-user nav-icon"></i>
-                </a>
-                  </form>
+                  <a href="login.php" class="text-decoration-none text-dark">
+                    <i class="fa-solid fa-user nav-icon"></i>
+                  </a>
+                </form>
               </div>
               <div class="position-absolute rounded-circle cart"><?php if (isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0) { ?>
                   <span><?php echo $_SESSION['quantity']; ?></span>
@@ -153,7 +155,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
   </header>
 
 
-  <form  action="single_product2.php" method="GET">
+  <form action="single_product2.php" method="GET">
     <input type="hidden" name="product_id" value="2">
     <span class="arrow-label-left">StandParapluie</span> <!-- Added label -->
     <button type='submit' class="arrow-button left-arrow">
@@ -180,79 +182,88 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
       text-align: center;
       line-height: 40px;
       font-size: 18px;
-      border:none;
+      border: none;
       /* z-index: 999; */
     }
 
     .left-arrow {
       left: 10px;
     }
-    .arrow-label-left {
-    position: relative;
-    top:330px; /* Adjust this value as per your desired position */
-    transform: translateY(-100%); /* Position above the button */
-    left: 5px; /* Adjust this value to center the label */
-    font-size: 14px;
-    color: orange; /* Customize the label color */
-  }
 
-   
+    .arrow-label-left {
+      position: relative;
+      top: 330px;
+      /* Adjust this value as per your desired position */
+      transform: translateY(-100%);
+      /* Position above the button */
+      left: 5px;
+      /* Adjust this value to center the label */
+      font-size: 14px;
+      color: orange;
+      /* Customize the label color */
+    }
   </style>
-  
+
 
   <style>
-  /* Remove default arrow styles */
-  input[type="number"] {
-    -webkit-appearance: none; /* Safari and Chrome */
-    -moz-appearance: textfield; /* Firefox */
-    width: 50px; /* Adjust the width as needed */
-    padding: 5px;
-    text-align: center;
-    border: 1px solid #ccc;
-    background-color: white; /* Set the background color */
-  }
+    /* Remove default arrow styles */
+    input[type="number"] {
+      -webkit-appearance: none;
+      /* Safari and Chrome */
+      -moz-appearance: textfield;
+      /* Firefox */
+      width: 50px;
+      /* Adjust the width as needed */
+      padding: 5px;
+      text-align: center;
+      border: 1px solid #ccc;
+      background-color: white;
+      /* Set the background color */
+    }
 
-  /* Custom "+" and "-" symbols */
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-  }
+    /* Custom "+" and "-" symbols */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
 
-  input[type="number"]::before {
-    content: "+"; /* Unicode for the plus symbol */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 20px;
-    height: 100%;
-    text-align: center;
-    line-height: 30px;
-    background-color: black;
-    border: 1px solid #ccc;
-    border-right: none;
-    cursor: pointer;
-  }
+    input[type="number"]::before {
+      content: "+";
+      /* Unicode for the plus symbol */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 100%;
+      text-align: center;
+      line-height: 30px;
+      background-color: black;
+      border: 1px solid #ccc;
+      border-right: none;
+      cursor: pointer;
+    }
 
-  input[type="number"]::after {
-    content: "-"; /* Unicode for the minus symbol */
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50px;
-    height: 100%;
-    text-align: center;
-    line-height: 30px;
-    background-color: #ddd;
-    border: 1px solid #ccc;
-    border-left: none;
-    cursor: pointer;
-  }
+    input[type="number"]::after {
+      content: "-";
+      /* Unicode for the minus symbol */
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 100%;
+      text-align: center;
+      line-height: 30px;
+      background-color: #ddd;
+      border: 1px solid #ccc;
+      border-left: none;
+      cursor: pointer;
+    }
 
-  /* Remove arrows for Firefox */
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
-</style>
+    /* Remove arrows for Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  </style>
 
 
   <?php while ($row = $products->fetch_assoc()) { ?>
@@ -292,175 +303,253 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
             <!-- <form class="radioForm"> -->
             <div class="radioForm">
 
-    <div class="option-container">
-    <h4>Choisissez le type de drapeau : </h4>
-    <label>
-      <input type="radio" name="option1" value="Drapeau Courbé" onclick="toggleInputGroup('input-group1')">
-      <!-- <img src="assets/imgs//2m50.png" alt="2m50"> -->
-      Courbé
-    </label>
+              <div class="option-container">
+                <h4>Choisissez le type de drapeau : </h4>
+                <label>
+                  <input type="radio" name="option1" value="Drapeau Courbé" onclick="toggleInputGroup('input-group1')">
+                  <!-- <img src="assets/imgs//2m50.png" alt="2m50"> -->
+                  Courbé
+                </label>
 
-    <label>
-      <input type="radio" name="option1" value="Drapeau Droit" onclick="toggleInputGroup('input-group1')">
-      <!-- <img src="assets/imgs/2m80.png" alt="2m80"> -->
-      Droit
-    </label>
+                <label>
+                  <input type="radio" name="option1" value="Drapeau Droit" onclick="toggleInputGroup('input-group1')">
+                  <!-- <img src="assets/imgs/2m80.png" alt="2m80"> -->
+                  Droit
+                </label>
 
-    <label>
-      <input type="radio" name="option1" value="Drapeau Incliné" onclick="toggleInputGroup('input-group1')">
-      <!-- <img src="assets/imgs/3m20.png" alt="3m20"> -->
-      Incliné
-    </label>
+                <label>
+                  <input type="radio" name="option1" value="Drapeau Incliné" onclick="toggleInputGroup('input-group1')">
+                  <!-- <img src="assets/imgs/3m20.png" alt="3m20"> -->
+                  Incliné
+                </label>
 
-    <label>
-      <input type="radio" name="option1" value="Drapeau Rectangulaire" onclick="toggleInputGroup('input-group1')">
-      <!-- <img src="assets/imgs/3m80.png" alt="3m80"> -->
-      Rectangulaire
-    </label>
+                <label>
+                  <input type="radio" name="option1" value="Drapeau Rectangulaire" onclick="toggleInputGroup('input-group1')">
+                  <!-- <img src="assets/imgs/3m80.png" alt="3m80"> -->
+                  Rectangulaire
+                </label>
 
-    <!-- <div class="input-group" id="input-group1" style="display: none;">
+                <!-- <div class="input-group" id="input-group1" style="display: none;">
       <input type="number" name="quantity_1" value="0">
       <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
       <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option1','input-group1')">Remove from Cart</button>
     </div> -->
-  </div>
-  <h3 class="py-4"><hr></h3>
-  <div class="option-container">
-    <h4>Choissisez La Taille : </h4>
-    <label>
-      <input type="radio" name="option2" value="2m50" min="1" onclick="toggleInputGroup('input-group2')">
-      <!-- <img src="assets/imgs//2m50.png" alt="2m50"> -->
-      2m50
-    </label>
+              </div>
+              <h3 class="py-4">
+                <hr>
+              </h3>
+              <div class="option-container">
+                <h4>Choissisez La Taille : </h4>
+                <label>
+                  <input type="radio" name="option2" value="2m50" min="1" onclick="toggleInputGroup('input-group2')">
+                  <!-- <img src="assets/imgs//2m50.png" alt="2m50"> -->
+                  2m50
+                </label>
 
-    <label>
-      <input type="radio" name="option2" value="2m80" onclick="toggleInputGroup('input-group2')">
-      <!-- <img src="assets/imgs/2m80.png" alt="2m80"> -->
-      2m80
-    </label>
+                <label>
+                  <input type="radio" name="option2" value="2m80" onclick="toggleInputGroup('input-group2')">
+                  <!-- <img src="assets/imgs/2m80.png" alt="2m80"> -->
+                  2m80
+                </label>
 
-    <label>
-      <input type="radio" name="option2" value="3m20" onclick="toggleInputGroup('input-group2')">
-      <!-- <img src="assets/imgs/3m20.png" alt="3m20"> -->
-      3m20
-    </label>
+                <label>
+                  <input type="radio" name="option2" value="3m20" onclick="toggleInputGroup('input-group2')">
+                  <!-- <img src="assets/imgs/3m20.png" alt="3m20"> -->
+                  3m20
+                </label>
 
-    <label>
-      <input type="radio" name="option2" value="3m80" onclick="toggleInputGroup('input-group2')">
-      <!-- <img src="assets/imgs/3m80.png" alt="3m80"> -->
-      3m80
-    </label>
+                <label>
+                  <input type="radio" name="option2" value="3m80" onclick="toggleInputGroup('input-group2')">
+                  <!-- <img src="assets/imgs/3m80.png" alt="3m80"> -->
+                  3m80
+                </label>
 
-    <div class="input-group" id="input-group2" style="display: none;">
-      <input type="number" name="quantity_2" value="1" min="1" >
-      <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-      <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option2','input-group2')">Remove from Cart</button>
-      <a href="" id="pdf-download-link" download>
+                <div class="input-group" id="input-group2" style="display: none;">
+                  <button type="button" class="quantity-btn minus-btn">-</button>
+                  <input type="number" name="quantity_2" value="1" min="1">
+                  <button type="button" class="quantity-btn plus-btn">+</button>
+                  <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                  <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option2','input-group2')">Remove from Cart</button>
+                  <!-- <a href="" id="pdf-download-link" download>
     <button type="button">Download Gabari</button>
-  </a>
-    </div>
-  </div>
+  </a> -->
+                </div>
+              </div>
 
-  <h3 class="py-4"><hr></h3>
-  <div class="option-container">
-    <h4>Choissisez La Base:</h4>
-    <div class="base">
-      <label>
-        <input type="radio" name="option3" value="Water Base" onclick="toggleInputGroup('input-group3')">
-        <!-- <img src="assets/imgs/baseAEau.png" alt="Base"> -->
-        Water Base
-      </label>
+              <h3 class="py-4">
+                <hr>
+              </h3>
+              <div class="option-container">
+                <h4>Choissisez La Base:</h4>
+                <div class="base">
+                  <label>
+                    <input type="radio" name="option3" value="Water Base" onclick="toggleInputGroup('input-group3')">
+                    <!-- <img src="assets/imgs/baseAEau.png" alt="Base"> -->
+                    Water Base
+                  </label>
 
-      <label>
-        <input type="radio" name="option3" value="Beton base" onclick="toggleInputGroup('input-group3')">
-        <!-- <img src="assets/imgs/baseBeton.png" alt="Base"> -->
-        Beton Base
-      </label>
+                  <label>
+                    <input type="radio" name="option3" value="Beton base" onclick="toggleInputGroup('input-group3')">
+                    <!-- <img src="assets/imgs/baseBeton.png" alt="Base"> -->
+                    Beton Base
+                  </label>
 
-      <label>
-        <input type="radio" name="option3" value="Metal Base 7Kg" onclick="toggleInputGroup('input-group3')">
-        <!-- <img src="assets/imgs/baseMetalique.png" alt="Base"> -->
-        Metal Base 7Kg
-      </label>
+                  <label>
+                    <input type="radio" name="option3" value="Metal Base 7Kg" onclick="toggleInputGroup('input-group3')">
+                    <!-- <img src="assets/imgs/baseMetalique.png" alt="Base"> -->
+                    Metal Base 7Kg
+                  </label>
 
-      <label>
-        <input type="radio" name="option3" value="Metal Base 7.5Kg" onclick="toggleInputGroup('input-group3')">
-        <!-- <img src="assets/imgs/baseAEau.png" alt="Base"> -->
-        Metal Base 7.5Kg
-      </label>
+                  <label>
+                    <input type="radio" name="option3" value="Metal Base 7.5Kg" onclick="toggleInputGroup('input-group3')">
+                    <!-- <img src="assets/imgs/baseAEau.png" alt="Base"> -->
+                    Metal Base 7.5Kg
+                  </label>
 
-      <label>
-        <input type="radio" name="option3" value="Metal Base 10Kg" onclick="toggleInputGroup('input-group3')">
-        <!-- <img src="assets/imgs/baseAEau.png" alt="Base"> -->
-        Metal Base 10Kg
-      </label>
-      <div class="input-group" id="input-group3" style="display: none;">
-        <input type="number" name="quantity_3" value="1" min="1">
-        <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-        <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option3','input-group3')">Remove from Cart</button>
-      </div>
-    </div>
-  </div>
+                  <label>
+                    <input type="radio" name="option3" value="Metal Base 10Kg" onclick="toggleInputGroup('input-group3')">
+                    <!-- <img src="assets/imgs/baseAEau.png" alt="Base"> -->
+                    Metal Base 10Kg
+                  </label>
 
-  <h3 class="py-4"><hr></h3>
-  <div class="option-container">
-    <h4>Avec Bare Metalique:</h4>
-    <div class="base">
-      <label>
-        <input type="radio" name="option5" value="1" onclick="toggleInputGroup('input-group5')">
-        <!-- <img src="assets/imgs/baseAEau.png" alt="Base"> -->
-        OUI
-      </label>
-      <div class="input-group" id="input-group5" style="display: none;">
-        <input type="number" name="quantity_5" value="1" min="1">
-        <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-        <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option5','input-group5')">Remove from Cart</button>
-      </div>
-    </div>
-  </div>
+                  <div class="input-group" id="input-group3" style="display: none;">
+                    <button type="button" class="quantity-btn minus-btn">-</button>
+                    <input type="number" name="quantity_3" value="1" min="1">
+                    <button type="button" class="quantity-btn plus-btn">+</button>
+                    <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                    <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option3','input-group3')">Remove from Cart</button>
+                  </div>
+                </div>
+              </div>
 
-  <h3 class="py-4"><hr></h3>
-  <div class="option-container">
-    <h4>Insérez Votre Image :</h4>
-    <div class="mainUpContainer">
-      <label for="photo-upload" class="upload-container">
-        <span>Click here to upload a photo</span>
-        <input type="file" id="photo-upload" accept="image/*" name="option4">
-      </label>
-      <div class="uploaded-image-container">
-        <img class="uploaded-image" id="uploaded-image-preview" src="#" alt="Uploaded Image">
-      </div>
-    </div>
-    <div class="buttonContainer">
-      <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
-    </div>
-  </div>
-</div>
+              <h3 class="py-4">
+                <hr>
+              </h3>
+              <div class="option-container">
+                <h4>Avec Bare Metalique:</h4>
+                <div class="base">
+                  <label>
+                    <input type="radio" name="option5" value="1" onclick="toggleInputGroup('input-group5')">
+                    <!-- <img src="assets/imgs/baseAEau.png" alt="Base"> -->
+                    OUI
+                  </label>
+                  <div class="input-group" id="input-group5" style="display: none;">
+                    <input type="number" name="quantity_5" value="1" min="1">
+                    <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                    <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option5','input-group5')">Remove from Cart</button>
+                  </div>
+                </div>
+              </div>
+
+              <h3 class="py-4">
+                <hr>
+              </h3>
+              <div class="option-container">
+                <h4>Insérez Votre Image :</h4>
+                <div class="mainUpContainer">
+                  <label for="photo-upload" class="upload-container">
+                    <span>Click here to upload a photo</span>
+                    <input type="file" id="photo-upload" accept="image/*" name="option4">
+                  </label>
+                  <div class="uploaded-image-container">
+                    <img class="uploaded-image" id="uploaded-image-preview" src="#" alt="Uploaded Image">
+                  </div>
+                </div>
+                <div class="buttonContainer">
+                  <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                </div>
+              </div>
+            </div>
+            <!-- <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                const quantity2Input = document.querySelector('[name="quantity_2"]');
+                const quantity3Input = document.querySelector('[name="quantity_3"]');
+                const minusButtons = document.querySelectorAll('.minus-btn');
+                const plusButtons = document.querySelectorAll('.plus-btn');
+                let userChangedQuantity3 = false;
+                // Initialize synchronization
+                synchronizeQuantities();
+
+                // Synchronize inputs
+                function synchronizeQuantities() {
+                  if (!userChangedQuantity3) {
+                    quantity3Input.value = quantity2Input.value;
+                  }
+                }
+            
+                // Plus and minus button event handlers for quantity_3 only
+                function adjustQuantities(amount) {
+                  const currentQuantity = parseInt(quantity3Input.value);
+                  const newQuantity = Math.max(currentQuantity + amount, 1);
+                  quantity3Input.value = newQuantity;
+                  synchronizeQuantities();
+                }
+             
+                minusButtons.forEach(button => {
+                  button.addEventListener('click', () => {
+                    adjustQuantities(-1);
+                  });
+                });
+
+                plusButtons.forEach(button => {
+                  button.addEventListener('click', () => {
+                    adjustQuantities(1);
+                  });
+                });
+                
+              });
+            </script> -->
 
 
-<script>
-  function generatePDFDownloadLink() {
-    var option1Value = document.querySelector('input[name="option1"]:checked').value;
-    var option2Value = document.querySelector('input[name="option2"]:checked').value;
 
-    var pdfPath = 'assets/Gabari/Gabarit_Flag-' + option2Value + '-' + option1Value + '.pdf';
-    var downloadLink = document.getElementById('pdf-download-link');
-    downloadLink.href = pdfPath;
-  }
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                const quantity2Input = document.querySelector('[name="quantity_2"]');
+                const quantity3Input = document.querySelector('[name="quantity_3"]');
 
-  // Call the function when the selected values change
-  var option1Radios = document.querySelectorAll('input[name="option1"]');
-  var option2Radios = document.querySelectorAll('input[name="option2"]');
-  for (var i = 0; i < option1Radios.length; i++) {
-    option1Radios[i].addEventListener('click', generatePDFDownloadLink);
-  }
-  for (var j = 0; j < option2Radios.length; j++) {
-    option2Radios[j].addEventListener('click', generatePDFDownloadLink);
-  }
+                // Flag to track user-initiated changes
+                let userChangedQuantity3 = false;
 
-  // Generate initial PDF download link based on initial selected values
-  generatePDFDownloadLink();
-</script>
+                // Function to synchronize the values of quantity_2 and quantity_3
+                function synchronizeQuantities() {
+                  if (!userChangedQuantity3) {
+                    quantity3Input.value = quantity2Input.value;
+                  }
+                }
+
+                // Add event listeners to input events of both quantity inputs
+                quantity2Input.addEventListener('input', synchronizeQuantities);
+                quantity3Input.addEventListener('input', () => {
+                  userChangedQuantity3 = true;
+                  synchronizeQuantities();
+                });
+              });
+            </script> 
+
+
+            <script>
+              function generatePDFDownloadLink() {
+                var option1Value = document.querySelector('input[name="option1"]:checked').value;
+                var option2Value = document.querySelector('input[name="option2"]:checked').value;
+
+                var pdfPath = 'assets/Gabari/Gabarit_Flag-' + option2Value + '-' + option1Value + '.pdf';
+                var downloadLink = document.getElementById('pdf-download-link');
+                downloadLink.href = pdfPath;
+              }
+
+              // Call the function when the selected values change
+              var option1Radios = document.querySelectorAll('input[name="option1"]');
+              var option2Radios = document.querySelectorAll('input[name="option2"]');
+              for (var i = 0; i < option1Radios.length; i++) {
+                option1Radios[i].addEventListener('click', generatePDFDownloadLink);
+              }
+              for (var j = 0; j < option2Radios.length; j++) {
+                option2Radios[j].addEventListener('click', generatePDFDownloadLink);
+              }
+
+              // Generate initial PDF download link based on initial selected values
+              generatePDFDownloadLink();
+            </script>
 
 
             <script>
@@ -496,8 +585,6 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 lastSelectedOption = inputGroup;
                 lastSelectedOption.querySelector('[name="add_product"]').style.display = 'flex';
               }
-
-              
             </script>
 
 

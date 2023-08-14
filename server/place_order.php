@@ -94,9 +94,7 @@ if (isset($_POST['place_order'])) {
         $stmt1->send_long_data(11, $option4);
         $stmt1->execute();
         // array_splice($_SESSION['cart'], 0);
-        array_splice($_SESSION['cart'], 0);
-        $_SESSION['total'] = 0;
-        $_SESSION['quantity'] = 0;
+      
         $success = "Feedback submitted successfully";
         header('location:../account.php');
     }
@@ -160,7 +158,9 @@ if (isset($_POST['place_order'])) {
     $mail->Body = $body;
     
     if ($mail->send()) {
-      
+        array_splice($_SESSION['cart'], 0);
+        $_SESSION['total'] = 0;
+        $_SESSION['quantity'] = 0;
     } else {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
