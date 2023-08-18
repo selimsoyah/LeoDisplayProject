@@ -79,7 +79,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LeoDisplay</title>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/bf14b68fbc.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="assets/css/accueil.css">
@@ -137,7 +137,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                     <i class="fa-solid fa-cart-arrow-down nav-icon"></i>
                   </button>
                   <a href="login.php" class="text-decoration-none text-dark">
-                    <i class="fa-solid fa-user nav-icon"></i>
+                  <i class="fa-solid fa-user nav-icon"></i>
                   </a>
                 </form>
               </div>
@@ -365,10 +365,12 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 </label>
 
                 <div class="input-group" id="input-group2" style="display: none;">
-                  <button type="button" class="quantity-btn minus-btn">-</button>
+                  <!-- <button type="button" class="quantity-btn minus-btn">-</button> -->
                   <input type="number" name="quantity_2" value="1" min="1">
-                  <button type="button" class="quantity-btn plus-btn">+</button>
-                  <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                  <button class="plus-button" >+</button>
+  <button class="minus-button" >-</button>
+                  <!-- <button type="button" class="quantity-btn plus-btn">+</button> -->
+                  <input type="submit" name="add_product" class="buy-btn addToCartButton" value="Ajouter Au Pannier">
                   <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option2','input-group2')">Remove from Cart</button>
                   <!-- <a href="" id="pdf-download-link" download>
     <button type="button">Download Gabari</button>
@@ -413,10 +415,12 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                   </label>
 
                   <div class="input-group" id="input-group3" style="display: none;">
-                    <button type="button" class="quantity-btn minus-btn">-</button>
-                    <input type="number" name="quantity_3" value="1" min="1">
-                    <button type="button" class="quantity-btn plus-btn">+</button>
-                    <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                    <!-- <button type="button" class="quantity-btn minus-btn">-</button> -->
+                    <input type="number" id='q3'name="quantity_3" value="1" min="1">
+                    <button class="plus-button1" >+</button>
+                  <button class="minus-button1" >-</button>
+                    <!-- <button type="button" class="quantity-btn plus-btn">+</button> -->
+                    <input type="submit" name="add_product" class="buy-btn addToCartButton" value="Ajouter Au Pannier">
                     <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option3','input-group3')">Remove from Cart</button>
                   </div>
                 </div>
@@ -435,7 +439,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                   </label>
                   <div class="input-group" id="input-group5" style="display: none;">
                     <input type="number" name="quantity_5" value="1" min="1">
-                    <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                    <input type="submit" name="add_product addToCartButton" class="buy-btn" value="Ajouter Au Pannier">
                     <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option5','input-group5')">Remove from Cart</button>
                   </div>
                 </div>
@@ -456,10 +460,14 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                   </div>
                 </div>
                 <div class="buttonContainer">
-                  <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                  <input type="submit" name="add_product addToCartButton" class="buy-btn" value="Ajouter Au Pannier">
                 </div>
               </div>
             </div>
+            <div id="notification" class="notification-container">
+  <i class="far fa-circle-check notification-icon"></i>
+  Added to Cart
+</div>
             <!-- <script>
               document.addEventListener('DOMContentLoaded', function() {
                 const quantity2Input = document.querySelector('[name="quantity_2"]');
@@ -499,10 +507,67 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 
               });
             </script> -->
+            <style>
+              /* Styles for the notification container */
+              .notification-container {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #ff9800;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                display: none;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                align-items: center;
+              }
+              .notification-icon {
+      font-size: 24px;
+      margin-right: 10px;
+      color: #78d13d;
+    }
+            </style>
 
+<script>
+  // Get references to the buttons and notification element
+  const addToCartButtons = document.querySelectorAll('.addToCartButton');
+  const notification = document.getElementById('notification');
 
+  // Function to show the notification
+  function showNotification() {
+    notification.style.display = 'flex';
 
-            <script>
+    // Save the expiration time to session storage
+    const expirationTime = Date.now() + 3000; // 3 seconds from now
+    sessionStorage.setItem('notificationExpiration', expirationTime);
+
+    // Hide the notification after 3 seconds
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 3000);
+  }
+
+  // Retrieve and display the notification if not expired
+  const expirationTime = sessionStorage.getItem('notificationExpiration');
+  if (expirationTime && Date.now() < expirationTime) {
+    notification.style.display = 'flex';
+
+    // Hide the notification after 3 seconds
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 3000);
+  }
+
+  // Add click event listeners to each button
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const itemName = button.textContent.replace('Add ', '').replace(' to Cart', '');
+      showNotification();
+    });
+  });
+</script> 
+
+            <!-- <script>
               document.addEventListener('DOMContentLoaded', function() {
                 const quantity2Input = document.querySelector('[name="quantity_2"]');
                 const quantity3Input = document.querySelector('[name="quantity_3"]');
@@ -524,8 +589,66 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                   synchronizeQuantities();
                 });
               });
-            </script> 
+            </script> -->
+            <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const quantityInput = document.getElementById('q3');
+    const plusButton1 = document.querySelector('.plus-button1');
+    const minusButton1 = document.querySelector('.minus-button1');
 
+    plusButton1.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent default behavior
+      quantityInput.value = parseInt(quantityInput.value) + 1;
+    });
+
+    minusButton1.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent default behavior
+      if (parseInt(quantityInput.value) > 0) {
+        quantityInput.value = parseInt(quantityInput.value) - 1;
+      }
+    });
+  });
+</script>
+            <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const quantity2Input = document.querySelector('[name="quantity_2"]');
+    const quantity3Input = document.querySelector('[name="quantity_3"]');
+    const plusButton = document.querySelector('.plus-button');
+    const minusButton = document.querySelector('.minus-button');
+
+    // Flag to track user-initiated changes
+    let userChangedQuantity3 = false;
+
+    // Function to synchronize the values of quantity_2 and quantity_3
+    function synchronizeQuantities() {
+      if (!userChangedQuantity3) {
+        quantity3Input.value = quantity2Input.value;
+      }
+    }
+
+    // Add event listeners to input events of both quantity inputs
+    quantity2Input.addEventListener('input', synchronizeQuantities);
+    quantity3Input.addEventListener('input', () => {
+      userChangedQuantity3 = true;
+      synchronizeQuantities();
+    });
+
+    // Add event listeners to plus and minus buttons
+    plusButton.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent default behavior
+      quantity2Input.value = parseInt(quantity2Input.value) + 1;
+      synchronizeQuantities();
+    });
+
+    minusButton.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent default behavior
+      if (parseInt(quantity2Input.value) > 0) {
+        quantity2Input.value = parseInt(quantity2Input.value) - 1;
+        synchronizeQuantities();
+      }
+    });
+  });
+</script>
 
             <script>
               function generatePDFDownloadLink() {

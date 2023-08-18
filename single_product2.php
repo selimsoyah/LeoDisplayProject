@@ -299,7 +299,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
               </label>
               <div class="input-group" id="input-group2" style="display: none;">
                 <input type="number" name="quantity_2" value="1">
-                <input type="submit" name="add_product" class="buy-btn" value="Ajouter Au Pannier">
+                <input type="submit" name="add_product" class="buy-btn addToCartButton" value="Ajouter Au Pannier">
                 <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option2','input-group2')">Remove from Cart</button>
               </div>
               <h3 class="py-4"><hr></h3>
@@ -317,12 +317,113 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
               <div class="buttonContainer">
                 <!-- <input type='number' name='product_quantity' value='1'> -->
-                <input type="submit" name='add_product' class="buy-btn" value="Ajouter Au Pannier">
+                <input type="submit" name='add_product' class="buy-btn addToCartButton" value="Ajouter Au Pannier">
               </div>
             </div>
 
 
+                <div id="notification" class="notification-container">
+  <i class="far fa-circle-check notification-icon"></i>
+  Added to Cart
+</div>
+            <!-- <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                const quantity2Input = document.querySelector('[name="quantity_2"]');
+                const quantity3Input = document.querySelector('[name="quantity_3"]');
+                const minusButtons = document.querySelectorAll('.minus-btn');
+                const plusButtons = document.querySelectorAll('.plus-btn');
+                let userChangedQuantity3 = false;
+                // Initialize synchronization
+                synchronizeQuantities();
 
+                // Synchronize inputs
+                function synchronizeQuantities() {
+                  if (!userChangedQuantity3) {
+                    quantity3Input.value = quantity2Input.value;
+                  }
+                }
+            
+                // Plus and minus button event handlers for quantity_3 only
+                function adjustQuantities(amount) {
+                  const currentQuantity = parseInt(quantity3Input.value);
+                  const newQuantity = Math.max(currentQuantity + amount, 1);
+                  quantity3Input.value = newQuantity;
+                  synchronizeQuantities();
+                }
+             
+                minusButtons.forEach(button => {
+                  button.addEventListener('click', () => {
+                    adjustQuantities(-1);
+                  });
+                });
+
+                plusButtons.forEach(button => {
+                  button.addEventListener('click', () => {
+                    adjustQuantities(1);
+                  });
+                });
+                
+              });
+            </script> -->
+            <style>
+              /* Styles for the notification container */
+              .notification-container {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #ff9800;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                display: none;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                align-items: center;
+              }
+              .notification-icon {
+      font-size: 24px;
+      margin-right: 10px;
+      color: #78d13d;
+    }
+            </style>
+
+<script>
+  // Get references to the buttons and notification element
+  const addToCartButtons = document.querySelectorAll('.addToCartButton');
+  const notification = document.getElementById('notification');
+
+  // Function to show the notification
+  function showNotification() {
+    notification.style.display = 'flex';
+
+    // Save the expiration time to session storage
+    const expirationTime = Date.now() + 3000; // 3 seconds from now
+    sessionStorage.setItem('notificationExpiration', expirationTime);
+
+    // Hide the notification after 3 seconds
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 3000);
+  }
+
+  // Retrieve and display the notification if not expired
+  const expirationTime = sessionStorage.getItem('notificationExpiration');
+  if (expirationTime && Date.now() < expirationTime) {
+    notification.style.display = 'flex';
+
+    // Hide the notification after 3 seconds
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 3000);
+  }
+
+  // Add click event listeners to each button
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const itemName = button.textContent.replace('Add ', '').replace(' to Cart', '');
+      showNotification();
+    });
+  });
+</script> 
             <script>
               // Add event listeners to radio buttons
               var radioButtons = document.querySelectorAll('input[type="radio"]');
