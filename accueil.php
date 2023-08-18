@@ -39,7 +39,7 @@ function calculateTotal (){
 
 <body>
 	  <!--Navbar-->
-    <header>
+  <header>
     <nav class="navbar navbar-expand-lg bg-dark">
       <div class="container">
         <div class="w-100 d-flex justify-content-between">
