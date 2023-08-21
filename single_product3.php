@@ -2,6 +2,54 @@
 
 session_start();
 include('server/connection.php');
+$flagPriceLookup = array(
+  'Drapeau Courbé' => array(
+    '2m50' => 42260,
+    '2m80' => 44400,
+    '3m20' => 47000,
+    '3m80' => 59900,
+    // ... Add other sizes and prices ...
+  ),
+  'Drapeau Droit' => array(
+    '2m50' => 43260,
+    '2m80' => 45600,
+    '3m20' => 48200,
+    '3m80' => 61000,
+    // ... Add other sizes and prices ...
+  ),
+  'base' => array(
+    'Water Base' => 52082,
+    '2m80' => 45600,
+    '3m20' => 48200,
+    '3m80' => 61000,
+    // ... Add other sizes and prices ...
+  ),
+  // ... Add other flag types and their prices ...
+);
+$flagPriceLookup2 = array(
+  'Drapeau Courbé' => array(
+    '2m50' => 20,
+    '2m80' => 30,
+    '3m20' => 40,
+    '3m80' => 50,
+    // ... Add other sizes and prices ...
+  ),
+  'Drapeau Droit' => array(
+    '2m50' => 43260,
+    '2m80' => 45600,
+    '3m20' => 48200,
+    '3m80' => 61000,
+    // ... Add other sizes and prices ...
+  ),
+  'base' => array(
+    'Water Base' => 52082,
+    '2m80' => 45600,
+    '3m20' => 48200,
+    '3m80' => 61000,
+    // ... Add other sizes and prices ...
+  ),
+  // ... Add other flag types and their prices ...
+);
 
 if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
   if (isset($_POST['add_product'])) {
@@ -9,7 +57,6 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
     $product_image = $_POST['product_image'];
     $product_name = $_POST['product_name'];
     $product_price = $_POST['product_price'];
-
     $option1 = isset($_POST['option1']) ? $_POST['option1'] : null;
     $option2 = isset($_POST['option2']) ? $_POST['option2'] : null;
     $option3 = isset($_POST['option3']) ? $_POST['option3'] : null;
@@ -25,7 +72,35 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
     } else {
       $option4 = null;
     }
+    function calculateFlagPrice($option1, $option2,$option3,$quantity_3, $option4,$flagPriceLookup,$flagPriceLookup2,$quantity_2) {
+      if ($option4==null)
+      {
+        if (isset($flagPriceLookup[$option1]) && isset($flagPriceLookup[$option1][$option2])) {
+          $result = $flagPriceLookup[$option1][$option2];
+          $result2 = $result * $quantity_2;
+            return $result2;
+          } elseif (isset($flagPriceLookup['base']) && isset($flagPriceLookup['base'][$option3])){
+            $result = $flagPriceLookup['base'][$option3];
+            $result3 = $result * $quantity_3;
+              return $result3;
+          }
+      }
+      elseif($option4!=null)
+      {if (isset($flagPriceLookup2[$option1]) && isset($flagPriceLookup2[$option1][$option2])) {
+        $result = $flagPriceLookup2[$option1][$option2];
+        $result2 = $result * $quantity_2;
+          return $result2;
+        } elseif (isset($flagPriceLookup2['base']) && isset($flagPriceLookup2['base'][$option3])){
+          $result = $flagPriceLookup2['base'][$option3];
+          $result3 = $result * $quantity_3;
+            return $result3;
+        }}
+      else {
+        return 0; // Default flag price or error handling
+      }
+    }
 
+    $flagPrice = calculateFlagPrice( $option1,$option2,$option3,$quantity_3,$option4,$flagPriceLookup,$flagPriceLookup2,$quantity_2);
 
     $product_array = array(
       'product_id' => $product_id,
@@ -41,11 +116,15 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
       'quantity_2' => $quantity_2,
       'quantity_3' => $quantity_3,
       'quantity_5' => $quantity_5,
+      'flagPrice'=>$flagPrice,
     );
 
     if (!empty($product_array)) {
       $_SESSION['cart'][] = $product_array;
     }
+
+
+    
   }
 
   // calculateTotal();
@@ -460,7 +539,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                   </div>
                 </div>
                 <div class="buttonContainer">
-                  <input type="submit" name="add_product addToCartButton" class="buy-btn" value="Ajouter Au Pannier">
+                  <input type="submit" name="add_product" class="buy-btn " value="Ajouter Au Pannier">
                 </div>
               </div>
             </div>

@@ -20,6 +20,7 @@ $dotenv->load();
 include('connection.php');
 $order_date = date('Y-m-d H:i:s');
 
+
 $user_id = $_SESSION['user_id'];
 
 $stmt8 = $conn->prepare("SELECT * FROM users WHERE user_id=? LIMIT 1");
@@ -27,6 +28,7 @@ $stmt8->bind_param('i', $user_id);
 $stmt8->execute();
 $checkout_details = $stmt8->get_result();
 
+$username = "";
 while ($row = $checkout_details->fetch_assoc()) {
     // Access the columns using the column names
     $user_id = $row['user_id'];
@@ -46,6 +48,7 @@ if (isset($_POST['place_order'])) {
 
     // $name = $_POST['name'];
     // $email = $_POST['email'];
+    $user_email = "";
     $phone = 654654654;
     $city = $user_email;
     $address = $user_email;
@@ -162,6 +165,9 @@ if (isset($_POST['place_order'])) {
         $_SESSION['total'] = 0;
         $_SESSION['quantity'] = 0;
     } else {
+        array_splice($_SESSION['cart'], 0);
+        $_SESSION['total'] = 0;
+        $_SESSION['quantity'] = 0;
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 
