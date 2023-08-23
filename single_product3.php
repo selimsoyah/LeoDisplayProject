@@ -2,31 +2,55 @@
 
 session_start();
 include('server/connection.php');
-$flagPriceLookup = array(
+$prixUTC = array(
   'Drapeau Courbé' => array(
-    '2m50' => 42260,
-    '2m80' => 44400,
-    '3m20' => 47000,
-    '3m80' => 59900,
+    '2m50' => 42.260,
+    '2m80' => 44.400,
+    '3m20' => 47.000,
+    '3m80' => 59.900,
     // ... Add other sizes and prices ...
   ),
   'Drapeau Droit' => array(
-    '2m50' => 43260,
-    '2m80' => 45600,
-    '3m20' => 48200,
-    '3m80' => 61000,
+    '2m50' => 43.260,
+    '2m80' => 45.600,
+    '3m20' => 48.200,
+    '3m80' => 61.000,
     // ... Add other sizes and prices ...
   ),
   'base' => array(
-    'Water Base' => 52082,
-    '2m80' => 45600,
-    '3m20' => 48200,
-    '3m80' => 61000,
+    'Water Base' => 52.082,
+    '2m80' => 45.600,
+    '3m20' => 48.200,
+    '3m80' => 61.000,
     // ... Add other sizes and prices ...
   ),
   // ... Add other flag types and their prices ...
 );
-$flagPriceLookup2 = array(
+$prix20 = array(
+  'Drapeau Courbé' => array(
+    '2m50' => 35.900,
+    '2m80' => 44.400,
+    '3m20' => 47.000,
+    '3m80' => 59.900,
+    // ... Add other sizes and prices ...
+  ),
+  'Drapeau Droit' => array(
+    '2m50' => 43.260,
+    '2m80' => 45.600,
+    '3m20' => 48.200,
+    '3m80' => 61.000,
+    // ... Add other sizes and prices ...
+  ),
+  'base' => array(
+    'Water Base' => 46.874,
+    '2m80' => 45.600,
+    '3m20' => 48.200,
+    '3m80' => 61.000,
+    // ... Add other sizes and prices ...
+  ),
+  // ... Add other flag types and their prices ...
+);
+$prixImp = array(
   'Drapeau Courbé' => array(
     '2m50' => 20,
     '2m80' => 30,
@@ -41,14 +65,7 @@ $flagPriceLookup2 = array(
     '3m80' => 61000,
     // ... Add other sizes and prices ...
   ),
-  'base' => array(
-    'Water Base' => 52082,
-    '2m80' => 45600,
-    '3m20' => 48200,
-    '3m80' => 61000,
-    // ... Add other sizes and prices ...
-  ),
-  // ... Add other flag types and their prices ...
+ 
 );
 
 if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
@@ -72,26 +89,39 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
     } else {
       $option4 = null;
     }
-    function calculateFlagPrice($option1, $option2,$option3,$quantity_3, $option4,$flagPriceLookup,$flagPriceLookup2,$quantity_2) {
+    function calculateFlagPrice($option1, $option2,$option3,$quantity_3, $option4,$prixUTC,$prixImp,$quantity_2,$prix20) {
       if ($option4==null)
       {
-        if (isset($flagPriceLookup[$option1]) && isset($flagPriceLookup[$option1][$option2])) {
-          $result = $flagPriceLookup[$option1][$option2];
-          $result2 = $result * $quantity_2;
-            return $result2;
-          } elseif (isset($flagPriceLookup['base']) && isset($flagPriceLookup['base'][$option3])){
-            $result = $flagPriceLookup['base'][$option3];
-            $result3 = $result * $quantity_3;
-              return $result3;
-          }
+        if ($quantity_2 < 20){
+          if (isset($prixUTC[$option1]) && isset($prixUTC[$option1][$option2])) {
+            $result = $prixUTC[$option1][$option2];
+            $result2 = $result * $quantity_2;
+              return $result2;
+            } elseif (isset($prixUTC['base']) && isset($prixUTC['base'][$option3])){
+              $result = $prixUTC['base'][$option3];
+              $result3 = $result * $quantity_3;
+                return $result3;
+            }
+        }elseif ($quantity_2 >= 20){
+          if (isset($prix20[$option1]) && isset($prix20[$option1][$option2])) {
+            $result = $prix20[$option1][$option2];
+            $result2 = $result * $quantity_2;
+              return $result2;
+            } elseif (isset($prix20['base']) && isset($prix20['base'][$option3])){
+              $result = $prix20['base'][$option3];
+              $result3 = $result * $quantity_3;
+                return $result3;
+            }
+        }
       }
       elseif($option4!=null)
-      {if (isset($flagPriceLookup2[$option1]) && isset($flagPriceLookup2[$option1][$option2])) {
-        $result = $flagPriceLookup2[$option1][$option2];
+      {
+        if (isset($prixImp[$option1]) && isset($prixImp[$option1][$option2])) {
+        $result = $prixImp[$option1][$option2];
         $result2 = $result * $quantity_2;
           return $result2;
-        } elseif (isset($flagPriceLookup2['base']) && isset($flagPriceLookup2['base'][$option3])){
-          $result = $flagPriceLookup2['base'][$option3];
+        } elseif (isset($prixImp['base']) && isset($prixImp['base'][$option3])){
+          $result = $prixImp['base'][$option3];
           $result3 = $result * $quantity_3;
             return $result3;
         }}
@@ -100,7 +130,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
       }
     }
 
-    $flagPrice = calculateFlagPrice( $option1,$option2,$option3,$quantity_3,$option4,$flagPriceLookup,$flagPriceLookup2,$quantity_2);
+    $flagPrice = calculateFlagPrice( $option1,$option2,$option3,$quantity_3,$option4,$prixUTC,$prixImp,$quantity_2,$prix20);
 
     $product_array = array(
       'product_id' => $product_id,

@@ -44,16 +44,27 @@ print_r($username); // or var_dump($checkout_details);
 echo "</pre>";
 echo "Error: " . $stmt8->error;
 $stmt8->close();
+function calculateTotal()
+{
+    $total_price = 0;
+    foreach ($_SESSION['cart'] as $key => $value) {
+        $product = $_SESSION['cart'][$key];
+        $price = $product['flagPrice'];
+        $total_price = $total_price + $price;
+    }
+    return $total_price;
+}
 if (isset($_POST['place_order'])) {
 
     // $name = $_POST['name'];
     // $email = $_POST['email'];
-    $user_email = "";
+    // $user_email = "";
     $phone = 654654654;
     $city = $user_email;
     $address = $user_email;
-    $order_cost = 8777;
-  
+
+    $order_cost = calculateTotal();
+
 
 
 
@@ -93,11 +104,11 @@ if (isset($_POST['place_order'])) {
         $stmt1 = $conn->prepare("INSERT INTO order_items (order_id, product_id, user_id,order_status,product_name, product_image,order_date,product_price,option1,option2,option3,option4,option5,quantity_1,quantity_2,quantity_3,quantity_5)
                     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-        $stmt1->bind_param('iiissssssssbiiiii', $order_id, $product_id,  $user_id,$order_status ,$product_name, $product_image, $order_date, $product_price, $option1, $option2, $option3, $option4, $option5, $quantity_1, $quantity_2, $quantity_3, $quantity_5);
+        $stmt1->bind_param('iiissssssssbiiiii', $order_id, $product_id,  $user_id, $order_status, $product_name, $product_image, $order_date, $product_price, $option1, $option2, $option3, $option4, $option5, $quantity_1, $quantity_2, $quantity_3, $quantity_5);
         $stmt1->send_long_data(11, $option4);
         $stmt1->execute();
         // array_splice($_SESSION['cart'], 0);
-      
+
         $success = "Feedback submitted successfully";
         header('location:../account.php');
     }
@@ -122,7 +133,7 @@ if (isset($_POST['place_order'])) {
     $mail->AddAddress('lachkar.ali.100@gmail.com');
     $mail->Subject = "Enquiry";
     $mail->isHTML(TRUE);
-    
+
     // Construct the email body
     $body = "<h1>Commande accepté</h1>";
     $body .= "<p> Votre commande de : </p>";
@@ -142,7 +153,7 @@ if (isset($_POST['place_order'])) {
         $quantity_3 = $product['quantity_3'];
         $quantity_5 = $product['quantity_5'];
         $order_date = date('Y-m-d H:i:s');
-    
+
         // Check if any options or quantities are not null
         if (!empty($option2) && !empty($quantity_2)) {
             $body .= "<p> <b>$option1 $option2 </b> x <b>$quantity_2</b></p>";
@@ -151,15 +162,14 @@ if (isset($_POST['place_order'])) {
             $body .= "<p> <b>$option3 </b> x <b>$quantity_3</b></p>";
         }
         if (!empty($option5) && !empty($quantity_5)) {
-            if($option5 == 1){
+            if ($option5 == 1) {
                 $body .= "<p> <b> Avec Bare Metalique </b> x <b>$quantity_5</b></p>";
             }
-           
         }
     }
     $body .= "<p> A été accepté avec succés . Un email vous sera envoyé dés que la commande sera completé</p>";
     $mail->Body = $body;
-    
+
     if ($mail->send()) {
         array_splice($_SESSION['cart'], 0);
         $_SESSION['total'] = 0;
@@ -170,7 +180,4 @@ if (isset($_POST['place_order'])) {
         $_SESSION['quantity'] = 0;
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
-
 }
-
-

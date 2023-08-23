@@ -2,16 +2,34 @@
 
 
 session_start();
+function calculateTotal()
+{
 
+  $total_price = 0;
+
+
+  foreach ($_SESSION['cart'] as $key => $value ) {
+
+    $product = $_SESSION['cart'][$key];
+    $price = $product['flagPrice'];
+ 
+
+    $total_price = $total_price + $price;
+
+  }
+  return $total_price ;
+
+}
 
 if (isset($_POST['remove_product'])) {
   $productIndex = $_POST['product_index'];
   
   if (isset($_SESSION['cart'][$productIndex])) {
       unset($_SESSION['cart'][$productIndex]);
+      calculateTotal();
   }
   
-  // Redirect back to the cart page or perform any other actions as needed
+ 
 }
 elseif (isset($_POST['edit_btn'])) {
   $product_id = $_POST['product_id'];
@@ -26,12 +44,11 @@ elseif (isset($_POST['edit_btn'])) {
 
   calculateTotal();
 } elseif (isset($_POST['cart_btn'])) {
-  // Retrieve the cart data from the session
+
   $cart_data = $_SESSION['cart'] ?? array();
-  // Display the cart data
+
   foreach ($cart_data as $product) {
-    // Display each product in the cart
-    // ...
+   
   }
 } 
 
@@ -39,24 +56,7 @@ else {
   header('location: accueil.php');
 }
 
-function calculateTotal()
-{
 
-  $total_price = 0;
-  $total_quantity = 0;
-
-  foreach ($_SESSION['cart'] as $key => $values) {
-
-    $product = $_SESSION['cart'][$key];
-    $price = $product['product_price'];
-    $quantity = $product['product_quantity'];
-
-    $total_price = $total_price + ($price * $quantity);
-    $total_quantity = $total_quantity + $quantity;
-  }
-  $_SESSION['total'] = $total_price;
-  $_SESSION['quantity'] = $total_quantity;
-}
 
 
 
@@ -159,7 +159,7 @@ function calculateTotal()
       <tr>
         <th>Product</th>
         <th style="text-align: center;">Details</th>
-        <th></th>
+        <th style="text-align: center;">Prix</th>
       </tr>
 
       <?php if (isset($_SESSION['cart'])) { ?>
@@ -180,7 +180,7 @@ function calculateTotal()
     font-size: 14px;
     padding:5px;
     border-radius:5px;" />
-            </form
+            </form>
                 </div>
               </div>
             </td>
@@ -216,9 +216,9 @@ function calculateTotal()
                   <?php if ($value['quantity_5'] !== "0") : ?>
                     <span class="product-price"><?php echo $value['quantity_5'] ?></span>
                   <?php endif; ?>
-                  <span class="product-price"><?php echo $value['flagPrice'] ?></span>
+               
                   <?php if ($value['option4'] !== null) : ?>
-                    <img src="data:image/jpeg;base64,<?php echo base64_encode($value['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px; position:absolute; right:120px;">
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($value['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px; position:absolute; right:200px;">
                   <?php endif; ?>
                 </div>
                 
@@ -227,7 +227,7 @@ function calculateTotal()
               </form>
             </td>
 
-
+                    <td style="text-align: center;">   <h4 class="product-price"><?php echo $value['flagPrice'] ?> DT </h4></td>
 
           </tr>
         <?php } ?>
@@ -247,6 +247,7 @@ function calculateTotal()
       <form method="POST" action="server/place_order.php">
         <input type='hidden' name="product_id" value="<?php echo $value['product_id'] ?>" />
         <input type="submit" class="btn checkout-btn" value="Checkout" name="place_order">
+        <h3> <?php echo calculateTotal();?>DT</h3>
       </form>
       <form action="single_product<?php echo $value['product_id'] ?>.php" method="GET">
         <input type="hidden" name="product_id" value="<?php echo $value['product_id']; ?>">
