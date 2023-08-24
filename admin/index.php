@@ -92,13 +92,14 @@ if (isset($_POST['delete_order_btn'])) {
         exit;
     }
 }
-
+        
 ?>
 
 <style>
     .line-between-td {
-        border-right: 1px solid black;
-        padding-right: 10px;
+        border-right: 1px solid grey;
+        border-radius:50;
+        padding-right:10px;
     }
 
     .btn-delivered {
@@ -141,6 +142,10 @@ if (isset($_POST['delete_order_btn'])) {
 
             <h2>Orders</h2>
 
+            <input type="date" name="filter_date" id="filter_date">
+            <button type="submit" name="filter_orders">Filter</button>
+
+
             <?php if (isset($_GET['order_updated'])) { ?>
                 <p class="text-center" style="color:green;"> <?php echo $_GET['order_updated'] ?> </p>
             <?php } ?>
@@ -157,19 +162,19 @@ if (isset($_POST['delete_order_btn'])) {
                 <?php foreach ($grouped_orders as $order_date => $orders) { ?>
                     <h3><?php echo $order_date; ?></h3>
                     <table class="table table-sm">
-                        <thead>
+                        <thead style="">
                             <tr>
-                                <th class="line-between-td" style="border-top:1px solid black; border-left:1px solid black; border-radius:5px;" scope="col">Nom</th>
-                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Produit</th>
-                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Type</th>
-                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Taille</th>
-                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Quantité</th>
-                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Bare metalique</th>
-                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Base</th>
-                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Image</th>
-                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Status</th>
-                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">BAT</th>
-                                <th class="line-between-td" style="border-top:1px solid black;" scope="col">Delete</th>
+                                <th class="line-between-td" style="border-top:1px solid grey; border-left:1px solid grey;" scope="col">Nom</th>
+                                <th class="line-between-td" style="border-top:1px solid grey; border-raduis:5px;" scope="col">Produit</th>
+                                <th class="line-between-td" style="border-top:1px solid grey;" scope="col">Type</th>
+                                <th class="line-between-td" style="border-top:1px solid grey;" scope="col">Taille</th>
+                                <th class="line-between-td" style="border-top:1px solid grey;" scope="col">Quantité</th>
+                                <th class="line-between-td" style="border-top:1px solid grey;" scope="col">Bare metalique</th>
+                                <th class="line-between-td" style="border-top:1px solid grey;" scope="col">Base</th>
+                                <th class="line-between-td" style="border-top:1px solid grey;" scope="col">Image</th>
+                                <th class="line-between-td" style="border-top:1px solid grey;" scope="col">Status</th>
+                                <th class="line-between-td" style="border-top:1px solid grey;" scope="col">BAT</th>
+                                <th class="line-between-td" style="border-top:1px solid grey;" scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -195,9 +200,9 @@ if (isset($_POST['delete_order_btn'])) {
                                     ?>
                                     
 
-                                    <td class="line-between-td" data-name="name" style="border-left:1px solid black; border-radius:5%;"><?php echo $order['user_name']; ?></td>
+                                    <td class="line-between-td" data-name="name" style="border-left:1px solid black; border-radius:50%;"><?php echo $order['user_name']; ?></td>
 
-                                    <td class="line-between-td" style="border-left:1px solid black;">
+                                    <td class="line-between-td" style="border-left:1px solid grey;">
                                         <img src="../<?php echo $order['product_image']; ?>" alt="Product Image" width="100">
                                     </td>
                                     <!-- TYPE -->
