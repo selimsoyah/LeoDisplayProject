@@ -129,7 +129,7 @@ if (isset($_POST['place_order'])) {
     $mail->FromName = "Tech Area";
     $mail->setFrom($_ENV['email']);
     $mail->AddAddress($user_email);
-    $mail->AddAddress('amineboussetta006@gmail.com');
+    // $mail->AddAddress('amineboussetta006@gmail.com');
     $mail->AddAddress('lachkar.ali.100@gmail.com');
     $mail->Subject = "Enquiry";
     $mail->isHTML(TRUE);

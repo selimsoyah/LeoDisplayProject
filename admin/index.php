@@ -41,18 +41,39 @@ $total_no_of_pages = ceil($total_records / $total_records_per_page);
 
 //4 get all products
 
-$stmt2 = $conn->prepare("SELECT orders.*, users.user_name,order_items.item_id ,order_items.option1, order_items.option2, order_items.option3, order_items.option4, order_items.option5, order_items.product_image, order_items.quantity_2, order_items.quantity_3, order_items.quantity_5,order_items.order_status FROM orders JOIN users ON orders.user_id = users.user_id JOIN order_items ON orders.order_id = order_items.order_id ORDER BY order_date DESC LIMIT $offset, $total_records_per_page");
-$stmt2->execute();
-$orders = $stmt2->get_result();
+if (isset($_GET['filter_orders'])) {
+    $selected = $_GET['filter_date'];
+    echo "<pre>";
+    print_r($selected); // or var_dump($checkout_details);
+    echo "</pre>";
+    $date = '2023-08-23';
+    $stmt2 = $conn->prepare("SELECT orders.*, users.user_name, order_items.item_id, order_items.option1, order_items.option2, order_items.option3, order_items.option4, order_items.option5, order_items.product_image, order_items.quantity_2, order_items.quantity_3, order_items.quantity_5, order_items.order_status 
+    FROM orders 
+    JOIN users ON orders.user_id = users.user_id 
+    JOIN order_items ON (orders.order_id = order_items.order_id)
+    WHERE DATE(order_items.order_date) = ?
+    ORDER BY order_date DESC LIMIT ?, ?");
+
+    $stmt2->bind_param("sii",$selected,$offset, $total_records_per_page);
+    $stmt2->execute();
+    $orders = $stmt2->get_result();
+} else {
+    $stmt2 = $conn->prepare("SELECT orders.*, users.user_name,order_items.item_id ,order_items.option1, order_items.option2, order_items.option3, order_items.option4, order_items.option5, order_items.product_image, order_items.quantity_2, order_items.quantity_3, order_items.quantity_5,order_items.order_status FROM orders JOIN users ON orders.user_id = users.user_id JOIN order_items ON orders.order_id = order_items.order_id ORDER BY order_date DESC LIMIT $offset, $total_records_per_page");
+    $stmt2->execute();
+    $orders = $stmt2->get_result();
+}
 
 
+// Group orders by order date 
 
-// Group orders by order date
+
 $grouped_orders = [];
 while ($order = $orders->fetch_assoc()) {
     $order_date = date('d-m-Y', strtotime($order['order_date']));
     $grouped_orders[$order_date][] = $order;
 }
+
+
 
 
 if (isset($_POST['edit_order_status_btn'])) {
@@ -92,14 +113,14 @@ if (isset($_POST['delete_order_btn'])) {
         exit;
     }
 }
-        
+
 ?>
 
 <style>
     .line-between-td {
         border-right: 1px solid grey;
-        border-radius:50;
-        padding-right:10px;
+        border-radius: 50;
+        padding-right: 10px;
     }
 
     .btn-delivered {
@@ -130,7 +151,7 @@ if (isset($_POST['delete_order_btn'])) {
 
 <div class="container-fluid" style="width: 100%;">
     <div class="row" style="width: 100%;">
-        <?php include('sidemenu.php'); ?>
+
         <main class="col-md-9 ms_sm_auto col_lg-10 px_md-4" style="width: 100%;">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                 <h1 class="h2">Dashboard</h1>
@@ -142,9 +163,10 @@ if (isset($_POST['delete_order_btn'])) {
 
             <h2>Orders</h2>
 
-            <input type="date" name="filter_date" id="filter_date">
-            <button type="submit" name="filter_orders">Filter</button>
-
+            <form action="index.php" method="get">
+                <input type="date" name="filter_date" id="filter_date">
+                <button type="submit" name="filter_orders">Filter</button>
+            </form>
 
             <?php if (isset($_GET['order_updated'])) { ?>
                 <p class="text-center" style="color:green;"> <?php echo $_GET['order_updated'] ?> </p>
@@ -155,7 +177,7 @@ if (isset($_POST['delete_order_btn'])) {
             <?php } ?>
 
 
-            
+
 
 
             <div class="table-responsive" style="overflow-x: visible; width: 100%;">
@@ -198,7 +220,7 @@ if (isset($_POST['delete_order_btn'])) {
                                     $stmt2->close();
                                     // Display the product image
                                     ?>
-                                    
+                                    <td> <?php echo $order['order_date']; ?></td>
 
                                     <td class="line-between-td" data-name="name" style="border-left:1px solid black; border-radius:50%;"><?php echo $order['user_name']; ?></td>
 
@@ -233,31 +255,32 @@ if (isset($_POST['delete_order_btn'])) {
                                     <!-- IMAGE-->
                                     <td class="line-between-td">
                                         <?php if ($order['option4'] != null) : ?>
-                                            
+
                                             <a href="data:image/jpeg;base64,<?php echo base64_encode($order['option4']) ?>" download>
-                                            <img src="data:image/jpeg;base64,<?php echo base64_encode($order['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px;">
-                                        </a>
-                                            <?php endif; ?>
-                                        
+                                                <img src="data:image/jpeg;base64,<?php echo base64_encode($order['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px;">
+                                            </a>
+                                        <?php endif; ?>
+
                                     </td>
 
                                     <!-- STATUS -->
                                     <td class="line-between-td">
-                                    <?php
-                                            // // Replace with your actual code to fetch order_item details from the database
-                                            // $order_id = ...; // You need to have the correct order_item_id here
-                                            // $order_status = ...; // Fetch the order_status from the order_item table
-                                            
-                                            // $status_text = ($order_item_status == 'on_hold') ? 'On Hold' : 'Delivered';
-                                            // $btn_class = ($order_item_status == 'delivered') ? 'btn-delivered' : 'btn-primary';
-                                            // ?>
+                                        <?php
+                                        // // Replace with your actual code to fetch order_item details from the database
+                                        // $order_id = ...; // You need to have the correct order_item_id here
+                                        // $order_status = ...; // Fetch the order_status from the order_item table
+
+                                        // $status_text = ($order_item_status == 'on_hold') ? 'On Hold' : 'Delivered';
+                                        // $btn_class = ($order_item_status == 'delivered') ? 'btn-delivered' : 'btn-primary';
+                                        // 
+                                        ?>
                                         <form action="index.php" method="POST">
                                             <input type="hidden" name="item_id" value="<?php echo $order['item_id']; ?>">
                                             <input type="hidden" name="order_status" value="<?php echo $order['order_status']; ?>">
                                             <button class="btn <?php echo ($order['order_status'] == 'delivered') ? 'btn-delivered' : 'btn-primary'; ?>" type="submit" name="edit_order_status_btn">
                                                 <?php echo ($order['order_status'] == 'on_hold') ? 'On Hold' : 'Delivered'; ?>
                                             </button>
-                              
+
 
                                         </form>
                                     </td>

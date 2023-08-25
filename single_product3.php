@@ -17,11 +17,19 @@ $prixUTC = array(
     '3m80' => 61.000,
     // ... Add other sizes and prices ...
   ),
+  'Drapeau Rectangulaire' => array(
+    '2m30' => 51.200,
+    '2m80' => 55.200,
+    '3m20' => 61.800,
+    '3m80' => 67.500,
+    // ... Add other sizes and prices ...
+  ),
   'base' => array(
     'Water Base' => 52.082,
-    '2m80' => 45.600,
-    '3m20' => 48.200,
-    '3m80' => 61.000,
+    'Beton base' => 56.932,
+    'Metal Base 7Kg' => 71.500,
+    'Metal Base 7.5Kg' => 77.800,
+    'Metal Base 10Kg' => 94.200,
     // ... Add other sizes and prices ...
   ),
   // ... Add other flag types and their prices ...
@@ -43,19 +51,22 @@ $prix20 = array(
   ),
   'base' => array(
     'Water Base' => 46.874,
-    '2m80' => 45.600,
-    '3m20' => 48.200,
-    '3m80' => 61.000,
+    'Beton base' => 56.932,
+    'Metal Base 7Kg' => 67.900,
+    'Metal Base 7.5Kg' => 73.900,
+    'Metal Base 10Kg' => 84.780,
     // ... Add other sizes and prices ...
   ),
   // ... Add other flag types and their prices ...
 );
 $prixImp = array(
   'Drapeau Courbé' => array(
-    '2m50' => 20,
-    '2m80' => 30,
-    '3m20' => 40,
-    '3m80' => 50,
+    '2m50' => 54.266,
+    '2m80' => 59.314,
+    '3m20' => 74.458,
+    '3m80' => 91.537,
+    '4m50' => 119.637,
+    '5m00' => 130.238,
     // ... Add other sizes and prices ...
   ),
   'Drapeau Droit' => array(
@@ -65,6 +76,7 @@ $prixImp = array(
     '3m80' => 61000,
     // ... Add other sizes and prices ...
   ),
+  
  
 );
 
