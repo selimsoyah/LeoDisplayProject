@@ -424,7 +424,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
             <!-- <form class="radioForm"> -->
             <div class="radioForm">
 
-              <div class="option-container">
+              <div class="option-container" >
                 <h4>Choisissez le type de drapeau : </h4>
                 <label>
                   <input type="radio" name="option1" value="Drapeau Courbé" onclick="toggleInputGroup('input-group1')">
@@ -456,10 +456,11 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
       <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option1','input-group1')">Remove from Cart</button>
     </div> -->
               </div>
-              <h3 class="py-4">
-                <hr>
+              <h3 class="py-2">
+              <hr>
               </h3>
-              <div class="option-container">
+              
+              <div class="option-container" style="border:dotted 1px grey; padding:20px; border-radius:30px;">
                 <h4>Choissisez La Taille : </h4>
                 <label>
                   <input type="radio" name="option2" value="2m50" min="1" onclick="toggleInputGroup('input-group2')">
@@ -499,11 +500,11 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 </div>
               </div>
 
-              <h3 class="py-4">
-                <hr>
+              <h3 class="py-2">
+                
               </h3>
-              <div class="option-container">
-                <h4>Choissisez La Base:</h4>
+              <div class="option-container" style="border:dotted 1px grey; padding: 19.4px; border-radius:30px;">
+                <h4>Choissisez La Base :</h4>
                 <div class="base">
                   <label>
                     <input type="radio" name="option3" value="Water Base" onclick="toggleInputGroup('input-group3')">
@@ -547,11 +548,11 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 </div>
               </div>
 
-              <h3 class="py-4">
+              <h3 class="py-2">
                 <hr>
               </h3>
               <div class="option-container">
-                <h4>Avec Bare Metalique:</h4>
+                <h4>Avec Bare Metalique  :</h4>
                 <div class="base">
                   <label>
                     <input type="radio" name="option5" value="1" onclick="toggleInputGroup('input-group5')">
@@ -566,8 +567,8 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                 </div>
               </div>
 
-              <h3 class="py-4">
-                <hr>
+              <h3 class="py-2">
+                
               </h3>
               <div class="option-container">
                 <h4>Insérez Votre Image :</h4>
@@ -586,9 +587,11 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
               </div>
             </div>
             <div id="notification" class="notification-container">
-  <i class="far fa-circle-check notification-icon"></i>
-  Added to Cart
-</div>
+              <i class="far fa-circle-check notification-icon"></i>
+              Added to Cart
+            </div>
+
+
             <!-- <script>
               document.addEventListener('DOMContentLoaded', function() {
                 const quantity2Input = document.querySelector('[name="quantity_2"]');
@@ -648,6 +651,47 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
       color: #78d13d;
     }
             </style>
+
+
+<style>
+  .download-container {
+    text-align: left;
+    margin-right:100px;
+  }
+  .download-link {
+    text-decoration: none;
+    color: orange;
+    cursor: pointer;
+    text-align:left;
+  }
+  .pdf-links {
+    display: none;
+    margin-top: 10px;
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const pdfLinks = document.querySelector('.pdf-links');
+    pdfLinks.style.display = 'none'; // Initially hide the PDF links
+
+    const downloadLink = document.querySelector('.download-link');
+    downloadLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      pdfLinks.style.display = 'block'; // Show the PDF links
+    });
+  });
+</script>
+</head>
+<body>
+  <div class="download-container">
+    <h2><a class="download-link" href="#">Download all Gabaris</a></h2>
+    <div class="pdf-links">
+      <a href="assets\Gabari\Gabarit_Flag-2m50-Drapeau Courbé.pdf" target="_blank" download  style="text-decoration:none; color:grey;">Gabarit_Flag-2m50-Drapeau Courbé</a><br>
+      <a href="link_to_pdf_2.pdf" target="_blank" download style="text-decoration:none; color:grey;">PDF Link 2</a><br>
+      <a href="link_to_pdf_3.pdf" target="_blank" download style="text-decoration:none; color:grey;">PDF Link 3</a><br>
+      <!-- Add more PDF links as needed -->
+    </div>
+  </div>
 
 <script>
   // Get references to the buttons and notification element
@@ -868,8 +912,6 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
     </form>
 
   <?php } ?>
-
-
 
 
   <footer class="footer">

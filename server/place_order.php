@@ -29,6 +29,7 @@ $stmt8->execute();
 $checkout_details = $stmt8->get_result();
 
 $username = "";
+$user_email = "";
 while ($row = $checkout_details->fetch_assoc()) {
     // Access the columns using the column names
     $user_id = $row['user_id'];
@@ -59,6 +60,7 @@ if (isset($_POST['place_order'])) {
     // $name = $_POST['name'];
     // $email = $_POST['email'];
     // $user_email = "";
+    $user_email = $_SESSION['user_email'];
     $phone = 654654654;
     $city = $user_email;
     $address = $user_email;

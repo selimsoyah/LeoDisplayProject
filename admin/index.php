@@ -151,9 +151,11 @@ if (isset($_POST['delete_order_btn'])) {
 
 <div class="container-fluid" style="width: 100%;">
     <div class="row" style="width: 100%;">
-
+    <?php include('sidemenu.php'); ?>
         <main class="col-md-9 ms_sm_auto col_lg-10 px_md-4" style="width: 100%;">
+        
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+                
                 <h1 class="h2">Dashboard</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
@@ -162,11 +164,18 @@ if (isset($_POST['delete_order_btn'])) {
             </div>
 
             <h2>Orders</h2>
-
+            <hr>
             <form action="index.php" method="get">
-                <input type="date" name="filter_date" id="filter_date">
-                <button type="submit" name="filter_orders">Filter</button>
+                <input type="date" name="filter_date" id="filter_date" style="border: 2px solid orange;
+                 border-radius:3px; background-color: orange;
+                 color: white;">
+                <button type="submit" name="filter_orders" style="border: 2px solid orange;
+                 border-radius:3px; background-color: orange;
+                 color: white;">Filter
+                 </button>
+
             </form>
+            <hr>
 
             <?php if (isset($_GET['order_updated'])) { ?>
                 <p class="text-center" style="color:green;"> <?php echo $_GET['order_updated'] ?> </p>
@@ -220,7 +229,7 @@ if (isset($_POST['delete_order_btn'])) {
                                     $stmt2->close();
                                     // Display the product image
                                     ?>
-                                    <td> <?php echo $order['order_date']; ?></td>
+                                    
 
                                     <td class="line-between-td" data-name="name" style="border-left:1px solid black; border-radius:50%;"><?php echo $order['user_name']; ?></td>
 
