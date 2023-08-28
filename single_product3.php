@@ -49,6 +49,13 @@ $prix20 = array(
     '3m80' => 61.000,
     // ... Add other sizes and prices ...
   ),
+  'Drapeau Rectangulaire' => array(
+    '2m30' => 44.300,
+    '2m80' => 47.700,
+    '3m20' => 53.300,
+    '3m80' => 62.200,
+    // ... Add other sizes and prices ...
+  ),
   'base' => array(
     'Water Base' => 46.874,
     'Beton base' => 56.932,
@@ -74,6 +81,13 @@ $prixImp = array(
     '2m80' => 45600,
     '3m20' => 48200,
     '3m80' => 61000,
+    // ... Add other sizes and prices ...
+  ),
+  'Drapeau Rectangulaire' => array(
+    '2m30' => 47.900,
+    '2m80' => 61.700,
+    '3m20' => 82.400,
+    '3m80' => 112.400,
     // ... Add other sizes and prices ...
   ),
   
@@ -102,41 +116,55 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
       $option4 = null;
     }
     function calculateFlagPrice($option1, $option2,$option3,$quantity_3, $option4,$prixUTC,$prixImp,$quantity_2,$prix20) {
-      if ($option4==null)
-      {
-        if ($quantity_2 < 20){
-          if (isset($prixUTC[$option1]) && isset($prixUTC[$option1][$option2])) {
-            $result = $prixUTC[$option1][$option2];
-            $result2 = $result * $quantity_2;
-              return $result2;
-            } elseif (isset($prixUTC['base']) && isset($prixUTC['base'][$option3])){
-              $result = $prixUTC['base'][$option3];
-              $result3 = $result * $quantity_3;
-                return $result3;
+      
+      if ($option4 == null) {
+        $finalresult = 0.0;
+    
+        if ($quantity_2 <= 20 || $quantity_3 <= 20) {
+            if (isset($prixUTC[$option1]) && isset($prixUTC[$option1][$option2])) {
+                $result1 = $prixUTC[$option1][$option2];
+                $finalresult = $finalresult + ($result1 * $quantity_2);
             }
-        }elseif ($quantity_2 >= 20){
-          if (isset($prix20[$option1]) && isset($prix20[$option1][$option2])) {
-            $result = $prix20[$option1][$option2];
-            $result2 = $result * $quantity_2;
-              return $result2;
-            } elseif (isset($prix20['base']) && isset($prix20['base'][$option3])){
-              $result = $prix20['base'][$option3];
-              $result3 = $result * $quantity_3;
-                return $result3;
+    
+            if (isset($prixUTC['base']) && isset($prixUTC['base'][$option3])) {
+                $result2 = $prixUTC['base'][$option3];
+                $finalresult = $finalresult + ($result2 * $quantity_3);
+            }
+        } elseif ($quantity_2 > 20 || $quantity_3 > 20) {
+            if (isset($prix20[$option1]) && isset($prix20[$option1][$option2])) {
+                $result3 = $prix20[$option1][$option2];
+                $finalresult = $finalresult + ($result3 * $quantity_2);
+            }
+    
+            if (isset($prix20['base']) && isset($prix20['base'][$option3])) {
+                $result4 = $prix20['base'][$option3];
+                $finalresult = $finalresult + ($result4 * $quantity_3);
             }
         }
+    
+        return $finalresult;
+    }
+    elseif ($option4 != null) {
+      $finalresult = 0.0;
+  
+      if (isset($prixImp[$option1]) && isset($prixImp[$option1][$option2])) {
+          $result1 = $prixImp[$option1][$option2];
+          $finalresult = $finalresult + ($result1 * $quantity_2);
       }
-      elseif($option4!=null)
-      {
-        if (isset($prixImp[$option1]) && isset($prixImp[$option1][$option2])) {
-        $result = $prixImp[$option1][$option2];
-        $result2 = $result * $quantity_2;
-          return $result2;
-        } elseif (isset($prixImp['base']) && isset($prixImp['base'][$option3])){
-          $result = $prixImp['base'][$option3];
-          $result3 = $result * $quantity_3;
-            return $result3;
-        }}
+  
+      if ($quantity_3 <= 20) {
+        if (isset($prixUTC['base']) && isset($prixUTC['base'][$option3])) {
+            $result2 = $prixUTC['base'][$option3];
+            $finalresult = $finalresult + ($result2 * $quantity_3);
+        }
+    } elseif ( $quantity_3 > 20) {
+        if (isset($prix20['base']) && isset($prix20['base'][$option3])) {
+            $result4 = $prix20['base'][$option3];
+            $finalresult = $finalresult + ($result4 * $quantity_3);
+        }
+    }
+      return $finalresult;
+  }
       else {
         return 0; // Default flag price or error handling
       }
@@ -278,7 +306,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
   <form action="single_product2.php" method="GET">
     <input type="hidden" name="product_id" value="2">
-    <span class="arrow-label-left">StandParapluie</span> <!-- Added label -->
+    <span class="arrow-label-left">Stand<br> Parapluie</span> <!-- Added label -->
     <button type='submit' class="arrow-button left-arrow">
       <i class="fas fa-chevron-left"></i>
     </button>

@@ -156,7 +156,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
 
   <form action="single_product2.php" method="GET">
   <input type="hidden" name="product_id" value="2">
-  <span class="arrow-label-right">StandParapluie</span> <!-- Added label -->
+  <span class="arrow-label-right">Stand<br>Parapluie</span> <!-- Added label -->
   <button type='submit' class="arrow-button right-arrow">
     <i class="fas fa-chevron-right"></i>
   </button>

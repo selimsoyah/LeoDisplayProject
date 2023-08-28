@@ -35,13 +35,15 @@ while ($row = $checkout_details->fetch_assoc()) {
     $user_id = $row['user_id'];
     $username = $row['user_name'];
     $user_email = $row['user_email'];
+    $user_number = $row['user_number'];
+    $user_address = $row['user_address'];
 
-    // Display the retrieved data
+   
 
 }
 
 echo "<pre>";
-print_r($username); // or var_dump($checkout_details);
+print_r($username); 
 echo "</pre>";
 echo "Error: " . $stmt8->error;
 $stmt8->close();
@@ -61,9 +63,9 @@ if (isset($_POST['place_order'])) {
     // $email = $_POST['email'];
     // $user_email = "";
     $user_email = $_SESSION['user_email'];
-    $phone = 654654654;
+    $phone =  $user_number ;
     $city = $user_email;
-    $address = $user_email;
+    $address = $user_address;
 
     $order_cost = calculateTotal();
 

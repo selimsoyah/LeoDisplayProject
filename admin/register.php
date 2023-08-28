@@ -17,6 +17,8 @@ if (isset($_POST['register'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirmPassword'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
 
     // If password don't match
     if ($password !== $confirmPassword) {
@@ -43,11 +45,11 @@ if (isset($_POST['register'])) {
         // If no user registered with this email before
         else {     
             // Create new user
-            $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password)
-                VALUES (?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password,user_number,user_address)
+                VALUES (?, ?, ?,?,?)");
             
             // $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
-            $stmt->bind_param('sss', $name, $email, md5($password));
+            $stmt->bind_param('sssis', $name, $email, md5($password),$phone,$address);
 
             // If account was created successfully
             if ($stmt->execute()) {
@@ -57,7 +59,7 @@ if (isset($_POST['register'])) {
                 $_SESSION['user_name'] = $name;
                 $_SESSION['logged_in'] = true;
 
-                header('location: admin/index.php?register_success=You registered successfully');
+                header('location: index.php?register_success=You registered successfully');
             } 
             // Account could not be created
             else {

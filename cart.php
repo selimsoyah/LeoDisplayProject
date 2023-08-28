@@ -194,16 +194,17 @@ else {
 
                     <?php if ($value['option2'] !== null) : ?>
                       <span class="product-price"><?php echo $value['option2'] ?></span><span> X</span>
-                    <?php endif; ?>
+                    
                   <?php endif; ?>
                   <?php if ($value['quantity_2'] !== "0") : ?>
                     <span class="product-price"><?php echo $value['quantity_2'] ?></span>
                   <?php endif; ?>
+                  <?php endif; ?>
                   <?php if ($value['option3'] !== null) : ?>
                     <span class="product-price"><?php echo $value['option3'] ?></span><span> X</span>
-                  <?php endif; ?>
                   <?php if ($value['quantity_3'] !== "0") : ?>
                     <span class="product-price"><?php echo $value['quantity_3'] ?></span>
+                  <?php endif; ?>
                   <?php endif; ?>
                   <?php if ($value['option5'] !== 0) : ?>
                     <?php if ($value['option5'] == "1") : ?>
@@ -212,13 +213,13 @@ else {
                     <?php if ($value['option5'] == "0") : ?>
                       <span class="product-price">Sans Bare Metalique</span>
                     <?php endif; ?>
-                  <?php endif; ?>
+                  
                   <?php if ($value['quantity_5'] !== "0") : ?>
                     <span class="product-price"><?php echo $value['quantity_5'] ?></span>
                   <?php endif; ?>
-               
+                  <?php endif; ?>
                   <?php if ($value['option4'] !== null) : ?>
-                    <img src="data:image/jpeg;base64,<?php echo base64_encode($value['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px; position:absolute; right:200px;">
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($value['option4']) ?>" alt="Product Image" style="width: 100px; height: 100px; position:absolute; right:220px;">
                   <?php endif; ?>
                 </div>
                 
