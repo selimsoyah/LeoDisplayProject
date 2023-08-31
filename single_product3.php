@@ -18,7 +18,7 @@ $prixUTC = array(
     // ... Add other sizes and prices ...
   ),
   'Drapeau Rectangulaire' => array(
-    '2m30' => 51.200,
+    '2m50' => 51.200,
     '2m80' => 55.200,
     '3m20' => 61.800,
     '3m80' => 67.500,
@@ -50,7 +50,7 @@ $prix20 = array(
     // ... Add other sizes and prices ...
   ),
   'Drapeau Rectangulaire' => array(
-    '2m30' => 44.300,
+    '2m50' => 44.300,
     '2m80' => 47.700,
     '3m20' => 53.300,
     '3m80' => 62.200,
@@ -84,7 +84,7 @@ $prixImp = array(
     // ... Add other sizes and prices ...
   ),
   'Drapeau Rectangulaire' => array(
-    '2m30' => 47.900,
+    '2m50' => 47.900,
     '2m80' => 61.700,
     '3m20' => 82.400,
     '3m80' => 112.400,
@@ -589,7 +589,7 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
                   </label>
                   <div class="input-group" id="input-group5" style="display: none;">
                     <input type="number" name="quantity_5" value="1" min="1">
-                    <input type="submit" name="add_product addToCartButton" class="buy-btn" value="Ajouter Au Pannier">
+                    <input type="submit" name="add_product" class="buy-btn addToCartButton" value="Ajouter Au Pannier">
                     <button type="button" class="btn btn-danger remove-btn" onclick="removeFromCart('option5','input-group5')">Remove from Cart</button>
                   </div>
                 </div>
@@ -715,8 +715,8 @@ if (isset($_GET['product_id']) || isset($_POST['add_product'])) {
     <h2><a class="download-link" href="#">Download all Gabaris</a></h2>
     <div class="pdf-links">
       <a href="assets\Gabari\Gabarit_Flag-2m50-Drapeau Courbé.pdf" target="_blank" download  style="text-decoration:none; color:grey;">Gabarit_Flag-2m50-Drapeau Courbé</a><br>
-      <a href="link_to_pdf_2.pdf" target="_blank" download style="text-decoration:none; color:grey;">PDF Link 2</a><br>
-      <a href="link_to_pdf_3.pdf" target="_blank" download style="text-decoration:none; color:grey;">PDF Link 3</a><br>
+      <a href="assets\Gabari\Gabarit_Flag-2m50-Drapeau Droit.pdf" target="_blank" download style="text-decoration:none; color:grey;">Gabarit_Flag-2m50-Drapeau Droit</a><br>
+      <a href="assets\Gabari\Gabarit_Flag-2m50-Drapeau Incliné.pdf" target="_blank" download style="text-decoration:none; color:grey;">Gabarit_Flag-2m50-Drapeau Incliné</a><br>
       <!-- Add more PDF links as needed -->
     </div>
   </div>
